@@ -293,14 +293,15 @@
 
         // Firebase Configuration & Environment setup
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'legado-automotores-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "demo-key",
-            authDomain: "demo.firebaseapp.com",
-            projectId: "demo-project",
-            storageBucket: "demo.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123:web:abc"
-        };
+       const firebaseConfig = {
+  apiKey: "AIzaSyB2DejAvOmBaxDjBZ-2sYEmQilOhS-eqdc",
+  authDomain: "legado-automotores.firebaseapp.com",
+  projectId: "legado-automotores",
+  storageBucket: "legado-automotores.firebasestorage.app",
+  messagingSenderId: "381754461211",
+  appId: "1:381754461211:web:06a2f0b4672405b7a47cbe",
+  measurementId: "G-6PL1GE562Y"
+};
 
         const appInstance = initializeApp(firebaseConfig);
         const db = getFirestore(appInstance);
