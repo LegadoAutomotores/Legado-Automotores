@@ -41,6 +41,20 @@
             letter-spacing: 0.18em;
             color: #9b58ad;
         }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121318;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e303b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7e438e;
+        }
     </style>
 </head>
 <body class="bg-legado-darkBg text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white">
@@ -77,6 +91,7 @@
     </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
+        <!-- Search and Filter Bar -->
         <div class="bg-legado-cardBg p-5 sm:p-6 rounded-3xl border border-legado-grayBorder shadow-2xl flex flex-col gap-4 mb-6 relative z-20">
             <div class="relative w-full">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -119,8 +134,7 @@
             </div>
         </div>
 
-        <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-8">
-        </div>
+        <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-8"></div>
 
         <div class="flex items-center justify-between mb-6 border-b border-legado-grayBorder pb-3">
             <span id="vehicleCountText" class="text-xs sm:text-sm font-bold text-slate-400">Mostrando vehículos disponibles</span>
@@ -128,7 +142,7 @@
 
         <div id="loadingState" class="flex flex-col items-center justify-center py-20">
             <div class="w-12 h-12 border-4 border-legado-purpleLight border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p class="text-slate-400 font-medium">Cargando vehículos disponibles...</p>
+            <p class="text-slate-400 font-medium">Cargando catálogo en tiempo real...</p>
         </div>
 
         <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
@@ -139,8 +153,7 @@
             <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios de búsqueda.</p>
         </div>
 
-        <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        </div>
+        <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
     <div id="detailModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
@@ -148,8 +161,7 @@
             <button onclick="app.closeDetailModal()" class="absolute top-4 right-4 z-20 bg-legado-darkBg/80 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <div id="detailModalContent" class="p-6 sm:p-8">
-            </div>
+            <div id="detailModalContent" class="p-6 sm:p-8"></div>
         </div>
     </div>
 
@@ -208,8 +220,8 @@
                         <i class="fa-solid fa-gauge-high text-xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Gestión de Stock</h2>
-                        <p class="text-slate-400 text-sm">Agregue, edite o reordene fotos de los vehículos.</p>
+                        <h2 class="text-2xl font-bold text-white">Gestión de Stock (Google Cloud)</h2>
+                        <p class="text-slate-400 text-sm">Los cambios que realices aquí se actualizan en vivo para todo el público.</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-3">
@@ -234,8 +246,7 @@
                             <th class="py-3 px-4 text-right">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-grayBorder text-sm">
-                    </tbody>
+                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-grayBorder text-sm"></tbody>
                 </table>
             </div>
         </div>
@@ -298,7 +309,7 @@
                 </div>
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Descripción detallada</label>
-                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
+                    <textarea id="vDesc" rows="5" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm whitespace-pre-line leading-relaxed"></textarea>
                 </div>
 
                 <div>
@@ -313,8 +324,7 @@
                     </div>
                     <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/foto1.jpg, https://ejemplo.com/foto2.jpg" oninput="app.updatePhotoPreviewFromText()" class="w-full bg-legado-darkBg text-white px-4 py-2 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
                     
-                    <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1">
-                    </div>
+                    <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
                 </div>
 
                 <div class="flex justify-end space-x-3 pt-4 border-t border-legado-grayBorder">
@@ -353,37 +363,31 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration & Environment setup
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'legado-automotores-app';
+        // Your exact project credentials pre-configured
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2DejAvOmBaxDjBZ-2sYEmQiL0hS-eqdc",
+            authDomain: "legado-automotores.firebaseapp.com",
+            projectId: "legado-automotores",
+            storageBucket: "legado-automotores.firebasestorage.app",
+            messagingSenderId: "381754461211",
+            appId: "1:381754461211:web:06a2f0b4672405b7a47cbe",
+            measurementId: "G-6PL1GE562Y"
+        };
+
         let db = null;
         let auth = null;
 
         try {
-            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-                apiKey: "demo-key",
-                authDomain: "demo.firebaseapp.com",
-                projectId: "demo-project",
-                storageBucket: "demo.appspot.com",
-                messagingSenderId: "123456789",
-                appId: "1:123:web:abc"
-            };
-
-            // Detect if we are using demo keys to prevent 400 errors
-            if (firebaseConfig.apiKey !== "demo-key") {
-                const appInstance = initializeApp(firebaseConfig);
-                db = getFirestore(appInstance);
-                auth = getAuth(appInstance);
-            } else {
-                console.log("Modo local (demo-key) detectado. Firebase deshabilitado, usando LocalStorage.");
-            }
+            const appInstance = initializeApp(firebaseConfig);
+            db = getFirestore(appInstance);
+            auth = getAuth(appInstance);
         } catch (e) {
-            console.log('Firebase init fallback:', e);
+            console.warn("Firebase Init Notice:", e);
         }
 
-        // Default Sample Vehicles matching brand identity
         const defaultVehicles = [
             {
                 id: 'sample-1',
@@ -396,7 +400,7 @@
                 km: '28.000 km',
                 showKm: true,
                 specs: 'Automática | 3.0 V6 | 4Motion',
-                description: 'Impecable estado, services oficiales al día, cubiertas en un 90%. Lista para transferir.',
+                description: 'Impecable estado.\nServices oficiales al día.\nCubiertas en un 90%.\nLista para transferir.',
                 photos: [
                     'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80',
                     'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80'
@@ -413,7 +417,7 @@
                 km: '12.000 km',
                 showKm: true,
                 specs: 'Automática | 2.8 TDI | 4x4',
-                description: 'Única mano, tratamiento cerámico recién hecho, agregados originales de fábrica.',
+                description: 'Única mano.\nTratamiento cerámico recién hecho.\nAgregados originales de fábrica.',
                 photos: [
                     'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
                     'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80'
@@ -430,13 +434,55 @@
                 km: '19.000 km',
                 showKm: false,
                 specs: 'Automática | 5.0 V8 | Nafta',
-                description: 'Estado de concurso, escape deportivo opcional, interior en cuero negro impecable.',
+                description: 'Estado de concurso.\nEscape deportivo opcional.\nInterior en cuero negro impecable.',
                 photos: [
                     'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=1000&q=80',
                     'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=80'
                 ]
             }
         ];
+
+        class CanvasRenderer {
+            static renderImageToCanvas(canvas, imageUrl) {
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                img.crossOrigin = "anonymous";
+                img.src = imageUrl;
+
+                img.onload = () => {
+                    const parent = canvas.parentElement;
+                    const containerWidth = parent.clientWidth || 600;
+                    const containerHeight = parent.clientHeight || 400;
+
+                    canvas.width = containerWidth;
+                    canvas.height = containerHeight;
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    // Scale & center perfectly without cropping
+                    const hRatio = containerWidth / img.width;
+                    const vRatio = containerHeight / img.height;
+                    const ratio = Math.min(hRatio, vRatio);
+
+                    const centerShift_x = (containerWidth - img.width * ratio) / 2;
+                    const centerShift_y = (containerHeight - img.height * ratio) / 2;
+
+                    ctx.drawImage(img, 0, 0, img.width, img.height,
+                                  centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+                };
+
+                img.onerror = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "#1c1d24";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "#9ca3af";
+                    ctx.font = "14px Inter, sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText("Sin Imagen o URL no disponible", canvas.width / 2, canvas.height / 2);
+                };
+            }
+        }
 
         class LegadoApp {
             constructor() {
@@ -450,16 +496,11 @@
             async init() {
                 if (auth) {
                     try {
-                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
+                        await signInAnonymously(auth);
                     } catch (e) {
-                        console.log('Auth fallback notice:', e);
+                        console.log('Anonymous Auth Notice:', e);
                     }
                 }
-
                 await this.loadVehicles();
             }
 
@@ -467,15 +508,16 @@
                 try {
                     localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
                 } catch (e) {
-                    console.error("Local storage error:", e);
+                    console.error("Local storage save error:", e);
                 }
             }
 
             async loadVehicles() {
                 let loadedFromCloud = false;
+
                 if (db) {
                     try {
-                        const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'vehicles');
+                        const colRef = collection(db, 'vehicles');
                         const snapshot = await getDocs(colRef);
                         
                         if (!snapshot.empty) {
@@ -487,7 +529,7 @@
                             this.saveLocalCache();
                         }
                     } catch (err) {
-                        console.error("Error loading from Firestore, using defaults:", err);
+                        console.warn("Could not fetch from Firestore, falling back to local cache:", err);
                     }
                 }
 
@@ -512,14 +554,6 @@
                 this.renderAdminTable();
                 
                 document.getElementById('loadingState').classList.add('hidden');
-            }
-
-            saveLocalCache() {
-                try {
-                    localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
-                } catch (e) {
-                    console.error("Local storage error:", e);
-                }
             }
 
             populateDropdowns() {
@@ -629,17 +663,16 @@
                 let html = '';
 
                 this.filteredVehicles.forEach(v => {
-                    const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/1c1d24/9ca3af?text=Sin+Imagen';
                     const curr = v.currency || 'USD';
                     const whatsappMsg = encodeURIComponent(`Hola! Me interesa consultar por el vehículo ${v.brand} ${v.model} (${v.year}) publicado a ${curr} ${v.price}. ¿Está disponible?`);
 
                     const kmBadge = (v.showKm !== false && v.km) ? `<span><i class="fa-solid fa-gauge text-legado-purpleLight mr-1.5"></i>${v.km}</span>` : '';
-                    const typeBadge = v.type ? `<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2.5 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
+                    const typeBadge = v.type ? `<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
 
                     html += `
                         <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl overflow-hidden shadow-xl hover:border-legado-purpleLight/50 transition duration-300 flex flex-col group">
-                            <div class="relative h-64 overflow-hidden bg-black/60 flex items-center justify-center cursor-pointer p-3" onclick="window.app.openDetailModal('${v.id}')">
-                                <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/1c1d24/9ca3af?text=Error+Imagen'" class="w-full h-full object-contain object-center group-hover:scale-105 transition duration-500">
+                            <div class="relative h-64 overflow-hidden bg-black/80 flex items-center justify-center cursor-pointer p-2" onclick="window.app.openDetailModal('${v.id}')">
+                                <canvas id="canvas_cover_${v.id}" class="w-full h-full object-contain"></canvas>
                                 <div class="absolute top-3 left-3 flex gap-2 z-10">
                                     <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder">${v.year}</span>
                                     ${typeBadge}
@@ -655,7 +688,7 @@
                                     ${kmBadge}
                                     <span><i class="fa-solid fa-gear text-legado-purpleLight mr-1.5"></i>${v.specs || 'Consultar'}</span>
                                 </div>
-                                <p class="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow whitespace-pre-line">${v.description || 'Sin descripción detallada.'}</p>
+                                <p class="text-slate-400 text-sm line-clamp-3 mb-6 flex-grow whitespace-pre-line leading-relaxed">${v.description || 'Sin descripción detallada.'}</p>
                                 <div class="grid grid-cols-2 gap-3 mt-auto">
                                     <button onclick="window.app.openDetailModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 border border-legado-grayBorder text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
                                         Ver Detalles
@@ -671,6 +704,14 @@
                 });
 
                 grid.innerHTML = html;
+
+                setTimeout(() => {
+                    this.filteredVehicles.forEach(v => {
+                        const canvas = document.getElementById(`canvas_cover_${v.id}`);
+                        const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/1c1d24/9ca3af?text=Sin+Imagen';
+                        CanvasRenderer.renderImageToCanvas(canvas, coverPhoto);
+                    });
+                }, 50);
             }
 
             openDetailModal(id) {
@@ -711,8 +752,8 @@
                 document.getElementById('detailModalContent').innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <div class="relative h-80 sm:h-[420px] rounded-2xl overflow-hidden bg-black/70 mb-4 border border-legado-grayBorder flex items-center justify-center p-3">
-                                <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-contain object-center">
+                            <div class="relative h-80 sm:h-[420px] rounded-2xl overflow-hidden bg-black/80 mb-4 border border-legado-grayBorder flex items-center justify-center p-2">
+                                <canvas id="detailMainCanvas" class="w-full h-full object-contain"></canvas>
                                 <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl z-10">
                                     ${curr} ${v.price}
                                 </div>
@@ -759,6 +800,11 @@
                         </div>
                     </div>
                 `;
+
+                setTimeout(() => {
+                    const mainCanvas = document.getElementById('detailMainCanvas');
+                    CanvasRenderer.renderImageToCanvas(mainCanvas, activePhoto);
+                }, 50);
             }
 
             setPhotoIndex(idx) {
@@ -990,7 +1036,7 @@
 
                     const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
 
-                    // Save locally first to guarantee responsive UI
+                    // 1. Update local cache immediately
                     const index = this.vehicles.findIndex(v => v.id === id);
                     if (index >= 0) {
                         this.vehicles[index] = vehicleData;
@@ -999,12 +1045,12 @@
                     }
                     this.saveLocalCache();
 
-                    // Attempt Firestore save
+                    // 2. Persist to Firestore Cloud Database
                     if (db) {
                         try {
-                            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
+                            await setDoc(doc(db, 'vehicles', id), vehicleData);
                         } catch (fsErr) {
-                            console.warn("Firestore fallback notice:", fsErr);
+                            console.warn("Firestore cloud save warning:", fsErr);
                         }
                     }
 
@@ -1014,7 +1060,7 @@
                     this.filterVehicles();
                     this.renderAdminTable();
                     this.closeVehicleModal();
-                    this.showToast('Vehículo guardado correctamente');
+                    this.showToast('Vehículo guardado en la nube correctamente');
                 } catch (err) {
                     console.error("Error saving vehicle:", err);
                     this.showToast('Error al guardar el vehículo', 'error');
@@ -1042,7 +1088,6 @@
 
             async executeDeleteVehicle(id) {
                 try {
-                    // Update local state first
                     this.vehicles = this.vehicles.filter(v => v.id !== id);
                     this.filteredVehicles = [...this.vehicles];
                     this.saveLocalCache();
@@ -1053,12 +1098,11 @@
                     this.renderAdminTable();
                     this.showToast('Vehículo eliminado correctamente');
 
-                    // Delete from Firestore
                     if (db) {
                         try {
-                            await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
+                            await deleteDoc(doc(db, 'vehicles', id));
                         } catch (fsErr) {
-                            console.warn("Firestore delete notice:", fsErr);
+                            console.warn("Firestore delete warning:", fsErr);
                         }
                     }
                 } catch (err) {
