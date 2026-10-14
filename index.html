@@ -172,6 +172,25 @@
         </div>
     </div>
 
+    <!-- Delete Confirmation Modal (Replaces browser confirm) -->
+    <div id="deleteConfirmModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center relative animate-in fade-in zoom-in duration-150">
+            <div class="w-14 h-14 bg-rose-950/50 text-rose-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-rose-900/40">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Eliminar Vehículo</h3>
+            <p class="text-slate-300 text-sm mb-6">¿Estás seguro de que deseas eliminar este vehículo permanentemente?</p>
+            <div class="flex space-x-3">
+                <button type="button" onclick="app.closeDeleteModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder py-2.5 rounded-xl text-sm font-semibold transition">
+                    Cancelar
+                </button>
+                <button type="button" id="confirmDeleteBtn" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-rose-950/50">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div id="adminModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <!-- Admin Login Screen -->
         <div id="adminLoginCard" class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
@@ -606,13 +625,13 @@
 
                     html += `
                         <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl overflow-hidden shadow-xl hover:border-legado-purpleLight/50 transition duration-300 flex flex-col group">
-                            <div class="relative h-60 overflow-hidden bg-legado-darkBg cursor-pointer" onclick="window.app.openDetailModal('${v.id}')">
-                                <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/1c1d24/9ca3af?text=Error+Imagen'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute top-3 left-3 flex gap-2">
+                            <div class="relative h-64 overflow-hidden bg-black/40 flex items-center justify-center cursor-pointer p-2" onclick="window.app.openDetailModal('${v.id}')">
+                                <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/1c1d24/9ca3af?text=Error+Imagen'" class="w-full h-full object-contain object-center group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3 flex gap-2 z-10">
                                     <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder">${v.year}</span>
                                     ${typeBadge}
                                 </div>
-                                <div class="absolute top-3 right-3 bg-legado-purple text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg">
+                                <div class="absolute top-3 right-3 bg-legado-purple text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg z-10">
                                     ${curr} ${v.price}
                                 </div>
                             </div>
@@ -670,16 +689,18 @@
                 photos.forEach((p, idx) => {
                     const activeClass = idx === this.currentPhotoIndex ? 'border-legado-purpleLight ring-2 ring-purple-500/50' : 'border-legado-grayBorder opacity-60 hover:opacity-100';
                     thumbnailsHtml += `
-                        <img src="${p}" onclick="window.app.setPhotoIndex(${idx})" class="w-20 h-16 object-cover rounded-xl border-2 ${activeClass} cursor-pointer transition">
+                        <div class="w-20 h-16 rounded-xl border-2 ${activeClass} bg-black/40 overflow-hidden flex items-center justify-center cursor-pointer flex-shrink-0 transition" onclick="window.app.setPhotoIndex(${idx})">
+                            <img src="${p}" class="w-full h-full object-contain object-center">
+                        </div>
                     `;
                 });
 
                 document.getElementById('detailModalContent').innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden bg-legado-darkBg mb-4 border border-legado-grayBorder">
-                                <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-cover">
-                                <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl">
+                            <div class="relative h-72 sm:h-96 rounded-2xl overflow-hidden bg-black/60 mb-4 border border-legado-grayBorder flex items-center justify-center p-2">
+                                <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-contain object-center">
+                                <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl z-10">
                                     ${curr} ${v.price}
                                 </div>
                             </div>
@@ -849,7 +870,11 @@
 
             // Function to extract numerical index before .jpg/.jpeg/.png etc. and sort numerically
             sortPhotosListNumerically(photosArray) {
+                if (!Array.isArray(photosArray)) return [];
                 return [...photosArray].sort((a, b) => {
+                    if (typeof a !== 'string') a = String(a);
+                    if (typeof b !== 'string') b = String(b);
+
                     // Extract match before file extension or at the end of the URL
                     const matchA = a.match(/(\d+)(?=\.[a-zA-Z0-9]+(?:\?.*)?$)/) || a.match(/(\d+)(?=\/?$)/);
                     const matchB = b.match(/(\d+)(?=\.[a-zA-Z0-9]+(?:\?.*)?$)/) || b.match(/(\d+)(?=\/?$)/);
@@ -875,7 +900,7 @@
                 const container = document.getElementById('photoReorderContainer');
                 if (!container) return;
 
-                if (this.currentEditingPhotos.length === 0) {
+                if (!this.currentEditingPhotos || this.currentEditingPhotos.length === 0) {
                     container.innerHTML = `<p class="text-xs text-slate-400 italic py-2">No hay fotos cargadas o el enlace está vacío.</p>`;
                     return;
                 }
@@ -923,32 +948,47 @@
 
             async saveVehicle(e) {
                 e.preventDefault();
-                const id = document.getElementById('vehicleId').value || 'veh_' + Date.now();
-                const brand = document.getElementById('vBrand').value.trim();
-                const model = document.getElementById('vModel').value.trim();
-                const type = document.getElementById('vType').value.trim() || 'Vehículo';
-                const currency = document.getElementById('vCurrency').value;
-                const price = document.getElementById('vPrice').value.trim();
-                const year = parseInt(document.getElementById('vYear').value);
-                const km = document.getElementById('vKm').value.trim();
-                const showKm = document.getElementById('vShowKm').checked;
-                const specs = document.getElementById('vSpecs').value.trim();
-                const description = document.getElementById('vDesc').value.trim();
-                
-                let photos = this.sortPhotosListNumerically(this.currentEditingPhotos);
-                if (photos.length === 0) {
-                    photos = ['https://placehold.co/800x500/1c1d24/9ca3af?text=Sin+Imagen'];
-                }
-
-                const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
                 try {
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
+                    const id = document.getElementById('vehicleId').value || 'veh_' + Date.now();
+                    const brand = document.getElementById('vBrand').value.trim();
+                    const model = document.getElementById('vModel').value.trim();
+                    const type = document.getElementById('vType').value.trim() || 'Vehículo';
+                    const currency = document.getElementById('vCurrency').value;
+                    const price = document.getElementById('vPrice').value.trim();
+                    const year = parseInt(document.getElementById('vYear').value) || new Date().getFullYear();
+                    const km = document.getElementById('vKm').value.trim();
+                    const showKm = document.getElementById('vShowKm').checked;
+                    const specs = document.getElementById('vSpecs').value.trim();
+                    const description = document.getElementById('vDesc').value.trim();
+
+                    // Parse photos from text input if currentEditingPhotos wasn't populated yet
+                    const rawPhotosText = document.getElementById('vPhotos').value;
+                    let photoArray = rawPhotosText.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
                     
+                    if (photoArray.length === 0 && this.currentEditingPhotos && this.currentEditingPhotos.length > 0) {
+                        photoArray = [...this.currentEditingPhotos];
+                    }
+
+                    let photos = this.sortPhotosListNumerically(photoArray);
+                    if (photos.length === 0) {
+                        photos = ['https://placehold.co/800x500/1c1d24/9ca3af?text=Sin+Imagen'];
+                    }
+
+                    const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
+
+                    // Save locally first to guarantee responsive UI
                     const index = this.vehicles.findIndex(v => v.id === id);
                     if (index >= 0) {
                         this.vehicles[index] = vehicleData;
                     } else {
                         this.vehicles.unshift(vehicleData);
+                    }
+
+                    // Attempt Firestore save
+                    try {
+                        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
+                    } catch (fsErr) {
+                        console.warn("Firestore fallback notice:", fsErr);
                     }
 
                     this.filteredVehicles = [...this.vehicles];
@@ -960,22 +1000,48 @@
                     this.showToast('Vehículo guardado correctamente');
                 } catch (err) {
                     console.error("Error saving vehicle:", err);
-                    this.showToast('Error al guardar en la base de datos', 'error');
+                    this.showToast('Error al guardar el vehículo', 'error');
                 }
             }
 
-            async deleteVehicle(id) {
-                if (!confirm('¿Está seguro de eliminar este vehículo permanentemente?')) return;
+            deleteVehicle(id) {
+                // Open custom delete modal instead of browser confirm()
+                const modal = document.getElementById('deleteConfirmModal');
+                const confirmBtn = document.getElementById('confirmDeleteBtn');
+                
+                if (!modal || !confirmBtn) return;
 
+                confirmBtn.onclick = async () => {
+                    await this.executeDeleteVehicle(id);
+                    this.closeDeleteModal();
+                };
+
+                modal.classList.remove('hidden');
+            }
+
+            closeDeleteModal() {
+                const modal = document.getElementById('deleteConfirmModal');
+                if (modal) modal.classList.add('hidden');
+            }
+
+            async executeDeleteVehicle(id) {
                 try {
-                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
+                    // Update local state first
                     this.vehicles = this.vehicles.filter(v => v.id !== id);
                     this.filteredVehicles = [...this.vehicles];
+                    
                     this.populateDropdowns();
                     this.renderBrandButtons();
                     this.filterVehicles();
                     this.renderAdminTable();
-                    this.showToast('Vehículo eliminado');
+                    this.showToast('Vehículo eliminado correctamente');
+
+                    // Delete from Firestore
+                    try {
+                        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
+                    } catch (fsErr) {
+                        console.warn("Firestore delete notice:", fsErr);
+                    }
                 } catch (err) {
                     console.error("Error deleting vehicle:", err);
                     this.showToast('Error al eliminar vehículo', 'error');
