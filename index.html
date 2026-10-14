@@ -73,17 +73,56 @@
                 Calidad, confianza y transparencia en cada operación. Consultá nuestro stock actualizado en tiempo real.
             </p>
 
-            <!-- Search and Filter Bar -->
-            <div class="max-w-3xl mx-auto bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-slate-800 shadow-2xl flex flex-col sm:flex-row gap-3">
-                <div class="relative flex-1">
+            <!-- Search and Dropdown Filter Bar -->
+            <div class="max-w-5xl mx-auto bg-slate-900/90 backdrop-blur-md p-4 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-3">
+                <div class="relative w-full">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                    <input type="text" id="searchInput" oninput="app.filterVehicles()" placeholder="Buscar por marca, modelo o año..." 
-                           class="w-full bg-slate-950/80 text-white pl-11 pr-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm transition">
+                    <input type="text" id="searchInput" oninput="app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
+                           class="w-full bg-slate-950/80 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm transition">
+                </div>
+                
+                <!-- 4 Dropdowns Bar as requested -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <!-- 1: Tipo Vehiculo -->
+                    <div class="relative">
+                        <select id="typeSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                            <option value="">🚙 Tipo Vehículo (Todos)</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
+                    </div>
+
+                    <!-- 2: Ordenar por -->
+                    <div class="relative">
+                        <select id="sortSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                            <option value="default">📊 Ordenar por (Defecto)</option>
+                            <option value="price_desc">Mayor Valor</option>
+                            <option value="price_asc">Menor Valor</option>
+                            <option value="year_desc">Año: Más reciente</option>
+                            <option value="year_asc">Año: Más antiguo</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
+                    </div>
+
+                    <!-- 3: Marca -->
+                    <div class="relative">
+                        <select id="brandSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                            <option value="">🏷️ Marca (Todas)</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
+                    </div>
+
+                    <!-- 4: Año -->
+                    <div class="relative">
+                        <select id="yearSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                            <option value="">📅 Año (Todos)</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
+                    </div>
                 </div>
             </div>
 
-            <!-- Dynamic Brand Filter Buttons -->
-            <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mt-6 max-w-4xl mx-auto">
+            <!-- Optional Quick Brand Pills -->
+            <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mt-5 max-w-4xl mx-auto">
                 <!-- Dynamically populated via JS -->
             </div>
         </div>
@@ -102,7 +141,7 @@
                 <i class="fa-solid fa-car-burst"></i>
             </div>
             <h3 class="text-xl font-bold text-white mb-2">No se encontraron vehículos</h3>
-            <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios o el stock se encuentra momentáneamente vacío.</p>
+            <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios de búsqueda.</p>
         </div>
 
         <!-- Vehicle Grid -->
@@ -122,8 +161,8 @@
         </div>
     </div>
 
+    <!-- Admin Modal & Dashboard -->
     <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <!-- Login Card -->
         <div id="adminLoginCard" class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
             <button onclick="app.closeAdminModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
@@ -153,7 +192,6 @@
             </form>
         </div>
 
-        <!-- Dashboard Panel (Hidden until login) -->
         <div id="adminDashboard" class="hidden bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
             <div class="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
                 <div class="flex items-center space-x-3">
@@ -176,7 +214,6 @@
                 </div>
             </div>
 
-            <!-- Vehicles Table for Admin -->
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
@@ -196,6 +233,7 @@
         </div>
     </div>
 
+    <!-- Vehicle Add/Edit Form Modal -->
     <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
@@ -216,9 +254,22 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio (USD)</label>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Tipo de Vehículo</label>
+                        <input type="text" id="vType" required placeholder="Ej. Pick-Up, SUV, Sedán" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Moneda</label>
+                        <select id="vCurrency" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                            <option value="USD">USD ($)</option>
+                            <option value="ARS">Pesos ($)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio</label>
                         <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
                     </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Año</label>
                         <input type="number" id="vYear" required placeholder="2023" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
@@ -227,14 +278,13 @@
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Kilometraje</label>
                         <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
                     </div>
+                    <div class="flex items-center pt-6">
+                        <div class="flex items-center space-x-3 bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 w-full">
+                            <input type="checkbox" id="vShowKm" checked class="w-5 h-5 accent-purple-600 rounded cursor-pointer">
+                            <label for="vShowKm" class="text-xs font-semibold text-slate-300 cursor-pointer">Mostrar KM</label>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Toggle for Kilometraje -->
-                <div class="flex items-center space-x-3 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <input type="checkbox" id="vShowKm" checked class="w-5 h-5 accent-purple-600 rounded cursor-pointer">
-                    <label for="vShowKm" class="text-sm font-semibold text-slate-300 cursor-pointer">Mostrar kilometraje en esta publicación</label>
-                </div>
-
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Transmisión / Motor / Combustible</label>
                     <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
@@ -246,7 +296,6 @@
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1">URLs de Fotos (Una por línea o separadas por coma)</label>
                     <textarea id="vPhotos" rows="3" placeholder="https://ejemplo.com/foto1.jpg, https://ejemplo.com/foto2.jpg" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm font-mono text-xs"></textarea>
-                    <p class="text-xs text-slate-500 mt-1">Podés pegar links directos de imágenes de internet.</p>
                 </div>
                 <div class="flex justify-end space-x-3 pt-4 border-t border-slate-800">
                     <button type="button" onclick="app.closeVehicleModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition">Cancelar</button>
@@ -256,6 +305,7 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
         <i id="toastIcon" class="fa-solid fa-circle-check text-purple-400 text-lg"></i>
         <span id="toastMessage" class="text-sm font-medium">Operación exitosa</span>
@@ -308,6 +358,8 @@
                 id: 'sample-1',
                 brand: 'Volkswagen',
                 model: 'Amarok V6 Highline',
+                type: 'Pick-Up',
+                currency: 'USD',
                 price: '42.000',
                 year: 2023,
                 km: '28.000 km',
@@ -323,6 +375,8 @@
                 id: 'sample-2',
                 brand: 'Toyota',
                 model: 'Hilux SRX 4x4',
+                type: 'Pick-Up',
+                currency: 'USD',
                 price: '48.500',
                 year: 2024,
                 km: '12.000 km',
@@ -338,6 +392,8 @@
                 id: 'sample-3',
                 brand: 'Ford',
                 model: 'Mustang GT V8',
+                type: 'Deportivo',
+                currency: 'USD',
                 price: '65.000',
                 year: 2022,
                 km: '19.000 km',
@@ -355,7 +411,6 @@
             constructor() {
                 this.vehicles = [];
                 this.filteredVehicles = [];
-                this.selectedBrand = '';
                 this.currentVehicle = null;
                 this.currentPhotoIndex = 0;
             }
@@ -396,23 +451,57 @@
                 }
 
                 this.filteredVehicles = [...this.vehicles];
+                this.populateDropdowns();
                 this.renderBrandButtons();
-                this.renderCatalog();
+                this.filterVehicles();
                 this.renderAdminTable();
                 
                 document.getElementById('loadingState').classList.add('hidden');
             }
 
+            populateDropdowns() {
+                // Populate Type Dropdown
+                const typeSelect = document.getElementById('typeSelect');
+                const currentType = typeSelect.value;
+                const types = [...new Set(this.vehicles.map(v => v.type || 'Otro'))].sort();
+                let typeHtml = '<option value="">🚙 Tipo Vehículo (Todos)</option>';
+                types.forEach(t => {
+                    typeHtml += `<option value="${t}" ${currentType === t ? 'selected' : ''}>${t}</option>`;
+                });
+                typeSelect.innerHTML = typeHtml;
+
+                // Populate Brand Dropdown
+                const brandSelect = document.getElementById('brandSelect');
+                const currentBrand = brandSelect.value;
+                const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
+                let brandHtml = '<option value="">🏷️ Marca (Todas)</option>';
+                brands.forEach(b => {
+                    brandHtml += `<option value="${b}" ${currentBrand === b ? 'selected' : ''}>${b}</option>`;
+                });
+                brandSelect.innerHTML = brandHtml;
+
+                // Populate Year Dropdown
+                const yearSelect = document.getElementById('yearSelect');
+                const currentYear = yearSelect.value;
+                const years = [...new Set(this.vehicles.map(v => v.year))].sort((a, b) => b - a);
+                let yearHtml = '<option value="">📅 Año (Todos)</option>';
+                years.forEach(y => {
+                    yearHtml += `<option value="${y}" ${currentYear == y ? 'selected' : ''}>${y}</option>`;
+                });
+                yearSelect.innerHTML = yearHtml;
+            }
+
             renderBrandButtons() {
                 const container = document.getElementById('brandButtonsContainer');
                 const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
+                const currentBrand = document.getElementById('brandSelect').value;
 
-                let html = `<button onclick="app.filterByBrand('')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${this.selectedBrand === '' ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">Todas las marcas</button>`;
+                let html = `<button onclick="window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${currentBrand === '' ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">Todas las marcas</button>`;
 
                 brands.forEach(b => {
-                    const isActive = this.selectedBrand === b;
+                    const isActive = currentBrand === b;
                     html += `
-                        <button onclick="app.filterByBrand('${b}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${isActive ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">
+                        <button onclick="window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${isActive ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">
                             ${b}
                         </button>
                     `;
@@ -421,19 +510,42 @@
                 container.innerHTML = html;
             }
 
-            filterByBrand(brand) {
-                this.selectedBrand = brand;
+            selectBrandFromButton(brand) {
+                document.getElementById('brandSelect').value = brand;
                 this.renderBrandButtons();
                 this.filterVehicles();
             }
 
             filterVehicles() {
                 const query = document.getElementById('searchInput').value.toLowerCase();
+                const typeFilter = document.getElementById('typeSelect').value;
+                const brandFilter = document.getElementById('brandSelect').value;
+                const yearFilter = document.getElementById('yearSelect').value;
+                const sortOption = document.getElementById('sortSelect').value;
+
+                // Keep brand buttons synced if changed via dropdown
+                this.renderBrandButtons();
 
                 this.filteredVehicles = this.vehicles.filter(v => {
                     const matchesQuery = (v.brand + ' ' + v.model + ' ' + v.year).toLowerCase().includes(query);
-                    const matchesBrand = this.selectedBrand === '' || v.brand === this.selectedBrand;
-                    return matchesQuery && matchesBrand;
+                    const matchesBrand = brandFilter === '' || v.brand === brandFilter;
+                    const matchesType = typeFilter === '' || (v.type || 'Otro') === typeFilter;
+                    const matchesYear = yearFilter === '' || String(v.year) === yearFilter;
+                    return matchesQuery && matchesBrand && matchesType && matchesYear;
+                });
+
+                // Sorting logic
+                this.filteredVehicles.sort((a, b) => {
+                    const priceA = parseFloat(String(a.price).replace(/\./g, '').replace(',', '.')) || 0;
+                    const priceB = parseFloat(String(b.price).replace(/\./g, '').replace(',', '.')) || 0;
+                    const yearA = parseInt(a.year) || 0;
+                    const yearB = parseInt(b.year) || 0;
+
+                    if (sortOption === 'price_asc') return priceA - priceB;
+                    if (sortOption === 'price_desc') return priceB - priceA;
+                    if (sortOption === 'year_desc') return yearB - yearA;
+                    if (sortOption === 'year_asc') return yearA - yearB;
+                    return 0;
                 });
 
                 this.renderCatalog();
@@ -454,31 +566,34 @@
 
                 this.filteredVehicles.forEach(v => {
                     const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/111827/9ca3af?text=Sin+Imagen';
-                    const whatsappMsg = encodeURIComponent(`Hola! Me interesa consultar por el vehículo ${v.brand} ${v.model} (${v.year}) publicado a USD ${v.price}. ¿Está disponible?`);
+                    const curr = v.currency || 'USD';
+                    const whatsappMsg = encodeURIComponent(`Hola! Me interesa consultar por el vehículo ${v.brand} ${v.model} (${v.year}) publicado a ${curr} ${v.price}. ¿Está disponible?`);
 
                     const kmBadge = (v.showKm !== false && v.km) ? `<span><i class="fa-solid fa-gauge text-purple-400 mr-1.5"></i>${v.km}</span>` : '';
+                    const typeBadge = v.type ? `<span class="bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
 
                     html += `
                         <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-purple-500/50 transition duration-300 flex flex-col group">
-                            <div class="relative h-60 overflow-hidden bg-slate-950 cursor-pointer" onclick="app.openDetailModal('${v.id}')">
+                            <div class="relative h-60 overflow-hidden bg-slate-950 cursor-pointer" onclick="window.app.openDetailModal('${v.id}')">
                                 <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/111827/9ca3af?text=Error+Imagen'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-purple-300 font-bold px-3 py-1 rounded-xl text-xs border border-slate-800">
-                                    ${v.year}
+                                <div class="absolute top-3 left-3 flex gap-2">
+                                    <span class="bg-slate-950/80 backdrop-blur-md text-purple-300 font-bold px-3 py-1 rounded-xl text-xs border border-slate-800">${v.year}</span>
+                                    ${typeBadge}
                                 </div>
                                 <div class="absolute top-3 right-3 bg-purple-600 text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg">
-                                    USD ${v.price}
+                                    ${curr} ${v.price}
                                 </div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <div class="text-xs uppercase font-bold text-purple-400 tracking-wider mb-1">${v.brand}</div>
-                                <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-purple-300 transition" onclick="app.openDetailModal('${v.id}')">${v.model}</h3>
+                                <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-purple-300 transition" onclick="window.app.openDetailModal('${v.id}')">${v.model}</h3>
                                 <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-slate-800">
                                     ${kmBadge}
                                     <span><i class="fa-solid fa-gear text-purple-400 mr-1.5"></i>${v.specs || 'Consultar'}</span>
                                 </div>
                                 <p class="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow">${v.description || 'Sin descripción detallada.'}</p>
                                 <div class="grid grid-cols-2 gap-3 mt-auto">
-                                    <button onclick="app.openDetailModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
+                                    <button onclick="window.app.openDetailModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
                                         Ver Detalles
                                     </button>
                                     <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/20 transition">
@@ -499,7 +614,6 @@
                 if (!v) return;
                 this.currentVehicle = v;
                 this.currentPhotoIndex = 0;
-
                 this.renderDetailModalContent();
                 document.getElementById('detailModal').classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
@@ -507,9 +621,11 @@
 
             renderDetailModalContent() {
                 const v = this.currentVehicle;
+                if (!v) return;
                 const photos = (v.photos && v.photos.length > 0) ? v.photos : ['https://placehold.co/800x500/111827/9ca3af?text=Sin+Imagen'];
                 const activePhoto = photos[this.currentPhotoIndex];
-                const whatsappMsg = encodeURIComponent(`Hola! Me interesa el vehículo ${v.brand} ${v.model} (${v.year}) de USD ${v.price}.`);
+                const curr = v.currency || 'USD';
+                const whatsappMsg = encodeURIComponent(`Hola! Me interesa el vehículo ${v.brand} ${v.model} (${v.year}) de ${curr} ${v.price}.`);
 
                 const kmInfo = (v.showKm !== false && v.km) ? `
                     <div>
@@ -522,7 +638,7 @@
                 photos.forEach((p, idx) => {
                     const activeClass = idx === this.currentPhotoIndex ? 'border-purple-500 ring-2 ring-purple-500/50' : 'border-slate-800 opacity-60 hover:opacity-100';
                     thumbnailsHtml += `
-                        <img src="${p}" onclick="app.setPhotoIndex(${idx})" class="w-20 h-16 object-cover rounded-xl border-2 ${activeClass} cursor-pointer transition">
+                        <img src="${p}" onclick="window.app.setPhotoIndex(${idx})" class="w-20 h-16 object-cover rounded-xl border-2 ${activeClass} cursor-pointer transition">
                     `;
                 });
 
@@ -532,7 +648,7 @@
                             <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden bg-slate-950 mb-4 border border-slate-800">
                                 <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-cover">
                                 <div class="absolute top-4 left-4 bg-purple-600 text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl">
-                                    USD ${v.price}
+                                    ${curr} ${v.price}
                                 </div>
                             </div>
                             <div class="flex gap-2 overflow-x-auto pb-2">
@@ -541,9 +657,12 @@
                         </div>
                         <div class="flex flex-col justify-between">
                             <div>
-                                <span class="bg-purple-600/10 text-purple-300 border border-purple-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block mb-3">
-                                    ${v.brand}
-                                </span>
+                                <div class="flex gap-2 mb-3">
+                                    <span class="bg-purple-600/10 text-purple-300 border border-purple-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">
+                                        ${v.brand}
+                                    </span>
+                                    ${v.type ? `<span class="bg-slate-800 text-slate-300 border border-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">${v.type}</span>` : ''}
+                                </div>
                                 <h2 class="text-3xl font-black text-white mb-3">${v.model}</h2>
                                 <div class="grid grid-cols-2 gap-4 my-4 p-4 bg-slate-950/60 rounded-2xl border border-slate-800">
                                     <div>
@@ -625,23 +744,24 @@
                 let html = '';
                 this.vehicles.forEach(v => {
                     const cover = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/100x100/111827/9ca3af?text=Car';
+                    const curr = v.currency || 'USD';
                     html += `
                         <tr class="hover:bg-slate-950/40 transition">
                             <td class="py-3 px-4 flex items-center space-x-3">
                                 <img src="${cover}" class="w-12 h-10 object-cover rounded-lg border border-slate-800" onerror="this.src='https://placehold.co/100x100'">
                                 <div>
                                     <span class="font-bold text-white block">${v.brand} ${v.model}</span>
-                                    <span class="text-xs text-slate-500">ID: ${v.id}</span>
+                                    <span class="text-xs text-slate-500">Tipo: ${v.type || 'N/D'}</span>
                                 </div>
                             </td>
-                            <td class="py-3 px-4 font-semibold text-purple-300">USD ${v.price}</td>
+                            <td class="py-3 px-4 font-semibold text-purple-300">${curr} ${v.price}</td>
                             <td class="py-3 px-4 text-slate-300">${v.year} / ${v.showKm !== false ? (v.km || 'N/D') : 'Oculto'}</td>
                             <td class="py-3 px-4 text-slate-300">${v.photos ? v.photos.length : 0} fotos</td>
                             <td class="py-3 px-4 text-right space-x-2">
-                                <button onclick="app.openVehicleModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <button onclick="window.app.openVehicleModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
-                                <button onclick="app.deleteVehicle('${v.id}')" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <button onclick="window.app.deleteVehicle('${v.id}')" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 px-3 py-1.5 rounded-lg text-xs font-bold transition">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -658,6 +778,7 @@
                 
                 document.getElementById('vehicleForm').reset();
                 document.getElementById('vehicleId').value = '';
+                document.getElementById('vCurrency').value = 'USD';
                 document.getElementById('vShowKm').checked = true;
 
                 if (id) {
@@ -667,6 +788,8 @@
                         document.getElementById('vehicleId').value = v.id;
                         document.getElementById('vBrand').value = v.brand;
                         document.getElementById('vModel').value = v.model;
+                        document.getElementById('vType').value = v.type || '';
+                        document.getElementById('vCurrency').value = v.currency || 'USD';
                         document.getElementById('vPrice').value = v.price;
                         document.getElementById('vYear').value = v.year;
                         document.getElementById('vKm').value = v.km || '';
@@ -691,6 +814,8 @@
                 const id = document.getElementById('vehicleId').value || 'veh_' + Date.now();
                 const brand = document.getElementById('vBrand').value.trim();
                 const model = document.getElementById('vModel').value.trim();
+                const type = document.getElementById('vType').value.trim() || 'Vehículo';
+                const currency = document.getElementById('vCurrency').value;
                 const price = document.getElementById('vPrice').value.trim();
                 const year = parseInt(document.getElementById('vYear').value);
                 const km = document.getElementById('vKm').value.trim();
@@ -704,8 +829,7 @@
                     photos = ['https://placehold.co/800x500/111827/9ca3af?text=Sin+Imagen'];
                 }
 
-                const vehicleData = { id, brand, model, price, year, km, showKm, specs, description, photos };
-
+                const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
                 try {
                     await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
                     
@@ -717,6 +841,7 @@
                     }
 
                     this.filteredVehicles = [...this.vehicles];
+                    this.populateDropdowns();
                     this.renderBrandButtons();
                     this.filterVehicles();
                     this.renderAdminTable();
@@ -735,6 +860,7 @@
                     await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
                     this.vehicles = this.vehicles.filter(v => v.id !== id);
                     this.filteredVehicles = [...this.vehicles];
+                    this.populateDropdowns();
                     this.renderBrandButtons();
                     this.filterVehicles();
                     this.renderAdminTable();
@@ -747,7 +873,10 @@
 
             resetView() {
                 document.getElementById('searchInput').value = '';
-                this.selectedBrand = '';
+                document.getElementById('typeSelect').value = '';
+                document.getElementById('brandSelect').value = '';
+                document.getElementById('yearSelect').value = '';
+                document.getElementById('sortSelect').value = 'default';
                 this.renderBrandButtons();
                 this.filteredVehicles = [...this.vehicles];
                 this.renderCatalog();
