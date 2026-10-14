@@ -30,30 +30,25 @@
 
     <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo Text only -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="app.resetView()">
                 <span class="text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-purple-400 bg-clip-text text-transparent">
                     Legado Automotores
                 </span>
             </div>
 
-            <!-- Quick Contacts & Admin Button -->
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <!-- WhatsApp Header Button -->
                 <a href="https://wa.me/5491131861832?text=Hola!%20Me%20interesa%20consultar%20por%20los%20vehículos%20disponibles." target="_blank" 
                    class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span class="hidden md:inline">WhatsApp</span>
                 </a>
 
-                <!-- Instagram Header Button -->
                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
                    class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-500 hover:opacity-90 text-white px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 shadow-lg shadow-purple-600/20 transition transform active:scale-95">
                     <i class="fa-brands fa-instagram text-lg"></i>
                     <span class="hidden md:inline">Instagram</span>
                 </a>
 
-                <!-- Admin Button -->
                 <button onclick="app.openAdminModal()" 
                         class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition transform active:scale-95">
                     <i class="fa-solid fa-lock text-purple-400"></i>
@@ -70,10 +65,9 @@
                 Encontrá tu próximo <span class="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">vehículo ideal</span>
             </h1>
             <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg mb-8">
-                Calidad, confianza y transparencia en cada operación. Consultá nuestro stock actualizado en tiempo real.
+                Calidad, confianza y transparencia en cada operación. Consultá nuestro stock actualizado.
             </p>
 
-            <!-- Search and Dropdown Filter Bar -->
             <div class="max-w-5xl mx-auto bg-slate-900/90 backdrop-blur-md p-4 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-3">
                 <div class="relative w-full">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
@@ -81,9 +75,7 @@
                            class="w-full bg-slate-950/80 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm transition">
                 </div>
                 
-                <!-- 4 Dropdowns Bar as requested -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <!-- 1: Tipo Vehiculo -->
                     <div class="relative">
                         <select id="typeSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="">🚙 Tipo Vehículo (Todos)</option>
@@ -91,7 +83,6 @@
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
                     </div>
 
-                    <!-- 2: Ordenar por -->
                     <div class="relative">
                         <select id="sortSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="default">📊 Ordenar por (Defecto)</option>
@@ -103,7 +94,6 @@
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
                     </div>
 
-                    <!-- 3: Marca -->
                     <div class="relative">
                         <select id="brandSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="">🏷️ Marca (Todas)</option>
@@ -111,7 +101,6 @@
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
                     </div>
 
-                    <!-- 4: Año -->
                     <div class="relative">
                         <select id="yearSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="">📅 Año (Todos)</option>
@@ -121,21 +110,17 @@
                 </div>
             </div>
 
-            <!-- Optional Quick Brand Pills -->
             <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mt-5 max-w-4xl mx-auto">
-                <!-- Dynamically populated via JS -->
             </div>
         </div>
     </section>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <!-- Loading State -->
-        <div id="loadingState" class="flex flex-col items-center justify-center py-20">
+        <div id="loadingState" class="flex flex-col items-center justify-center py-20 hidden">
             <div class="w-12 h-12 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mb-4"></div>
             <p class="text-slate-400 font-medium">Cargando vehículos disponibles...</p>
         </div>
 
-        <!-- Empty State -->
         <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
             <div class="w-20 h-20 bg-slate-900 rounded-2xl flex items-center justify-center text-slate-600 text-3xl mb-4 border border-slate-800">
                 <i class="fa-solid fa-car-burst"></i>
@@ -144,9 +129,7 @@
             <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios de búsqueda.</p>
         </div>
 
-        <!-- Vehicle Grid -->
         <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamically populated via JS -->
         </div>
     </main>
 
@@ -156,7 +139,6 @@
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div id="detailModalContent" class="p-6 sm:p-8">
-                <!-- Populated dynamically -->
             </div>
         </div>
     </div>
@@ -225,7 +207,6 @@
                         </tr>
                     </thead>
                     <tbody id="adminVehicleTableBody" class="divide-y divide-slate-800 text-sm">
-                        <!-- Populated dynamically -->
                     </tbody>
                 </table>
             </div>
@@ -292,17 +273,14 @@
                     <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm"></textarea>
                 </div>
 
-                <!-- Photos Section with Interactive Reordering -->
                 <div>
                     <div class="flex items-center justify-between mb-1">
                         <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos (URLs)</label>
                         <span class="text-xs text-purple-400 font-medium">Puedes reordenar o quitar fotos abajo</span>
                     </div>
-                    <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/foto1.jpg, https://ejemplo.com/foto2.jpg" oninput="app.updatePhotoPreviewFromText()" class="w-full bg-slate-950 text-white px-4 py-2 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
+                    <textarea id="vPhotos" rows="2" placeholder="https://i.postimg.cc/..., https://i.postimg.cc/..." oninput="app.updatePhotoPreviewFromText()" class="w-full bg-slate-950 text-white px-4 py-2 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
                     
-                    <!-- Visual Photo Reorder List -->
                     <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1">
-                        <!-- Populated dynamically -->
                     </div>
                 </div>
 
@@ -340,27 +318,7 @@
         </div>
     </footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase Configuration & Environment setup
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'legado-automotores-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "demo-key",
-            authDomain: "demo.firebaseapp.com",
-            projectId: "demo-project",
-            storageBucket: "demo.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123:web:abc"
-        };
-
-        const appInstance = initializeApp(firebaseConfig);
-        const db = getFirestore(appInstance);
-        const auth = getAuth(appInstance);
-
-        // Default Sample Vehicles in case database is empty
+    <script>
         const defaultVehicles = [
             {
                 id: 'sample-1',
@@ -395,23 +353,6 @@
                     'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
                     'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80'
                 ]
-            },
-            {
-                id: 'sample-3',
-                brand: 'Ford',
-                model: 'Mustang GT V8',
-                type: 'Deportivo',
-                currency: 'USD',
-                price: '65.000',
-                year: 2022,
-                km: '19.000 km',
-                showKm: false,
-                specs: 'Automática | 5.0 V8 | Nafta',
-                description: 'Estado de concurso, escape deportivo opcional, interior en cuero negro impecable.',
-                photos: [
-                    'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=1000&q=80',
-                    'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=80'
-                ]
             }
         ];
 
@@ -424,39 +365,21 @@
                 this.currentEditingPhotos = [];
             }
 
-            async init() {
-                try {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                } catch (e) {
-                    console.log('Auth fallback notice:', e);
-                }
-
-                await this.loadVehicles();
+            init() {
+                this.loadVehicles();
             }
 
-            async loadVehicles() {
-                try {
-                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'vehicles');
-                    const snapshot = await getDocs(colRef);
-                    
-                    if (snapshot.empty) {
-                        for (let v of defaultVehicles) {
-                            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', v.id), v);
-                        }
+            loadVehicles() {
+                const stored = localStorage.getItem('legado_vehicles');
+                if (stored) {
+                    try {
+                        this.vehicles = JSON.parse(stored);
+                    } catch(e) {
                         this.vehicles = defaultVehicles;
-                    } else {
-                        this.vehicles = [];
-                        snapshot.forEach(docSnap => {
-                            this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
-                        });
                     }
-                } catch (err) {
-                    console.error("Error loading from Firestore, using defaults:", err);
+                } else {
                     this.vehicles = defaultVehicles;
+                    localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
                 }
 
                 this.filteredVehicles = [...this.vehicles];
@@ -469,7 +392,6 @@
             }
 
             populateDropdowns() {
-                // Populate Type Dropdown
                 const typeSelect = document.getElementById('typeSelect');
                 const currentType = typeSelect.value;
                 const types = [...new Set(this.vehicles.map(v => v.type || 'Otro'))].sort();
@@ -479,7 +401,6 @@
                 });
                 typeSelect.innerHTML = typeHtml;
 
-                // Populate Brand Dropdown
                 const brandSelect = document.getElementById('brandSelect');
                 const currentBrand = brandSelect.value;
                 const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
@@ -489,7 +410,6 @@
                 });
                 brandSelect.innerHTML = brandHtml;
 
-                // Populate Year Dropdown
                 const yearSelect = document.getElementById('yearSelect');
                 const currentYear = yearSelect.value;
                 const years = [...new Set(this.vehicles.map(v => v.year))].sort((a, b) => b - a);
@@ -542,7 +462,6 @@
                     return matchesQuery && matchesBrand && matchesType && matchesYear;
                 });
 
-                // Sorting logic
                 this.filteredVehicles.sort((a, b) => {
                     const priceA = parseFloat(String(a.price).replace(/\./g, '').replace(',', '.')) || 0;
                     const priceB = parseFloat(String(b.price).replace(/\./g, '').replace(',', '.')) || 0;
@@ -872,7 +791,7 @@
                 document.getElementById('vehicleFormModal').classList.add('hidden');
             }
 
-            async saveVehicle(e) {
+            saveVehicle(e) {
                 e.preventDefault();
                 const id = document.getElementById('vehicleId').value || 'veh_' + Date.now();
                 const brand = document.getElementById('vBrand').value.trim();
@@ -892,80 +811,5 @@
                 }
 
                 const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
-                try {
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
-                    
-                    const index = this.vehicles.findIndex(v => v.id === id);
-                    if (index >= 0) {
-                        this.vehicles[index] = vehicleData;
-                    } else {
-                        this.vehicles.unshift(vehicleData);
-                    }
-
-                    this.filteredVehicles = [...this.vehicles];
-                    this.populateDropdowns();
-                    this.renderBrandButtons();
-                    this.filterVehicles();
-                    this.renderAdminTable();
-                    this.closeVehicleModal();
-                    this.showToast('Vehículo guardado correctamente');
-                } catch (err) {
-                    console.error("Error saving vehicle:", err);
-                    this.showToast('Error al guardar en la base de datos', 'error');
-                }
-            }
-
-            async deleteVehicle(id) {
-                if (!confirm('¿Está seguro de eliminar este vehículo permanentemente?')) return;
-
-                try {
-                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
-                    this.vehicles = this.vehicles.filter(v => v.id !== id);
-                    this.filteredVehicles = [...this.vehicles];
-                    this.populateDropdowns();
-                    this.renderBrandButtons();
-                    this.filterVehicles();
-                    this.renderAdminTable();
-                    this.showToast('Vehículo eliminado');
-                } catch (err) {
-                    console.error("Error deleting vehicle:", err);
-                    this.showToast('Error al eliminar vehículo', 'error');
-                }
-            }
-
-            resetView() {
-                document.getElementById('searchInput').value = '';
-                document.getElementById('typeSelect').value = '';
-                document.getElementById('brandSelect').value = '';
-                document.getElementById('yearSelect').value = '';
-                document.getElementById('sortSelect').value = 'default';
-                this.renderBrandButtons();
-                this.filteredVehicles = [...this.vehicles];
-                this.renderCatalog();
-            }
-
-            showToast(msg, type = 'success') {
-                const toast = document.getElementById('toast');
-                const toastMsg = document.getElementById('toastMessage');
-                const toastIcon = document.getElementById('toastIcon');
-
-                toastMsg.textContent = msg;
-                if (type === 'error') {
-                    toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400 text-lg';
-                } else {
-                    toastIcon.className = 'fa-solid fa-circle-check text-purple-400 text-lg';
-                }
-
-                toast.classList.remove('translate-y-24', 'opacity-0');
-                setTimeout(() => {
-                    toast.classList.add('translate-y-24', 'opacity-0');
-                }, 3000);
-            }
-        }
-
-        const app = new LegadoApp();
-        window.app = app;
-        window.onload = () => app.init();
-    </script>
-</body>
-</html>
+                
+                const index = this.vehicles.findIndex(v => v.id === id);
