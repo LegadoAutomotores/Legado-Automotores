@@ -24,13 +24,18 @@
                 }
             }
         }
+        // Declaración global preventiva para evitar el error de referencia
+        window.app = {
+            openAdminModal: () => console.log("Cargando..."),
+            resetView: () => {}
+        };
     </script>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white">
 
     <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.resetView()">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.app.resetView()">
                 <span class="text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-purple-400 bg-clip-text text-transparent">
                     Legado Automotores
                 </span>
@@ -49,7 +54,7 @@
                     <span class="hidden md:inline">Instagram</span>
                 </a>
 
-                <button onclick="app.openAdminModal()" 
+                <button onclick="window.app.openAdminModal()" 
                         class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition transform active:scale-95">
                     <i class="fa-solid fa-lock text-purple-400"></i>
                     <span>ADMIN</span>
@@ -71,20 +76,20 @@
             <div class="max-w-5xl mx-auto bg-slate-900/90 backdrop-blur-md p-4 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-3">
                 <div class="relative w-full">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                    <input type="text" id="searchInput" oninput="app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
+                    <input type="text" id="searchInput" oninput="window.app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
                            class="w-full bg-slate-950/80 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm transition">
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     <div class="relative">
-                        <select id="typeSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <select id="typeSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="">🚙 Tipo Vehículo (Todos)</option>
                         </select>
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
                     </div>
 
                     <div class="relative">
-                        <select id="sortSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <select id="sortSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="default">📊 Ordenar por (Defecto)</option>
                             <option value="price_desc">Mayor Valor</option>
                             <option value="price_asc">Menor Valor</option>
@@ -95,14 +100,14 @@
                     </div>
 
                     <div class="relative">
-                        <select id="brandSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <select id="brandSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="">🏷️ Marca (Todas)</option>
                         </select>
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
                     </div>
 
                     <div class="relative">
-                        <select id="yearSelect" onchange="app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <select id="yearSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                             <option value="">📅 Año (Todos)</option>
                         </select>
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
@@ -135,7 +140,7 @@
 
     <div id="detailModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <button onclick="app.closeDetailModal()" class="absolute top-4 right-4 z-20 bg-slate-950/70 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition">
+            <button onclick="window.app.closeDetailModal()" class="absolute top-4 right-4 z-20 bg-slate-950/70 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div id="detailModalContent" class="p-6 sm:p-8">
@@ -143,10 +148,10 @@
         </div>
     </div>
 
-    <!-- Admin Modal (Corregido y accesible) -->
+    <!-- Admin Modal -->
     <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div id="adminLoginCard" class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
-            <button onclick="app.closeAdminModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
+            <button onclick="window.app.closeAdminModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             <div class="text-center mb-6">
@@ -156,7 +161,7 @@
                 <h2 class="text-2xl font-bold text-white">Panel de Administración</h2>
                 <p class="text-slate-400 text-sm">Ingrese sus credenciales de acceso</p>
             </div>
-            <form onsubmit="app.handleAdminLogin(event)" class="space-y-4">
+            <form onsubmit="window.app.handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Usuario</label>
                     <input type="text" id="adminUser" required placeholder="Usuario" 
@@ -186,11 +191,11 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <button onclick="app.openVehicleModal()" class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-600/20 transition">
+                    <button onclick="window.app.openVehicleModal()" class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-600/20 transition">
                         <i class="fa-solid fa-plus"></i>
                         <span>Nuevo Vehículo</span>
                     </button>
-                    <button onclick="app.closeAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+                    <button onclick="window.app.closeAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
                         Salir
                     </button>
                 </div>
@@ -216,11 +221,11 @@
 
     <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
+            <button onclick="window.app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             <h3 id="vehicleModalTitle" class="text-2xl font-bold text-white mb-6">Nuevo Vehículo</h3>
-            <form id="vehicleForm" onsubmit="app.saveVehicle(event)" class="space-y-4">
+            <form id="vehicleForm" onsubmit="window.app.saveVehicle(event)" class="space-y-4">
                 <input type="hidden" id="vehicleId">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -246,52 +251,4 @@
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio</label>
-                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Año</label>
-                        <input type="number" id="vYear" required placeholder="2023" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Kilometraje</label>
-                        <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
-                    </div>
-                    <div class="flex items-center pt-6">
-                        <div class="flex items-center space-x-3 bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 w-full">
-                            <input type="checkbox" id="vShowKm" checked class="w-5 h-5 accent-purple-600 rounded cursor-pointer">
-                            <label for="vShowKm" class="text-xs font-semibold text-slate-300 cursor-pointer">Mostrar KM</label>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Transmisión / Motor / Combustible</label>
-                    <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Descripción detallada</label>
-                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm"></textarea>
-                </div>
-
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos (URLs)</label>
-                        <span class="text-xs text-purple-400 font-medium">Puedes reordenar o quitar fotos abajo</span>
-                    </div>
-                    <textarea id="vPhotos" rows="2" placeholder="https://i.postimg.cc/..., https://i.postimg.cc/..." oninput="app.updatePhotoPreviewFromText()" class="w-full bg-slate-950 text-white px-4 py-2 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
-                    
-                    <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1">
-                    </div>
-                </div>
-
-                <div class="flex justify-end space-x-3 pt-4 border-t border-slate-800">
-                    <button type="button" onclick="app.closeVehicleModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition">Cancelar</button>
-                    <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-purple-600/20">Guardar Vehículo</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
-        <i id="toastIcon
+                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-slate-950 text
