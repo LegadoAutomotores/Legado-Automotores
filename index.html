@@ -251,4 +251,638 @@
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio</label>
-                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-slate-950 text
+                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Año</label>
+                        <input type="number" id="vYear" required placeholder="2023" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Kilometraje</label>
+                        <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                    </div>
+                    <div class="flex items-center pt-6">
+                        <div class="flex items-center space-x-3 bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 w-full">
+                            <input type="checkbox" id="vShowKm" checked class="w-5 h-5 accent-purple-600 rounded cursor-pointer">
+                            <label for="vShowKm" class="text-xs font-semibold text-slate-300 cursor-pointer">Mostrar KM</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Transmisión / Motor / Combustible</label>
+                    <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Descripción detallada</label>
+                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm"></textarea>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos (URLs)</label>
+                        <span class="text-xs text-purple-400 font-medium">Puedes reordenar o quitar fotos abajo</span>
+                    </div>
+                    <textarea id="vPhotos" rows="2" placeholder="https://i.postimg.cc/..., https://i.postimg.cc/..." oninput="window.app.updatePhotoPreviewFromText()" class="w-full bg-slate-950 text-white px-4 py-2 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
+                    
+                    <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-4 border-t border-slate-800">
+                    <button type="button" onclick="window.app.closeVehicleModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition">Cancelar</button>
+                    <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-purple-600/20">Guardar Vehículo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-purple-400 text-lg"></i>
+        <span id="toastMessage" class="text-sm font-medium">Operación exitosa</span>
+    </div>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div>
+                    <span class="text-xl font-extrabold text-white">Legado Automotores</span>
+                    <p class="text-xs text-slate-400">Todos los derechos reservados &copy; 2026</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/5491131861832?text=Hola!%20Quisiera%20consultar%20por%20un%20vehículo." target="_blank" 
+                   class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-300 flex items-center justify-center transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
+                   class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-purple-600 hover:text-white text-slate-300 flex items-center justify-center transition">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const defaultVehicles = [
+            {
+                id: 'sample-1',
+                brand: 'Volkswagen',
+                model: 'Amarok V6 Highline',
+                type: 'Pick-Up',
+                currency: 'USD',
+                price: '42.000',
+                year: 2023,
+                km: '28.000 km',
+                showKm: true,
+                specs: 'Automática | 3.0 V6 | 4Motion',
+                description: 'Impecable estado, services oficiales al día, cubiertas en un 90%. Lista para transferir.',
+                photos: [
+                    'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80',
+                    'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80'
+                ]
+            },
+            {
+                id: 'sample-2',
+                brand: 'Toyota',
+                model: 'Hilux SRX 4x4',
+                type: 'Pick-Up',
+                currency: 'USD',
+                price: '48.500',
+                year: 2024,
+                km: '12.000 km',
+                showKm: true,
+                specs: 'Automática | 2.8 TDI | 4x4',
+                description: 'Única mano, tratamiento cerámico recién hecho, agregados originales de fábrica.',
+                photos: [
+                    'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
+                    'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80'
+                ]
+            }
+        ];
+
+        class LegadoApp {
+            constructor() {
+                this.vehicles = [];
+                this.filteredVehicles = [];
+                this.currentVehicle = null;
+                this.currentPhotoIndex = 0;
+                this.currentEditingPhotos = [];
+            }
+
+            init() {
+                this.loadVehicles();
+            }
+
+            loadVehicles() {
+                const stored = localStorage.getItem('legado_vehicles');
+                if (stored) {
+                    try {
+                        this.vehicles = JSON.parse(stored);
+                    } catch(e) {
+                        this.vehicles = defaultVehicles;
+                    }
+                } else {
+                    this.vehicles = defaultVehicles;
+                    localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
+                }
+
+                this.filteredVehicles = [...this.vehicles];
+                this.populateDropdowns();
+                this.renderBrandButtons();
+                this.filterVehicles();
+                this.renderAdminTable();
+                
+                document.getElementById('loadingState').classList.add('hidden');
+            }
+
+            populateDropdowns() {
+                const typeSelect = document.getElementById('typeSelect');
+                const currentType = typeSelect.value;
+                const types = [...new Set(this.vehicles.map(v => v.type || 'Otro'))].sort();
+                let typeHtml = '<option value="">🚙 Tipo Vehículo (Todos)</option>';
+                types.forEach(t => {
+                    typeHtml += `<option value="${t}" ${currentType === t ? 'selected' : ''}>${t}</option>`;
+                });
+                typeSelect.innerHTML = typeHtml;
+
+                const brandSelect = document.getElementById('brandSelect');
+                const currentBrand = brandSelect.value;
+                const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
+                let brandHtml = '<option value="">🏷️ Marca (Todas)</option>';
+                brands.forEach(b => {
+                    brandHtml += `<option value="${b}" ${currentBrand === b ? 'selected' : ''}>${b}</option>`;
+                });
+                brandSelect.innerHTML = brandHtml;
+
+                const yearSelect = document.getElementById('yearSelect');
+                const currentYear = yearSelect.value;
+                const years = [...new Set(this.vehicles.map(v => v.year))].sort((a, b) => b - a);
+                let yearHtml = '<option value="">📅 Año (Todos)</option>';
+                years.forEach(y => {
+                    yearHtml += `<option value="${y}" ${currentYear == y ? 'selected' : ''}>${y}</option>`;
+                });
+                yearSelect.innerHTML = yearHtml;
+            }
+
+            renderBrandButtons() {
+                const container = document.getElementById('brandButtonsContainer');
+                const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
+                const currentBrand = document.getElementById('brandSelect').value;
+
+                let html = `<button onclick="window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${currentBrand === '' ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">Todas las marcas</button>`;
+
+                brands.forEach(b => {
+                    const isActive = currentBrand === b;
+                    html += `
+                        <button onclick="window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${isActive ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">
+                            ${b}
+                        </button>
+                    `;
+                });
+
+                container.innerHTML = html;
+            }
+
+            selectBrandFromButton(brand) {
+                document.getElementById('brandSelect').value = brand;
+                this.renderBrandButtons();
+                this.filterVehicles();
+            }
+
+            filterVehicles() {
+                const query = document.getElementById('searchInput').value.toLowerCase();
+                const typeFilter = document.getElementById('typeSelect').value;
+                const brandFilter = document.getElementById('brandSelect').value;
+                const yearFilter = document.getElementById('yearSelect').value;
+                const sortOption = document.getElementById('sortSelect').value;
+
+                this.renderBrandButtons();
+
+                this.filteredVehicles = this.vehicles.filter(v => {
+                    const matchesQuery = (v.brand + ' ' + v.model + ' ' + v.year).toLowerCase().includes(query);
+                    const matchesBrand = brandFilter === '' || v.brand === brandFilter;
+                    const matchesType = typeFilter === '' || (v.type || 'Otro') === typeFilter;
+                    const matchesYear = yearFilter === '' || String(v.year) === yearFilter;
+                    return matchesQuery && matchesBrand && matchesType && matchesYear;
+                });
+
+                this.filteredVehicles.sort((a, b) => {
+                    const priceA = parseFloat(String(a.price).replace(/\./g, '').replace(',', '.')) || 0;
+                    const priceB = parseFloat(String(b.price).replace(/\./g, '').replace(',', '.')) || 0;
+                    const yearA = parseInt(a.year) || 0;
+                    const yearB = parseInt(b.year) || 0;
+
+                    if (sortOption === 'price_asc') return priceA - priceB;
+                    if (sortOption === 'price_desc') return priceB - priceA;
+                    if (sortOption === 'year_desc') return yearB - yearA;
+                    if (sortOption === 'year_asc') return yearA - yearB;
+                    return 0;
+                });
+
+                this.renderCatalog();
+            }
+
+            renderCatalog() {
+                const grid = document.getElementById('vehicleGrid');
+                const empty = document.getElementById('emptyState');
+
+                if (this.filteredVehicles.length === 0) {
+                    grid.innerHTML = '';
+                    empty.classList.remove('hidden');
+                    return;
+                }
+
+                empty.classList.add('hidden');
+                let html = '';
+
+                this.filteredVehicles.forEach(v => {
+                    const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/111827/9ca3af?text=Sin+Imagen';
+                    const curr = v.currency || 'USD';
+                    const whatsappMsg = encodeURIComponent(`Hola! Me interesa consultar por el vehículo ${v.brand} ${v.model} (${v.year}) publicado a ${curr} ${v.price}. ¿Está disponible?`);
+
+                    const kmBadge = (v.showKm !== false && v.km) ? `<span><i class="fa-solid fa-gauge text-purple-400 mr-1.5"></i>${v.km}</span>` : '';
+                    const typeBadge = v.type ? `<span class="bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
+
+                    html += `
+                        <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-purple-500/50 transition duration-300 flex flex-col group">
+                            <div class="relative h-60 overflow-hidden bg-slate-950 cursor-pointer" onclick="window.app.openDetailModal('${v.id}')">
+                                <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/111827/9ca3af?text=Error+Imagen'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3 flex gap-2">
+                                    <span class="bg-slate-950/80 backdrop-blur-md text-purple-300 font-bold px-3 py-1 rounded-xl text-xs border border-slate-800">${v.year}</span>
+                                    ${typeBadge}
+                                </div>
+                                <div class="absolute top-3 right-3 bg-purple-600 text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg">
+                                    ${curr} ${v.price}
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="text-xs uppercase font-bold text-purple-400 tracking-wider mb-1">${v.brand}</div>
+                                <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-purple-300 transition" onclick="window.app.openDetailModal('${v.id}')">${v.model}</h3>
+                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-slate-800">
+                                    ${kmBadge}
+                                    <span><i class="fa-solid fa-gear text-purple-400 mr-1.5"></i>${v.specs || 'Consultar'}</span>
+                                </div>
+                                <p class="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow">${v.description || 'Sin descripción detallada.'}</p>
+                                <div class="grid grid-cols-2 gap-3 mt-auto">
+                                    <button onclick="window.app.openDetailModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
+                                        Ver Detalles
+                                    </button>
+                                    <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/20 transition">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                                        <span>Consultar</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html;
+            }
+
+            openDetailModal(id) {
+                const v = this.vehicles.find(item => item.id === id);
+                if (!v) return;
+                this.currentVehicle = v;
+                this.currentPhotoIndex = 0;
+                this.renderDetailModalContent();
+                document.getElementById('detailModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            renderDetailModalContent() {
+                const v = this.currentVehicle;
+                if (!v) return;
+                const photos = (v.photos && v.photos.length > 0) ? v.photos : ['https://placehold.co/800x500/111827/9ca3af?text=Sin+Imagen'];
+                const activePhoto = photos[this.currentPhotoIndex];
+                const curr = v.currency || 'USD';
+                const whatsappMsg = encodeURIComponent(`Hola! Me interesa el vehículo ${v.brand} ${v.model} (${v.year}) de ${curr} ${v.price}.`);
+
+                const kmInfo = (v.showKm !== false && v.km) ? `
+                    <div>
+                        <span class="block text-xs text-slate-500 uppercase font-bold">Kilometraje</span>
+                        <span class="text-white font-bold text-base">${v.km}</span>
+                    </div>
+                ` : '';
+
+                let thumbnailsHtml = '';
+                photos.forEach((p, idx) => {
+                    const activeClass = idx === this.currentPhotoIndex ? 'border-purple-500 ring-2 ring-purple-500/50' : 'border-slate-800 opacity-60 hover:opacity-100';
+                    thumbnailsHtml += `
+                        <img src="${p}" onclick="window.app.setPhotoIndex(${idx})" class="w-20 h-16 object-cover rounded-xl border-2 ${activeClass} cursor-pointer transition">
+                    `;
+                });
+
+                document.getElementById('detailModalContent').innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden bg-slate-950 mb-4 border border-slate-800">
+                                <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-cover">
+                                <div class="absolute top-4 left-4 bg-purple-600 text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl">
+                                    ${curr} ${v.price}
+                                </div>
+                            </div>
+                            <div class="flex gap-2 overflow-x-auto pb-2">
+                                ${thumbnailsHtml}
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-between">
+                            <div>
+                                <div class="flex gap-2 mb-3">
+                                    <span class="bg-purple-600/10 text-purple-300 border border-purple-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">
+                                        ${v.brand}
+                                    </span>
+                                    ${v.type ? `<span class="bg-slate-800 text-slate-300 border border-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">${v.type}</span>` : ''}
+                                </div>
+                                <h2 class="text-3xl font-black text-white mb-3">${v.model}</h2>
+                                <div class="grid grid-cols-2 gap-4 my-4 p-4 bg-slate-950/60 rounded-2xl border border-slate-800">
+                                    <div>
+                                        <span class="block text-xs text-slate-500 uppercase font-bold">Año</span>
+                                        <span class="text-white font-bold text-base">${v.year}</span>
+                                    </div>
+                                    ${kmInfo}
+                                    <div class="col-span-2 pt-2 border-t border-slate-800">
+                                        <span class="block text-xs text-slate-500 uppercase font-bold">Especificaciones</span>
+                                        <span class="text-white font-medium text-sm">${v.specs || 'N/D'}</span>
+                                    </div>
+                                </div>
+                                <h4 class="text-xs uppercase font-bold text-slate-400 mb-2">Descripción del Vehículo</h4>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-6">${v.description || 'Sin descripción disponible.'}</p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+                                <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" 
+                                   class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>Consultar por WhatsApp</span>
+                                </a>
+                                <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
+                                   class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-500 hover:opacity-90 text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition">
+                                    <i class="fa-brands fa-instagram text-lg"></i>
+                                    <span>Instagram</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            setPhotoIndex(idx) {
+                this.currentPhotoIndex = idx;
+                this.renderDetailModalContent();
+            }
+
+            closeDetailModal() {
+                document.getElementById('detailModal').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            openAdminModal() {
+                document.getElementById('adminModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            closeAdminModal() {
+                document.getElementById('adminModal').classList.add('hidden');
+                document.getElementById('adminLoginCard').classList.remove('hidden');
+                document.getElementById('adminDashboard').classList.add('hidden');
+                document.getElementById('adminUser').value = '';
+                document.getElementById('adminPass').value = '';
+                document.getElementById('loginError').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            handleAdminLogin(e) {
+                e.preventDefault();
+                const u = document.getElementById('adminUser').value.trim();
+                const p = document.getElementById('adminPass').value.trim();
+                const errDiv = document.getElementById('loginError');
+
+                if (u === 'legado' && p === '39460201') {
+                    errDiv.classList.add('hidden');
+                    document.getElementById('adminLoginCard').classList.add('hidden');
+                    document.getElementById('adminDashboard').classList.remove('hidden');
+                    this.renderAdminTable();
+                } else {
+                    errDiv.textContent = 'Usuario o contraseña incorrectos.';
+                    errDiv.classList.remove('hidden');
+                }
+            }
+
+            renderAdminTable() {
+                const tbody = document.getElementById('adminVehicleTableBody');
+                if (!tbody) return;
+
+                let html = '';
+                this.vehicles.forEach(v => {
+                    const cover = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/100x100/111827/9ca3af?text=Car';
+                    const curr = v.currency || 'USD';
+                    html += `
+                        <tr class="hover:bg-slate-950/40 transition">
+                            <td class="py-3 px-4 flex items-center space-x-3">
+                                <img src="${cover}" class="w-12 h-10 object-cover rounded-lg border border-slate-800" onerror="this.src='https://placehold.co/100x100'">
+                                <div>
+                                    <span class="font-bold text-white block">${v.brand} ${v.model}</span>
+                                    <span class="text-xs text-slate-500">Tipo: ${v.type || 'N/D'}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 font-semibold text-purple-300">${curr} ${v.price}</td>
+                            <td class="py-3 px-4 text-slate-300">${v.year} / ${v.showKm !== false ? (v.km || 'N/D') : 'Oculto'}</td>
+                            <td class="py-3 px-4 text-slate-300">${v.photos ? v.photos.length : 0} fotos</td>
+                            <td class="py-3 px-4 text-right space-x-2">
+                                <button onclick="window.app.openVehicleModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button onclick="window.app.deleteVehicle('${v.id}')" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                tbody.innerHTML = html;
+            }
+
+            openVehicleModal(id = null) {
+                const modal = document.getElementById('vehicleFormModal');
+                const title = document.getElementById('vehicleModalTitle');
+                
+                document.getElementById('vehicleForm').reset();
+                document.getElementById('vehicleId').value = '';
+                document.getElementById('vCurrency').value = 'USD';
+                document.getElementById('vShowKm').checked = true;
+                this.currentEditingPhotos = [];
+
+                if (id) {
+                    const v = this.vehicles.find(item => item.id === id);
+                    if (v) {
+                        title.textContent = 'Editar Vehículo';
+                        document.getElementById('vehicleId').value = v.id;
+                        document.getElementById('vBrand').value = v.brand;
+                        document.getElementById('vModel').value = v.model;
+                        document.getElementById('vType').value = v.type || '';
+                        document.getElementById('vCurrency').value = v.currency || 'USD';
+                        document.getElementById('vPrice').value = v.price;
+                        document.getElementById('vYear').value = v.year;
+                        document.getElementById('vKm').value = v.km || '';
+                        document.getElementById('vShowKm').checked = v.showKm !== false;
+                        document.getElementById('vSpecs').value = v.specs || '';
+                        document.getElementById('vDesc').value = v.description || '';
+                        this.currentEditingPhotos = v.photos ? [...v.photos] : [];
+                        document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
+                    }
+                } else {
+                    title.textContent = 'Nuevo Vehículo';
+                }
+
+                this.renderPhotoReorderList();
+                modal.classList.remove('hidden');
+            }
+
+            updatePhotoPreviewFromText() {
+                const raw = document.getElementById('vPhotos').value;
+                this.currentEditingPhotos = raw.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
+                this.renderPhotoReorderList();
+            }
+
+            renderPhotoReorderList() {
+                const container = document.getElementById('photoReorderContainer');
+                if (!container) return;
+
+                if (this.currentEditingPhotos.length === 0) {
+                    container.innerHTML = `<p class="text-xs text-slate-500 italic py-2">No hay fotos cargadas o el enlace está vacío.</p>`;
+                    return;
+                }
+
+                let html = '';
+                this.currentEditingPhotos.forEach((url, idx) => {
+                    const isCover = idx === 0;
+                    html += `
+                        <div class="flex items-center justify-between bg-slate-950 p-2.5 rounded-xl border border-slate-800 gap-3">
+                            <div class="flex items-center space-x-3 overflow-hidden">
+                                <span class="text-xs font-bold text-slate-500 w-5 text-right">#${idx + 1}</span>
+                                <img src="${url}" class="w-12 h-9 object-cover rounded-lg border border-slate-800 flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
+                                <span class="text-xs text-slate-300 font-mono truncate max-w-xs">${url}</span>
+                                ${isCover ? '<span class="bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded text-[10px] font-bold">Portada</span>' : ''}
+                            </div>
+                            <div class="flex items-center space-x-1 flex-shrink-0">
+                                <button type="button" onclick="window.app.movePhoto(${idx}, -1)" ${idx === 0 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-up"></i></button>
+                                <button type="button" onclick="window.app.movePhoto(${idx}, 1)" ${idx === this.currentEditingPhotos.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-down"></i></button>
+                                <button type="button" onclick="window.app.removePhoto(${idx})" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 px-2.5 py-1.5 rounded-lg text-xs"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            }
+
+            movePhoto(index, direction) {
+                const newIndex = index + direction;
+                if (newIndex < 0 || newIndex >= this.currentEditingPhotos.length) return;
+                const item = this.currentEditingPhotos.splice(index, 1)[0];
+                this.currentEditingPhotos.splice(newIndex, 0, item);
+                document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
+                this.renderPhotoReorderList();
+            }
+
+            removePhoto(index) {
+                this.currentEditingPhotos.splice(index, 1);
+                document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
+                this.renderPhotoReorderList();
+            }
+
+            closeVehicleModal() {
+                document.getElementById('vehicleFormModal').classList.add('hidden');
+            }
+
+            saveVehicle(e) {
+                e.preventDefault();
+                const id = document.getElementById('vehicleId').value || 'veh_' + Date.now();
+                const brand = document.getElementById('vBrand').value.trim();
+                const model = document.getElementById('vModel').value.trim();
+                const type = document.getElementById('vType').value.trim() || 'Vehículo';
+                const currency = document.getElementById('vCurrency').value;
+                const price = document.getElementById('vPrice').value.trim();
+                const year = parseInt(document.getElementById('vYear').value);
+                const km = document.getElementById('vKm').value.trim();
+                const showKm = document.getElementById('vShowKm').checked;
+                const specs = document.getElementById('vSpecs').value.trim();
+                const description = document.getElementById('vDesc').value.trim();
+                
+                let photos = [...this.currentEditingPhotos];
+                if (photos.length === 0) {
+                    photos = ['https://placehold.co/800x500/111827/9ca3af?text=Sin+Imagen'];
+                }
+
+                const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
+                
+                const index = this.vehicles.findIndex(v => v.id === id);
+                if (index >= 0) {
+                    this.vehicles[index] = vehicleData;
+                } else {
+                    this.vehicles.unshift(vehicleData);
+                }
+
+                localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
+
+                this.filteredVehicles = [...this.vehicles];
+                this.populateDropdowns();
+                this.renderBrandButtons();
+                this.filterVehicles();
+                this.renderAdminTable();
+                this.closeVehicleModal();
+                this.showToast('Vehículo guardado correctamente');
+            }
+
+            deleteVehicle(id) {
+                if (!confirm('¿Está seguro de eliminar este vehículo permanentemente?')) return;
+
+                this.vehicles = this.vehicles.filter(v => v.id !== id);
+                localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
+
+                this.filteredVehicles = [...this.vehicles];
+                this.populateDropdowns();
+                this.renderBrandButtons();
+                this.filterVehicles();
+                this.renderAdminTable();
+                this.showToast('Vehículo eliminado');
+            }
+
+            resetView() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('typeSelect').value = '';
+                document.getElementById('brandSelect').value = '';
+                document.getElementById('yearSelect').value = '';
+                document.getElementById('sortSelect').value = 'default';
+                this.renderBrandButtons();
+                this.filteredVehicles = [...this.vehicles];
+                this.renderCatalog();
+            }
+
+            showToast(msg, type = 'success') {
+                const toast = document.getElementById('toast');
+                const toastMsg = document.getElementById('toastMessage');
+                const toastIcon = document.getElementById('toastIcon');
+
+                toastMsg.textContent = msg;
+                if (type === 'error') {
+                    toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400 text-lg';
+                } else {
+                    toastIcon.className = 'fa-solid fa-circle-check text-purple-400 text-lg';
+                }
+
+                toast.classList.remove('translate-y-24', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-24', 'opacity-0');
+                }, 3000);
+            }
+        }
+
+        // Instancia principal de la aplicación
+        window.app = new LegadoApp();
+        window.onload = () => window.app.init();
+    </script>
+</body>
+</html>
