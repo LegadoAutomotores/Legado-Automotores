@@ -353,9 +353,10 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // Firebase Configuration & Environment setup
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'legado-automotores-app';
         let db = null;
         let auth = null;
@@ -369,13 +370,20 @@
                 messagingSenderId: "123456789",
                 appId: "1:123:web:abc"
             };
-            const appInstance = initializeApp(firebaseConfig);
-            db = getFirestore(appInstance);
-            auth = getAuth(appInstance);
+
+            // Detect if we are using demo keys to prevent 400 errors
+            if (firebaseConfig.apiKey !== "demo-key") {
+                const appInstance = initializeApp(firebaseConfig);
+                db = getFirestore(appInstance);
+                auth = getAuth(appInstance);
+            } else {
+                console.log("Modo local (demo-key) detectado. Firebase deshabilitado, usando LocalStorage.");
+            }
         } catch (e) {
             console.log('Firebase init fallback:', e);
         }
 
+        // Default Sample Vehicles matching brand identity
         const defaultVehicles = [
             {
                 id: 'sample-1',
@@ -443,7 +451,7 @@
                 if (auth) {
                     try {
                         if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            // custom token
+                            await signInWithCustomToken(auth, __initial_auth_token);
                         } else {
                             await signInAnonymously(auth);
                         }
@@ -453,6 +461,14 @@
                 }
 
                 await this.loadVehicles();
+            }
+
+            saveLocalCache() {
+                try {
+                    localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
+                } catch (e) {
+                    console.error("Local storage error:", e);
+                }
             }
 
             async loadVehicles() {
@@ -468,14 +484,14 @@
                                 this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
                             });
                             loadedFromCloud = true;
+                            this.saveLocalCache();
                         }
                     } catch (err) {
-                        console.warn("Cloud load notice:", err);
+                        console.error("Error loading from Firestore, using defaults:", err);
                     }
                 }
 
                 if (!loadedFromCloud) {
-                    // Fallback to localStorage or defaults
                     const localData = localStorage.getItem('legado_vehicles_cache');
                     if (localData) {
                         try {
@@ -974,22 +990,21 @@
 
                     const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
 
+                    // Save locally first to guarantee responsive UI
                     const index = this.vehicles.findIndex(v => v.id === id);
                     if (index >= 0) {
                         this.vehicles[index] = vehicleData;
                     } else {
                         this.vehicles.unshift(vehicleData);
                     }
-
-                    // Save locally first
                     this.saveLocalCache();
 
-                    // Try saving to Firebase if configured
+                    // Attempt Firestore save
                     if (db) {
                         try {
                             await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
                         } catch (fsErr) {
-                            console.warn("Firestore save notice:", fsErr);
+                            console.warn("Firestore fallback notice:", fsErr);
                         }
                     }
 
@@ -1027,16 +1042,18 @@
 
             async executeDeleteVehicle(id) {
                 try {
+                    // Update local state first
                     this.vehicles = this.vehicles.filter(v => v.id !== id);
                     this.filteredVehicles = [...this.vehicles];
-                    
                     this.saveLocalCache();
+                    
                     this.populateDropdowns();
                     this.renderBrandButtons();
                     this.filterVehicles();
                     this.renderAdminTable();
                     this.showToast('Vehículo eliminado correctamente');
 
+                    // Delete from Firestore
                     if (db) {
                         try {
                             await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
