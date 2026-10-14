@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legado Automotores - Stock de Vehículos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -14,175 +14,200 @@
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            dark: '#030712',
-                            card: '#111827',
-                            accent: '#8b5cf6',
-                            accentHover: '#7c3aed'
+                        legado: {
+                            purple: '#7e438e',
+                            purpleLight: '#9b58ad',
+                            purpleDark: '#5c2f69',
+                            darkBg: '#121318',
+                            cardBg: '#1c1d24',
+                            grayBorder: '#2e303b',
+                            darkText: '#4a4d5a'
                         }
                     }
                 }
             }
         }
-        // Declaración global preventiva para evitar el error de referencia
-        window.app = {
-            openAdminModal: () => console.log("Cargando..."),
-            resetView: () => {}
-        };
     </script>
+    <style>
+        .legado-logo-text {
+            font-style: italic;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            text-shadow: 2px 3px 0px #4d4d54;
+        }
+        .legado-subtext {
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            color: #9b58ad;
+        }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white">
+<body class="bg-legado-darkBg text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white">
 
-    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.app.resetView()">
-                <span class="text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-purple-400 bg-clip-text text-transparent">
-                    Legado Automotores
-                </span>
+    <header class="sticky top-0 z-50 bg-legado-darkBg/95 backdrop-blur-md border-b border-legado-grayBorder shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-2 sm:gap-4">
+            <!-- Left: Brand Text "Legado Automotores" -->
+            <div class="flex items-center cursor-pointer select-none" onclick="app.resetView()">
+                <div class="flex flex-col">
+                    <span class="text-2xl sm:text-3xl legado-logo-text leading-none">Legado</span>
+                    <span class="text-[10px] sm:text-xs legado-subtext uppercase tracking-[0.18em] mt-0.5">Automotores</span>
+                </div>
             </div>
 
-            <div class="flex items-center space-x-3 sm:space-x-4">
+            <!-- Quick Contacts & Admin Button -->
+            <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+                <!-- WhatsApp Header Button -->
                 <a href="https://wa.me/5491131861832?text=Hola!%20Me%20interesa%20consultar%20por%20los%20vehículos%20disponibles." target="_blank" 
-                   class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
+                   class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span class="hidden md:inline">WhatsApp</span>
                 </a>
 
+                <!-- Instagram Header Button (Original Instagram Brand Gradient) -->
                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                   class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-500 hover:opacity-90 text-white px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 shadow-lg shadow-purple-600/20 transition transform active:scale-95">
+                   class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-rose-950/40 transition transform active:scale-95">
                     <i class="fa-brands fa-instagram text-lg"></i>
                     <span class="hidden md:inline">Instagram</span>
                 </a>
 
-                <button onclick="window.app.openAdminModal()" 
-                        class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition transform active:scale-95">
-                    <i class="fa-solid fa-lock text-purple-400"></i>
+                <!-- Admin Button -->
+                <button onclick="app.openAdminModal()" 
+                        class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition transform active:scale-95">
+                    <i class="fa-solid fa-lock text-legado-purpleLight"></i>
                     <span>ADMIN</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <section class="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-900 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#8b5cf6_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6">
-                Encontrá tu próximo <span class="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">vehículo ideal</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg mb-8">
-                Calidad, confianza y transparencia en cada operación. Consultá nuestro stock actualizado.
-            </p>
-
-            <div class="max-w-5xl mx-auto bg-slate-900/90 backdrop-blur-md p-4 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-3">
-                <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                    <input type="text" id="searchInput" oninput="window.app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
-                           class="w-full bg-slate-950/80 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm transition">
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <div class="relative">
-                        <select id="typeSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
-                            <option value="">🚙 Tipo Vehículo (Todos)</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
-                    </div>
-
-                    <div class="relative">
-                        <select id="sortSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
-                            <option value="default">📊 Ordenar por (Defecto)</option>
-                            <option value="price_desc">Mayor Valor</option>
-                            <option value="price_asc">Menor Valor</option>
-                            <option value="year_desc">Año: Más reciente</option>
-                            <option value="year_asc">Año: Más antiguo</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
-                    </div>
-
-                    <div class="relative">
-                        <select id="brandSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
-                            <option value="">🏷️ Marca (Todas)</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
-                    </div>
-
-                    <div class="relative">
-                        <select id="yearSelect" onchange="window.app.filterVehicles()" class="w-full bg-slate-950 text-slate-300 px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
-                            <option value="">📅 Año (Todos)</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs"></i>
-                    </div>
-                </div>
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
+        <!-- Search and 4 Dropdowns Filter Bar -->
+        <div class="bg-legado-cardBg p-5 sm:p-6 rounded-3xl border border-legado-grayBorder shadow-2xl flex flex-col gap-4 mb-6 relative z-20">
+            <div class="relative w-full">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
+                       class="w-full bg-legado-darkBg text-white pl-11 pr-4 py-3.5 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm transition">
             </div>
+            
+            <!-- 4 Dropdowns Bar -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <!-- 1: Tipo Vehiculo -->
+                <div class="relative">
+                    <select id="typeSelect" onchange="app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <option value="">🚙 Tipo Vehículo (Todos)</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
+                </div>
 
-            <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mt-5 max-w-4xl mx-auto">
+                <!-- 2: Ordenar por -->
+                <div class="relative">
+                    <select id="sortSelect" onchange="app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <option value="default">📊 Ordenar por (Defecto)</option>
+                        <option value="price_desc">Mayor Valor</option>
+                        <option value="price_asc">Menor Valor</option>
+                        <option value="year_desc">Año: Más reciente</option>
+                        <option value="year_asc">Año: Más antiguo</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
+                </div>
+
+                <!-- 3: Marca -->
+                <div class="relative">
+                    <select id="brandSelect" onchange="app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <option value="">🏷️ Marca (Todas)</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
+                </div>
+
+                <!-- 4: Año -->
+                <div class="relative">
+                    <select id="yearSelect" onchange="app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                        <option value="">📅 Año (Todos)</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
+                </div>
             </div>
         </div>
-    </section>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <div id="loadingState" class="flex flex-col items-center justify-center py-20 hidden">
-            <div class="w-12 h-12 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <!-- Quick Brand Pills -->
+        <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-8">
+            <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Vehicles Counter Header -->
+        <div class="flex items-center justify-between mb-6 border-b border-legado-grayBorder pb-3">
+            <span id="vehicleCountText" class="text-xs sm:text-sm font-bold text-slate-400">Mostrando vehículos disponibles</span>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="flex flex-col items-center justify-center py-20">
+            <div class="w-12 h-12 border-4 border-legado-purpleLight border-t-transparent rounded-full animate-spin mb-4"></div>
             <p class="text-slate-400 font-medium">Cargando vehículos disponibles...</p>
         </div>
 
+        <!-- Empty State -->
         <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
-            <div class="w-20 h-20 bg-slate-900 rounded-2xl flex items-center justify-center text-slate-600 text-3xl mb-4 border border-slate-800">
+            <div class="w-20 h-20 bg-legado-cardBg rounded-2xl flex items-center justify-center text-slate-500 text-3xl mb-4 border border-legado-grayBorder">
                 <i class="fa-solid fa-car-burst"></i>
             </div>
             <h3 class="text-xl font-bold text-white mb-2">No se encontraron vehículos</h3>
             <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios de búsqueda.</p>
         </div>
 
+        <!-- Vehicle Grid (3 columns strictly placed below filter bar) -->
         <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically populated via JS -->
         </div>
     </main>
 
-    <div id="detailModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <button onclick="window.app.closeDetailModal()" class="absolute top-4 right-4 z-20 bg-slate-950/70 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition">
+    <div id="detailModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="app.closeDetailModal()" class="absolute top-4 right-4 z-20 bg-legado-darkBg/80 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div id="detailModalContent" class="p-6 sm:p-8">
+                <!-- Populated dynamically -->
             </div>
         </div>
     </div>
 
-    <!-- Admin Modal -->
-    <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div id="adminLoginCard" class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
-            <button onclick="window.app.closeAdminModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
+    <div id="adminModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <!-- Admin Login Screen -->
+        <div id="adminLoginCard" class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
+            <button onclick="app.closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             <div class="text-center mb-6">
-                <div class="w-14 h-14 bg-purple-600/10 text-purple-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 border border-purple-500/20">
+                <div class="w-14 h-14 bg-legado-purple/20 text-legado-purpleLight rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 border border-legado-purple/30">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <h2 class="text-2xl font-bold text-white">Panel de Administración</h2>
                 <p class="text-slate-400 text-sm">Ingrese sus credenciales de acceso</p>
             </div>
-            <form onsubmit="window.app.handleAdminLogin(event)" class="space-y-4">
+            <form onsubmit="app.handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Usuario</label>
                     <input type="text" id="adminUser" required placeholder="Usuario" 
-                           class="w-full bg-slate-950 text-white px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Contraseña</label>
                     <input type="password" id="adminPass" required placeholder="••••••••" 
-                           class="w-full bg-slate-950 text-white px-4 py-3 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
-                <div id="loginError" class="hidden text-rose-500 text-xs font-semibold text-center"></div>
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-purple-600/20">
+                <div id="loginError" class="hidden text-rose-400 text-xs font-semibold text-center"></div>
+                <button type="submit" class="w-full bg-legado-purple hover:bg-legado-purpleLight text-white font-bold py-3 rounded-xl transition shadow-lg shadow-purple-950/50">
                     Ingresar al Panel
                 </button>
             </form>
         </div>
 
-        <div id="adminDashboard" class="hidden bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
-            <div class="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
+        <!-- Admin Dashboard Table -->
+        <div id="adminDashboard" class="hidden bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-6 border-b border-legado-grayBorder mb-6">
                 <div class="flex items-center space-x-3">
-                    <div class="bg-purple-600/10 text-purple-400 p-3 rounded-2xl border border-purple-500/20">
+                    <div class="bg-legado-purple/20 text-legado-purpleLight p-3 rounded-2xl border border-legado-purple/30">
                         <i class="fa-solid fa-gauge-high text-xl"></i>
                     </div>
                     <div>
@@ -191,11 +216,11 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <button onclick="window.app.openVehicleModal()" class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-600/20 transition">
+                    <button onclick="app.openVehicleModal()" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-4 py-2.5 rounded-xl text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-900/30 transition">
                         <i class="fa-solid fa-plus"></i>
                         <span>Nuevo Vehículo</span>
                     </button>
-                    <button onclick="window.app.closeAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+                    <button onclick="app.closeAdminModal()" class="bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder px-4 py-2.5 rounded-xl text-sm font-semibold transition">
                         Salir
                     </button>
                 </div>
@@ -204,7 +229,7 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="border-b border-slate-800 text-slate-400 text-xs uppercase tracking-wider">
+                        <tr class="border-b border-legado-grayBorder text-slate-400 text-xs uppercase tracking-wider">
                             <th class="py-3 px-4">Vehículo</th>
                             <th class="py-3 px-4">Precio</th>
                             <th class="py-3 px-4">Año / KM</th>
@@ -212,59 +237,60 @@
                             <th class="py-3 px-4 text-right">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="adminVehicleTableBody" class="divide-y divide-slate-800 text-sm">
+                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-grayBorder text-sm">
+                        <!-- Populated dynamically -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="window.app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
+    <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             <h3 id="vehicleModalTitle" class="text-2xl font-bold text-white mb-6">Nuevo Vehículo</h3>
-            <form id="vehicleForm" onsubmit="window.app.saveVehicle(event)" class="space-y-4">
+            <form id="vehicleForm" onsubmit="app.saveVehicle(event)" class="space-y-4">
                 <input type="hidden" id="vehicleId">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Marca</label>
-                        <input type="text" id="vBrand" required placeholder="Ej. Volkswagen" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <input type="text" id="vBrand" required placeholder="Ej. Volkswagen" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Modelo</label>
-                        <input type="text" id="vModel" required placeholder="Ej. Amarok V6" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <input type="text" id="vModel" required placeholder="Ej. Amarok V6" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Tipo de Vehículo</label>
-                        <input type="text" id="vType" required placeholder="Ej. Pick-Up, SUV, Sedán" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <input type="text" id="vType" required placeholder="Ej. Pick-Up, SUV, Sedán" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Moneda</label>
-                        <select id="vCurrency" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <select id="vCurrency" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                             <option value="USD">USD ($)</option>
                             <option value="ARS">Pesos ($)</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio</label>
-                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Año</label>
-                        <input type="number" id="vYear" required placeholder="2023" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <input type="number" id="vYear" required placeholder="2023" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Kilometraje</label>
-                        <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                        <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div class="flex items-center pt-6">
-                        <div class="flex items-center space-x-3 bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-800 w-full">
+                        <div class="flex items-center space-x-3 bg-legado-darkBg px-4 py-2.5 rounded-xl border border-legado-grayBorder w-full">
                             <input type="checkbox" id="vShowKm" checked class="w-5 h-5 accent-purple-600 rounded cursor-pointer">
                             <label for="vShowKm" class="text-xs font-semibold text-slate-300 cursor-pointer">Mostrar KM</label>
                         </div>
@@ -272,59 +298,82 @@
                 </div>
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Transmisión / Motor / Combustible</label>
-                    <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm">
+                    <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Descripción detallada</label>
-                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-slate-950 text-white px-4 py-2.5 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm"></textarea>
+                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
                 </div>
 
+                <!-- Photos Section with Interactive Reordering -->
                 <div>
                     <div class="flex items-center justify-between mb-1">
                         <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos (URLs)</label>
-                        <span class="text-xs text-purple-400 font-medium">Puedes reordenar o quitar fotos abajo</span>
+                        <span class="text-xs text-legado-purpleLight font-medium">Reordena o quita fotos abajo</span>
                     </div>
-                    <textarea id="vPhotos" rows="2" placeholder="https://i.postimg.cc/..., https://i.postimg.cc/..." oninput="window.app.updatePhotoPreviewFromText()" class="w-full bg-slate-950 text-white px-4 py-2 rounded-xl border border-slate-800 focus:border-purple-500 focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
+                    <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/foto1.jpg, https://ejemplo.com/foto2.jpg" oninput="app.updatePhotoPreviewFromText()" class="w-full bg-legado-darkBg text-white px-4 py-2 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
                     
+                    <!-- Visual Photo Reorder List -->
                     <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                        <!-- Populated dynamically -->
                     </div>
                 </div>
 
-                <div class="flex justify-end space-x-3 pt-4 border-t border-slate-800">
-                    <button type="button" onclick="window.app.closeVehicleModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition">Cancelar</button>
-                    <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-purple-600/20">Guardar Vehículo</button>
+                <div class="flex justify-end space-x-3 pt-4 border-t border-legado-grayBorder">
+                    <button type="button" onclick="app.closeVehicleModal()" class="bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder px-5 py-2.5 rounded-xl text-sm font-semibold transition">Cancelar</button>
+                    <button type="submit" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-6 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-purple-950/50">Guardar Vehículo</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
-        <i id="toastIcon" class="fa-solid fa-circle-check text-purple-400 text-lg"></i>
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-legado-cardBg border border-legado-grayBorder text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-legado-purpleLight text-lg"></i>
         <span id="toastMessage" class="text-sm font-medium">Operación exitosa</span>
     </div>
 
-    <footer class="bg-slate-900 border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
+    <footer class="bg-legado-cardBg border-t border-legado-grayBorder py-12 px-4 sm:px-6 lg:px-8 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <div>
-                    <span class="text-xl font-extrabold text-white">Legado Automotores</span>
+                    <span class="text-xl font-black text-white">Legado Automotores</span>
                     <p class="text-xs text-slate-400">Todos los derechos reservados &copy; 2026</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
                 <a href="https://wa.me/5491131861832?text=Hola!%20Quisiera%20consultar%20por%20un%20vehículo." target="_blank" 
-                   class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-300 flex items-center justify-center transition">
+                   class="w-10 h-10 rounded-xl bg-legado-darkBg hover:bg-emerald-600 hover:text-white text-slate-300 border border-legado-grayBorder flex items-center justify-center transition">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                 </a>
                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                   class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-purple-600 hover:text-white text-slate-300 flex items-center justify-center transition">
+                   class="w-10 h-10 rounded-xl bg-legado-darkBg hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white text-slate-300 border border-legado-grayBorder flex items-center justify-center transition">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
             </div>
         </div>
     </footer>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration & Environment setup
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'legado-automotores-app';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "demo-key",
+            authDomain: "demo.firebaseapp.com",
+            projectId: "demo-project",
+            storageBucket: "demo.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123:web:abc"
+        };
+
+        const appInstance = initializeApp(firebaseConfig);
+        const db = getFirestore(appInstance);
+        const auth = getAuth(appInstance);
+
+        // Default Sample Vehicles matching brand identity
         const defaultVehicles = [
             {
                 id: 'sample-1',
@@ -359,6 +408,23 @@
                     'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80',
                     'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80'
                 ]
+            },
+            {
+                id: 'sample-3',
+                brand: 'Ford',
+                model: 'Mustang GT V8',
+                type: 'Deportivo',
+                currency: 'USD',
+                price: '65.000',
+                year: 2022,
+                km: '19.000 km',
+                showKm: false,
+                specs: 'Automática | 5.0 V8 | Nafta',
+                description: 'Estado de concurso, escape deportivo opcional, interior en cuero negro impecable.',
+                photos: [
+                    'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=1000&q=80',
+                    'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=80'
+                ]
             }
         ];
 
@@ -371,21 +437,39 @@
                 this.currentEditingPhotos = [];
             }
 
-            init() {
-                this.loadVehicles();
+            async init() {
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (e) {
+                    console.log('Auth fallback notice:', e);
+                }
+
+                await this.loadVehicles();
             }
 
-            loadVehicles() {
-                const stored = localStorage.getItem('legado_vehicles');
-                if (stored) {
-                    try {
-                        this.vehicles = JSON.parse(stored);
-                    } catch(e) {
+            async loadVehicles() {
+                try {
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'vehicles');
+                    const snapshot = await getDocs(colRef);
+                    
+                    if (snapshot.empty) {
+                        for (let v of defaultVehicles) {
+                            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', v.id), v);
+                        }
                         this.vehicles = defaultVehicles;
+                    } else {
+                        this.vehicles = [];
+                        snapshot.forEach(docSnap => {
+                            this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
+                        });
                     }
-                } else {
+                } catch (err) {
+                    console.error("Error loading from Firestore, using defaults:", err);
                     this.vehicles = defaultVehicles;
-                    localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
                 }
 
                 this.filteredVehicles = [...this.vehicles];
@@ -398,6 +482,7 @@
             }
 
             populateDropdowns() {
+                // Populate Type Dropdown
                 const typeSelect = document.getElementById('typeSelect');
                 const currentType = typeSelect.value;
                 const types = [...new Set(this.vehicles.map(v => v.type || 'Otro'))].sort();
@@ -407,6 +492,7 @@
                 });
                 typeSelect.innerHTML = typeHtml;
 
+                // Populate Brand Dropdown
                 const brandSelect = document.getElementById('brandSelect');
                 const currentBrand = brandSelect.value;
                 const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
@@ -416,6 +502,7 @@
                 });
                 brandSelect.innerHTML = brandHtml;
 
+                // Populate Year Dropdown
                 const yearSelect = document.getElementById('yearSelect');
                 const currentYear = yearSelect.value;
                 const years = [...new Set(this.vehicles.map(v => v.year))].sort((a, b) => b - a);
@@ -431,12 +518,12 @@
                 const brands = [...new Set(this.vehicles.map(v => v.brand))].sort();
                 const currentBrand = document.getElementById('brandSelect').value;
 
-                let html = `<button onclick="window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${currentBrand === '' ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">Todas las marcas</button>`;
+                let html = `<button onclick="window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${currentBrand === '' ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">Todas las marcas</button>`;
 
                 brands.forEach(b => {
                     const isActive = currentBrand === b;
                     html += `
-                        <button onclick="window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${isActive ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30' : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'}">
+                        <button onclick="window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${isActive ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">
                             ${b}
                         </button>
                     `;
@@ -468,6 +555,7 @@
                     return matchesQuery && matchesBrand && matchesType && matchesYear;
                 });
 
+                // Sorting logic
                 this.filteredVehicles.sort((a, b) => {
                     const priceA = parseFloat(String(a.price).replace(/\./g, '').replace(',', '.')) || 0;
                     const priceB = parseFloat(String(b.price).replace(/\./g, '').replace(',', '.')) || 0;
@@ -487,6 +575,12 @@
             renderCatalog() {
                 const grid = document.getElementById('vehicleGrid');
                 const empty = document.getElementById('emptyState');
+                const countText = document.getElementById('vehicleCountText');
+
+                if (countText) {
+                    const total = this.filteredVehicles.length;
+                    countText.textContent = `Mostrando ${total} vehículo${total === 1 ? '' : 's'} disponible${total === 1 ? '' : 's'}`;
+                }
 
                 if (this.filteredVehicles.length === 0) {
                     grid.innerHTML = '';
@@ -498,35 +592,35 @@
                 let html = '';
 
                 this.filteredVehicles.forEach(v => {
-                    const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/111827/9ca3af?text=Sin+Imagen';
+                    const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/1c1d24/9ca3af?text=Sin+Imagen';
                     const curr = v.currency || 'USD';
                     const whatsappMsg = encodeURIComponent(`Hola! Me interesa consultar por el vehículo ${v.brand} ${v.model} (${v.year}) publicado a ${curr} ${v.price}. ¿Está disponible?`);
 
-                    const kmBadge = (v.showKm !== false && v.km) ? `<span><i class="fa-solid fa-gauge text-purple-400 mr-1.5"></i>${v.km}</span>` : '';
-                    const typeBadge = v.type ? `<span class="bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
+                    const kmBadge = (v.showKm !== false && v.km) ? `<span><i class="fa-solid fa-gauge text-legado-purpleLight mr-1.5"></i>${v.km}</span>` : '';
+                    const typeBadge = v.type ? `<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
 
                     html += `
-                        <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-purple-500/50 transition duration-300 flex flex-col group">
-                            <div class="relative h-60 overflow-hidden bg-slate-950 cursor-pointer" onclick="window.app.openDetailModal('${v.id}')">
-                                <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/111827/9ca3af?text=Error+Imagen'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl overflow-hidden shadow-xl hover:border-legado-purpleLight/50 transition duration-300 flex flex-col group">
+                            <div class="relative h-60 overflow-hidden bg-legado-darkBg cursor-pointer" onclick="window.app.openDetailModal('${v.id}')">
+                                <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/1c1d24/9ca3af?text=Error+Imagen'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                 <div class="absolute top-3 left-3 flex gap-2">
-                                    <span class="bg-slate-950/80 backdrop-blur-md text-purple-300 font-bold px-3 py-1 rounded-xl text-xs border border-slate-800">${v.year}</span>
+                                    <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder">${v.year}</span>
                                     ${typeBadge}
                                 </div>
-                                <div class="absolute top-3 right-3 bg-purple-600 text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg">
+                                <div class="absolute top-3 right-3 bg-legado-purple text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg">
                                     ${curr} ${v.price}
                                 </div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <div class="text-xs uppercase font-bold text-purple-400 tracking-wider mb-1">${v.brand}</div>
-                                <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-purple-300 transition" onclick="window.app.openDetailModal('${v.id}')">${v.model}</h3>
-                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-slate-800">
+                                <div class="text-xs uppercase font-bold text-legado-purpleLight tracking-wider mb-1">${v.brand}</div>
+                                <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-legado-purpleLight transition" onclick="window.app.openDetailModal('${v.id}')">${v.model}</h3>
+                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-legado-grayBorder">
                                     ${kmBadge}
-                                    <span><i class="fa-solid fa-gear text-purple-400 mr-1.5"></i>${v.specs || 'Consultar'}</span>
+                                    <span><i class="fa-solid fa-gear text-legado-purpleLight mr-1.5"></i>${v.specs || 'Consultar'}</span>
                                 </div>
                                 <p class="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow">${v.description || 'Sin descripción detallada.'}</p>
                                 <div class="grid grid-cols-2 gap-3 mt-auto">
-                                    <button onclick="window.app.openDetailModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
+                                    <button onclick="window.app.openDetailModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 border border-legado-grayBorder text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
                                         Ver Detalles
                                     </button>
                                     <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/20 transition">
@@ -555,21 +649,21 @@
             renderDetailModalContent() {
                 const v = this.currentVehicle;
                 if (!v) return;
-                const photos = (v.photos && v.photos.length > 0) ? v.photos : ['https://placehold.co/800x500/111827/9ca3af?text=Sin+Imagen'];
+                const photos = (v.photos && v.photos.length > 0) ? v.photos : ['https://placehold.co/800x500/1c1d24/9ca3af?text=Sin+Imagen'];
                 const activePhoto = photos[this.currentPhotoIndex];
                 const curr = v.currency || 'USD';
                 const whatsappMsg = encodeURIComponent(`Hola! Me interesa el vehículo ${v.brand} ${v.model} (${v.year}) de ${curr} ${v.price}.`);
 
                 const kmInfo = (v.showKm !== false && v.km) ? `
                     <div>
-                        <span class="block text-xs text-slate-500 uppercase font-bold">Kilometraje</span>
+                        <span class="block text-xs text-slate-400 uppercase font-bold">Kilometraje</span>
                         <span class="text-white font-bold text-base">${v.km}</span>
                     </div>
                 ` : '';
 
                 let thumbnailsHtml = '';
                 photos.forEach((p, idx) => {
-                    const activeClass = idx === this.currentPhotoIndex ? 'border-purple-500 ring-2 ring-purple-500/50' : 'border-slate-800 opacity-60 hover:opacity-100';
+                    const activeClass = idx === this.currentPhotoIndex ? 'border-legado-purpleLight ring-2 ring-purple-500/50' : 'border-legado-grayBorder opacity-60 hover:opacity-100';
                     thumbnailsHtml += `
                         <img src="${p}" onclick="window.app.setPhotoIndex(${idx})" class="w-20 h-16 object-cover rounded-xl border-2 ${activeClass} cursor-pointer transition">
                     `;
@@ -578,9 +672,9 @@
                 document.getElementById('detailModalContent').innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden bg-slate-950 mb-4 border border-slate-800">
+                            <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden bg-legado-darkBg mb-4 border border-legado-grayBorder">
                                 <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-cover">
-                                <div class="absolute top-4 left-4 bg-purple-600 text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl">
+                                <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl">
                                     ${curr} ${v.price}
                                 </div>
                             </div>
@@ -591,34 +685,34 @@
                         <div class="flex flex-col justify-between">
                             <div>
                                 <div class="flex gap-2 mb-3">
-                                    <span class="bg-purple-600/10 text-purple-300 border border-purple-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">
+                                    <span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">
                                         ${v.brand}
                                     </span>
-                                    ${v.type ? `<span class="bg-slate-800 text-slate-300 border border-slate-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">${v.type}</span>` : ''}
+                                    ${v.type ? `<span class="bg-legado-darkBg text-slate-300 border border-legado-grayBorder text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">${v.type}</span>` : ''}
                                 </div>
                                 <h2 class="text-3xl font-black text-white mb-3">${v.model}</h2>
-                                <div class="grid grid-cols-2 gap-4 my-4 p-4 bg-slate-950/60 rounded-2xl border border-slate-800">
+                                <div class="grid grid-cols-2 gap-4 my-4 p-4 bg-legado-darkBg/80 rounded-2xl border border-legado-grayBorder">
                                     <div>
-                                        <span class="block text-xs text-slate-500 uppercase font-bold">Año</span>
+                                        <span class="block text-xs text-slate-400 uppercase font-bold">Año</span>
                                         <span class="text-white font-bold text-base">${v.year}</span>
                                     </div>
                                     ${kmInfo}
-                                    <div class="col-span-2 pt-2 border-t border-slate-800">
-                                        <span class="block text-xs text-slate-500 uppercase font-bold">Especificaciones</span>
+                                    <div class="col-span-2 pt-2 border-t border-legado-grayBorder">
+                                        <span class="block text-xs text-slate-400 uppercase font-bold">Especificaciones</span>
                                         <span class="text-white font-medium text-sm">${v.specs || 'N/D'}</span>
                                     </div>
                                 </div>
                                 <h4 class="text-xs uppercase font-bold text-slate-400 mb-2">Descripción del Vehículo</h4>
                                 <p class="text-slate-300 text-sm leading-relaxed mb-6">${v.description || 'Sin descripción disponible.'}</p>
                             </div>
-                            <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+                            <div class="pt-4 border-t border-legado-grayBorder flex flex-col sm:flex-row gap-3">
                                 <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" 
                                    class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition">
                                     <i class="fa-brands fa-whatsapp text-lg"></i>
                                     <span>Consultar por WhatsApp</span>
                                 </a>
                                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                                   class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-500 hover:opacity-90 text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition">
+                                   class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition">
                                     <i class="fa-brands fa-instagram text-lg"></i>
                                     <span>Instagram</span>
                                 </a>
@@ -655,8 +749,8 @@
 
             handleAdminLogin(e) {
                 e.preventDefault();
-                const u = document.getElementById('adminUser').value.trim();
-                const p = document.getElementById('adminPass').value.trim();
+                const u = document.getElementById('adminUser').value;
+                const p = document.getElementById('adminPass').value;
                 const errDiv = document.getElementById('loginError');
 
                 if (u === 'legado' && p === '39460201') {
@@ -676,25 +770,25 @@
 
                 let html = '';
                 this.vehicles.forEach(v => {
-                    const cover = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/100x100/111827/9ca3af?text=Car';
+                    const cover = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/100x100/1c1d24/9ca3af?text=Car';
                     const curr = v.currency || 'USD';
                     html += `
-                        <tr class="hover:bg-slate-950/40 transition">
+                        <tr class="hover:bg-legado-darkBg/60 transition">
                             <td class="py-3 px-4 flex items-center space-x-3">
-                                <img src="${cover}" class="w-12 h-10 object-cover rounded-lg border border-slate-800" onerror="this.src='https://placehold.co/100x100'">
+                                <img src="${cover}" class="w-12 h-10 object-cover rounded-lg border border-legado-grayBorder" onerror="this.src='https://placehold.co/100x100'">
                                 <div>
                                     <span class="font-bold text-white block">${v.brand} ${v.model}</span>
-                                    <span class="text-xs text-slate-500">Tipo: ${v.type || 'N/D'}</span>
+                                    <span class="text-xs text-slate-400">Tipo: ${v.type || 'N/D'}</span>
                                 </div>
                             </td>
-                            <td class="py-3 px-4 font-semibold text-purple-300">${curr} ${v.price}</td>
+                            <td class="py-3 px-4 font-semibold text-legado-purpleLight">${curr} ${v.price}</td>
                             <td class="py-3 px-4 text-slate-300">${v.year} / ${v.showKm !== false ? (v.km || 'N/D') : 'Oculto'}</td>
                             <td class="py-3 px-4 text-slate-300">${v.photos ? v.photos.length : 0} fotos</td>
                             <td class="py-3 px-4 text-right space-x-2">
-                                <button onclick="window.app.openVehicleModal('${v.id}')" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <button onclick="window.app.openVehicleModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 text-legado-purpleLight border border-legado-grayBorder px-3 py-1.5 rounded-lg text-xs font-bold transition">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
-                                <button onclick="window.app.deleteVehicle('${v.id}')" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <button onclick="window.app.deleteVehicle('${v.id}')" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 border border-rose-900/40 px-3 py-1.5 rounded-lg text-xs font-bold transition">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -752,7 +846,7 @@
                 if (!container) return;
 
                 if (this.currentEditingPhotos.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-slate-500 italic py-2">No hay fotos cargadas o el enlace está vacío.</p>`;
+                    container.innerHTML = `<p class="text-xs text-slate-400 italic py-2">No hay fotos cargadas o el enlace está vacío.</p>`;
                     return;
                 }
 
@@ -760,17 +854,17 @@
                 this.currentEditingPhotos.forEach((url, idx) => {
                     const isCover = idx === 0;
                     html += `
-                        <div class="flex items-center justify-between bg-slate-950 p-2.5 rounded-xl border border-slate-800 gap-3">
+                        <div class="flex items-center justify-between bg-legado-darkBg p-2.5 rounded-xl border border-legado-grayBorder gap-3">
                             <div class="flex items-center space-x-3 overflow-hidden">
-                                <span class="text-xs font-bold text-slate-500 w-5 text-right">#${idx + 1}</span>
-                                <img src="${url}" class="w-12 h-9 object-cover rounded-lg border border-slate-800 flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
+                                <span class="text-xs font-bold text-slate-400 w-5 text-right">#${idx + 1}</span>
+                                <img src="${url}" class="w-12 h-9 object-cover rounded-lg border border-legado-grayBorder flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
                                 <span class="text-xs text-slate-300 font-mono truncate max-w-xs">${url}</span>
-                                ${isCover ? '<span class="bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded text-[10px] font-bold">Portada</span>' : ''}
+                                ${isCover ? '<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded text-[10px] font-bold">Portada</span>' : ''}
                             </div>
                             <div class="flex items-center space-x-1 flex-shrink-0">
-                                <button type="button" onclick="window.app.movePhoto(${idx}, -1)" ${idx === 0 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-up"></i></button>
-                                <button type="button" onclick="window.app.movePhoto(${idx}, 1)" ${idx === this.currentEditingPhotos.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-down"></i></button>
-                                <button type="button" onclick="window.app.removePhoto(${idx})" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 px-2.5 py-1.5 rounded-lg text-xs"><i class="fa-solid fa-trash"></i></button>
+                                <button type="button" onclick="window.app.movePhoto(${idx}, -1)" ${idx === 0 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-up"></i></button>
+                                <button type="button" onclick="window.app.movePhoto(${idx}, 1)" ${idx === this.currentEditingPhotos.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-down"></i></button>
+                                <button type="button" onclick="window.app.removePhoto(${idx})" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 border border-rose-900/40 px-2.5 py-1.5 rounded-lg text-xs"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     `;
@@ -797,7 +891,7 @@
                 document.getElementById('vehicleFormModal').classList.add('hidden');
             }
 
-            saveVehicle(e) {
+            async saveVehicle(e) {
                 e.preventDefault();
                 const id = document.getElementById('vehicleId').value || 'veh_' + Date.now();
                 const brand = document.getElementById('vBrand').value.trim();
@@ -813,41 +907,49 @@
                 
                 let photos = [...this.currentEditingPhotos];
                 if (photos.length === 0) {
-                    photos = ['https://placehold.co/800x500/111827/9ca3af?text=Sin+Imagen'];
+                    photos = ['https://placehold.co/800x500/1c1d24/9ca3af?text=Sin+Imagen'];
                 }
 
                 const vehicleData = { id, brand, model, type, currency, price, year, km, showKm, specs, description, photos };
-                
-                const index = this.vehicles.findIndex(v => v.id === id);
-                if (index >= 0) {
-                    this.vehicles[index] = vehicleData;
-                } else {
-                    this.vehicles.unshift(vehicleData);
+                try {
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
+                    
+                    const index = this.vehicles.findIndex(v => v.id === id);
+                    if (index >= 0) {
+                        this.vehicles[index] = vehicleData;
+                    } else {
+                        this.vehicles.unshift(vehicleData);
+                    }
+
+                    this.filteredVehicles = [...this.vehicles];
+                    this.populateDropdowns();
+                    this.renderBrandButtons();
+                    this.filterVehicles();
+                    this.renderAdminTable();
+                    this.closeVehicleModal();
+                    this.showToast('Vehículo guardado correctamente');
+                } catch (err) {
+                    console.error("Error saving vehicle:", err);
+                    this.showToast('Error al guardar en la base de datos', 'error');
                 }
-
-                localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
-
-                this.filteredVehicles = [...this.vehicles];
-                this.populateDropdowns();
-                this.renderBrandButtons();
-                this.filterVehicles();
-                this.renderAdminTable();
-                this.closeVehicleModal();
-                this.showToast('Vehículo guardado correctamente');
             }
 
-            deleteVehicle(id) {
+            async deleteVehicle(id) {
                 if (!confirm('¿Está seguro de eliminar este vehículo permanentemente?')) return;
 
-                this.vehicles = this.vehicles.filter(v => v.id !== id);
-                localStorage.setItem('legado_vehicles', JSON.stringify(this.vehicles));
-
-                this.filteredVehicles = [...this.vehicles];
-                this.populateDropdowns();
-                this.renderBrandButtons();
-                this.filterVehicles();
-                this.renderAdminTable();
-                this.showToast('Vehículo eliminado');
+                try {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
+                    this.vehicles = this.vehicles.filter(v => v.id !== id);
+                    this.filteredVehicles = [...this.vehicles];
+                    this.populateDropdowns();
+                    this.renderBrandButtons();
+                    this.filterVehicles();
+                    this.renderAdminTable();
+                    this.showToast('Vehículo eliminado');
+                } catch (err) {
+                    console.error("Error deleting vehicle:", err);
+                    this.showToast('Error al eliminar vehículo', 'error');
+                }
             }
 
             resetView() {
@@ -870,7 +972,7 @@
                 if (type === 'error') {
                     toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400 text-lg';
                 } else {
-                    toastIcon.className = 'fa-solid fa-circle-check text-purple-400 text-lg';
+                    toastIcon.className = 'fa-solid fa-circle-check text-legado-purpleLight text-lg';
                 }
 
                 toast.classList.remove('translate-y-24', 'opacity-0');
@@ -880,9 +982,9 @@
             }
         }
 
-        // Instancia principal de la aplicación
-        window.app = new LegadoApp();
-        window.onload = () => window.app.init();
+        const app = new LegadoApp();
+        window.app = app;
+        window.onload = () => app.init();
     </script>
 </body>
 </html>
