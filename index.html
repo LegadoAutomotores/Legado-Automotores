@@ -633,24 +633,49 @@
 
             async loadVehicles() {
                 try {
-                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'vehicles');
+                    // Direct collection fetch to ensure cross-domain compatibility
+                    const colRef = collection(db, 'vehicles');
                     const snapshot = await getDocs(colRef);
                     
-                    if (snapshot.empty) {
-                        for (let v of defaultVehicles) {
-                            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', v.id), v);
-                        }
-                        this.vehicles = defaultVehicles;
-                    } else {
+                    if (!snapshot.empty) {
                         this.vehicles = [];
                         snapshot.forEach(docSnap => {
                             this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
                         });
+                    } else {
+                        // Subcollection fallback
+                        const subColRef = collection(db, 'artifacts', appId, 'public', 'data', 'vehicles');
+                        const subSnapshot = await getDocs(subColRef);
+                        
+                        if (!subSnapshot.empty) {
+                            this.vehicles = [];
+                            subSnapshot.forEach(docSnap => {
+                                this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
+                            });
+                        } else {
+                            // Check local backup
+                            const localData = localStorage.getItem('legado_vehicles_cache');
+                            if (localData) {
+                                this.vehicles = JSON.parse(localData);
+                            } else {
+                                this.vehicles = defaultVehicles;
+                            }
+                        }
                     }
                 } catch (err) {
-                    console.error("Error loading Firestore:", err);
-                    this.vehicles = defaultVehicles;
+                    console.error("Firestore sync error, loading local cache:", err);
+                    const localData = localStorage.getItem('legado_vehicles_cache');
+                    if (localData) {
+                        this.vehicles = JSON.parse(localData);
+                    } else {
+                        this.vehicles = defaultVehicles;
+                    }
                 }
+
+                // Cache locally as backup
+                try {
+                    localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
+                } catch(e){}
 
                 this.filteredVehicles = [...this.vehicles];
                 this.populateDropdowns();
@@ -1408,10 +1433,17 @@
                         this.vehicles.unshift(vehicleData);
                     }
 
+                    // Save to local cache
                     try {
+                        localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
+                    } catch(e){}
+
+                    // Sync to primary Firestore collections
+                    try {
+                        await setDoc(doc(db, 'vehicles', id), vehicleData);
                         await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
                     } catch (fsErr) {
-                        console.warn("Firestore notice:", fsErr);
+                        console.warn("Firestore save notice:", fsErr);
                     }
 
                     this.filteredVehicles = [...this.vehicles];
@@ -1451,6 +1483,10 @@
                     this.vehicles = this.vehicles.filter(v => v.id !== id);
                     this.filteredVehicles = [...this.vehicles];
                     
+                    try {
+                        localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
+                    } catch(e){}
+
                     this.populateDropdowns();
                     this.renderBrandButtons();
                     this.filterVehicles();
@@ -1458,6 +1494,7 @@
                     this.showToast('Vehículo eliminado correctamente');
 
                     try {
+                        await deleteDoc(doc(db, 'vehicles', id));
                         await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id));
                     } catch (fsErr) {
                         console.warn("Firestore delete notice:", fsErr);
