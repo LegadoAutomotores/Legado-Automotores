@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full">
+<html lang="es" class="h-full scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legado Automotores - Stock de Vehículos</title>
+    <title>Legado Automotores - Stock Exclusivo de Vehículos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -16,13 +16,18 @@
                     colors: {
                         legado: {
                             purple: '#7e438e',
-                            purpleLight: '#9b58ad',
+                            purpleLight: '#a855f7',
+                            purpleGlow: '#c084fc',
                             purpleDark: '#5c2f69',
-                            darkBg: '#121318',
-                            cardBg: '#1c1d24',
-                            grayBorder: '#2e303b',
-                            darkText: '#4a4d5a'
+                            darkBg: '#0d0e12',
+                            cardBg: '#16171d',
+                            grayBorder: '#292b36',
+                            hoverBorder: '#4a3b5c'
                         }
+                    },
+                    boxShadow: {
+                        'glow-purple': '0 0 25px -5px rgba(168, 85, 247, 0.3)',
+                        'glow-card': '0 10px 30px -10px rgba(0, 0, 0, 0.8)'
                     }
                 }
             }
@@ -32,26 +37,55 @@
         .legado-logo-text {
             font-style: italic;
             font-weight: 900;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
             color: #ffffff;
-            text-shadow: 2px 3px 0px #4d4d54;
+            text-shadow: 2px 3px 0px #3f2247, 0 0 20px rgba(168, 85, 247, 0.4);
         }
         .legado-subtext {
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            color: #9b58ad;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: #a855f7;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(126, 67, 142, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glow-ambient {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(100px);
+            opacity: 0.25;
+            pointer-events: none;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0e12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #292b36;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7e438e;
         }
     </style>
 </head>
-<body class="bg-legado-darkBg text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white">
+<body class="bg-legado-darkBg text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-grid-pattern relative overflow-x-hidden">
 
-    <header class="sticky top-0 z-50 bg-legado-darkBg/95 backdrop-blur-md border-b border-legado-grayBorder shadow-xl">
+    <div class="glow-ambient w-96 h-96 bg-purple-700 top-[-100px] left-[-100px]"></div>
+    <div class="glow-ambient w-96 h-96 bg-purple-900 top-[400px] right-[-100px]"></div>
+
+    <header class="sticky top-0 z-50 bg-legado-darkBg/90 backdrop-blur-xl border-b border-legado-grayBorder shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-2 sm:gap-4">
-            <!-- Left: Brand Text "Legado Automotores" -->
-            <div class="flex items-center cursor-pointer select-none" onclick="window.app && window.app.resetView()">
-                <div class="flex flex-col">
+            <!-- Brand Logo Left -->
+            <div class="flex items-center cursor-pointer select-none group" onclick="window.app && window.app.resetView()">
+                <div class="flex flex-col transform group-hover:scale-105 transition duration-300">
                     <span class="text-2xl sm:text-3xl legado-logo-text leading-none">Legado</span>
-                    <span class="text-[10px] sm:text-xs legado-subtext uppercase tracking-[0.18em] mt-0.5">Automotores</span>
+                    <span class="text-[10px] sm:text-xs legado-subtext uppercase tracking-[0.2em] mt-0.5">Automotores</span>
                 </div>
             </div>
 
@@ -59,28 +93,28 @@
             <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
                 <!-- "Vendé tu Auto" Header Button -->
                 <button onclick="window.app && window.app.openSellCarModal()" 
-                        class="bg-legado-purple/20 hover:bg-legado-purple/40 text-legado-purpleLight border border-legado-purple/40 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition transform active:scale-95">
+                        class="bg-legado-purple/20 hover:bg-legado-purple/40 text-legado-purpleLight border border-legado-purple/40 px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition duration-300 transform active:scale-95 shadow-lg shadow-purple-950/30">
                     <i class="fa-solid fa-car-side text-base"></i>
                     <span class="hidden sm:inline">Vendé tu Auto</span>
                 </button>
 
                 <!-- WhatsApp Header Button -->
                 <a href="https://wa.me/5491131861832?text=Hola!%20Me%20interesa%20consultar%20por%20los%20vehículos%20disponibles." target="_blank" 
-                   class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
+                   class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-emerald-600/30 transition duration-300 transform active:scale-95">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span class="hidden md:inline">WhatsApp</span>
                 </a>
 
                 <!-- Instagram Header Button -->
                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                   class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-rose-950/40 transition transform active:scale-95">
+                   class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-95 text-white px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-rose-950/40 transition duration-300 transform active:scale-95">
                     <i class="fa-brands fa-instagram text-lg"></i>
                     <span class="hidden md:inline">Instagram</span>
                 </a>
 
                 <!-- Admin Button -->
                 <button onclick="window.app && window.app.openAdminModal()" 
-                        class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition transform active:scale-95 cursor-pointer">
+                        class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder hover:border-legado-purpleLight/40 px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition duration-300 transform active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-lock text-legado-purpleLight"></i>
                     <span>ADMIN</span>
                 </button>
@@ -89,27 +123,66 @@
     </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
+        
+        <!-- Trust Badge Banner -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-3.5 rounded-2xl border border-legado-grayBorder flex items-center space-x-3 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-lg border border-legado-purple/30 shrink-0">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Unidades Seleccionadas</h4>
+                    <p class="text-[11px] text-slate-400">Garantía de documentación</p>
+                </div>
+            </div>
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-3.5 rounded-2xl border border-legado-grayBorder flex items-center space-x-3 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-lg border border-legado-purple/30 shrink-0">
+                    <i class="fa-solid fa-right-left"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Tomamos Permuta</h4>
+                    <p class="text-[11px] text-slate-400">Cotización al instante</p>
+                </div>
+            </div>
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-3.5 rounded-2xl border border-legado-grayBorder flex items-center space-x-3 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-lg border border-legado-purple/30 shrink-0">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Financiación</h4>
+                    <p class="text-[11px] text-slate-400">Cuotas fijas en pesos</p>
+                </div>
+            </div>
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-3.5 rounded-2xl border border-legado-grayBorder flex items-center space-x-3 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-lg border border-legado-purple/30 shrink-0">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Atención VIP</h4>
+                    <p class="text-[11px] text-slate-400">Asesoramiento directo</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Search and 4 Dropdowns Filter Bar -->
-        <div class="bg-legado-cardBg p-5 sm:p-6 rounded-3xl border border-legado-grayBorder shadow-2xl flex flex-col gap-4 mb-6 relative z-20">
+        <div class="bg-legado-cardBg/90 backdrop-blur-xl p-5 sm:p-6 rounded-3xl border border-legado-grayBorder shadow-2xl flex flex-col gap-4 mb-6 relative z-20">
             <div class="relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-legado-purpleLight"></i>
                 <input type="text" id="searchInput" oninput="window.app && window.app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
-                       class="w-full bg-legado-darkBg text-white pl-11 pr-4 py-3.5 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm transition">
+                       class="w-full bg-legado-darkBg/90 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:ring-2 focus:ring-purple-500/20 focus:outline-none text-sm transition">
             </div>
             
             <!-- 4 Dropdowns Bar -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <!-- 1: Tipo Vehiculo -->
                 <div class="relative">
-                    <select id="typeSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                    <select id="typeSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="">🚙 Tipo Vehículo (Todos)</option>
                     </select>
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
                 </div>
 
-                <!-- 2: Ordenar por -->
                 <div class="relative">
-                    <select id="sortSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                    <select id="sortSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="default">📊 Ordenar por (Defecto)</option>
                         <option value="price_desc">Mayor Valor</option>
                         <option value="price_asc">Menor Valor</option>
@@ -119,17 +192,15 @@
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
                 </div>
 
-                <!-- 3: Marca -->
                 <div class="relative">
-                    <select id="brandSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                    <select id="brandSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="">🏷️ Marca (Todas)</option>
                     </select>
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
                 </div>
 
-                <!-- 4: Año -->
                 <div class="relative">
-                    <select id="yearSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg text-slate-200 px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
+                    <select id="yearSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="">📅 Año (Todos)</option>
                     </select>
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
@@ -138,51 +209,47 @@
         </div>
 
         <!-- Quick Brand Pills -->
-        <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-8">
-            <!-- Dynamically populated via JS -->
-        </div>
+        <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-8"></div>
 
         <!-- Vehicles Counter Header -->
-        <div class="flex items-center justify-between mb-6 border-b border-legado-grayBorder pb-3">
-            <span id="vehicleCountText" class="text-xs sm:text-sm font-bold text-slate-400">Mostrando vehículos disponibles</span>
+        <div class="flex items-center justify-between mb-6 border-b border-legado-grayBorder/80 pb-3">
+            <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="vehicleCountText" class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider">Mostrando vehículos disponibles</span>
+            </div>
         </div>
 
         <!-- Loading State -->
         <div id="loadingState" class="flex flex-col items-center justify-center py-20">
-            <div class="w-12 h-12 border-4 border-legado-purpleLight border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p class="text-slate-400 font-medium">Cargando vehículos disponibles...</p>
+            <div class="w-14 h-14 border-4 border-legado-purpleLight border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p class="text-slate-400 font-medium text-sm">Cargando catálogo exclusivo...</p>
         </div>
 
         <!-- Empty State -->
         <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
-            <div class="w-20 h-20 bg-legado-cardBg rounded-2xl flex items-center justify-center text-slate-500 text-3xl mb-4 border border-legado-grayBorder">
+            <div class="w-20 h-20 bg-legado-cardBg rounded-3xl flex items-center justify-center text-slate-500 text-3xl mb-4 border border-legado-grayBorder shadow-2xl">
                 <i class="fa-solid fa-car-burst"></i>
             </div>
             <h3 class="text-xl font-bold text-white mb-2">No se encontraron vehículos</h3>
             <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios de búsqueda.</p>
         </div>
 
-        <!-- Vehicle Grid -->
-        <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamically populated via JS -->
-        </div>
+        <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
     <!-- Detail Modal -->
-    <div id="detailModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <button onclick="window.app && window.app.closeDetailModal()" class="absolute top-4 right-4 z-20 bg-legado-darkBg/80 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition">
+    <div id="detailModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-legado-cardBg/95 border border-legado-grayBorder rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="window.app && window.app.closeDetailModal()" class="absolute top-4 right-4 z-30 bg-legado-darkBg/80 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition border border-legado-grayBorder">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <div id="detailModalContent" class="p-6 sm:p-8">
-                <!-- Populated dynamically -->
-            </div>
+            <div id="detailModalContent" class="p-6 sm:p-8"></div>
         </div>
     </div>
 
-    <!-- Trade / Permuta Modal -->
-    <div id="tradeModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-150">
+    <!-- Trade Modal -->
+    <div id="tradeModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
             <button onclick="window.app && window.app.closeTradeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -224,9 +291,9 @@
         </div>
     </div>
 
-    <!-- "Vendé tu Auto" Modal -->
-    <div id="sellCarModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 animate-in fade-in zoom-in duration-150">
+    <!-- Sell Car Modal -->
+    <div id="sellCarModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="window.app && window.app.closeSellCarModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -263,7 +330,7 @@
                            class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Links de Fotos (Opcional - Google Drive / Postimg)</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Links de Fotos (Opcional)</label>
                     <input type="text" id="sellCarPhotos" placeholder="Ej. https://postimg.cc/..." 
                            class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
@@ -285,9 +352,9 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div id="deleteConfirmModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center relative animate-in fade-in zoom-in duration-150">
+    <!-- Delete Confirm Modal -->
+    <div id="deleteConfirmModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center relative">
             <div class="w-14 h-14 bg-rose-950/50 text-rose-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-rose-900/40">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
@@ -305,7 +372,7 @@
     </div>
 
     <!-- Admin Modal -->
-    <div id="adminModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="adminModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
         <!-- Admin Login Screen -->
         <div id="adminLoginCard" class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
             <button onclick="window.app && window.app.closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
@@ -345,7 +412,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-white">Gestión de Stock</h2>
-                        <p class="text-slate-400 text-sm">Agregue, edite, reordene fotos o cambie el estado.</p>
+                        <p class="text-slate-400 text-sm">Agregue, edite, suba fotos locales o cambie el estado.</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-2.5">
@@ -376,17 +443,15 @@
                             <th class="py-3 px-4 text-right">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-grayBorder text-sm">
-                        <!-- Populated dynamically -->
-                    </tbody>
+                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-grayBorder text-sm"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
     <!-- Change Password Modal -->
-    <div id="changePassModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-150">
+    <div id="changePassModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
             <button onclick="window.app && window.app.closeChangePassModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -428,8 +493,8 @@
         </div>
     </div>
 
-    <!-- Vehicle Form Modal (New / Edit) -->
-    <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <!-- Vehicle Form Modal -->
+    <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="window.app && window.app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
@@ -497,23 +562,35 @@
                     <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
                 </div>
 
-                <!-- Photos Section with Interactive Reordering -->
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos (URLs)</label>
-                        <div class="flex items-center space-x-2">
-                            <button type="button" onclick="window.app && window.app.sortPhotosNumerically()" class="text-xs bg-legado-purple/20 text-legado-purpleLight hover:bg-legado-purple/40 border border-legado-purple/40 px-2.5 py-1 rounded-lg font-bold transition">
-                                <i class="fa-solid fa-arrow-down-1-9 mr-1"></i>Ordenar por número
-                            </button>
-                            <span class="text-xs text-legado-purpleLight font-medium">Reordena o quita fotos abajo</span>
+                <!-- Photos Direct File Upload & URL Area -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-center justify-between">
+                        <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos del Vehículo</label>
+                        <button type="button" onclick="window.app && window.app.sortPhotosNumerically()" class="text-xs bg-legado-purple/20 text-legado-purpleLight hover:bg-legado-purple/40 border border-legado-purple/40 px-3 py-1 rounded-xl font-bold transition flex items-center space-x-1">
+                            <i class="fa-solid fa-arrow-down-1-9"></i>
+                            <span>Ordenar por número</span>
+                        </button>
+                    </div>
+
+                    <!-- File Dropzone -->
+                    <div id="fileDropzone" onclick="document.getElementById('fileInput').click()" 
+                         class="border-2 border-dashed border-legado-purple/40 hover:border-legado-purpleLight bg-legado-darkBg/60 hover:bg-legado-purple/10 p-5 rounded-2xl cursor-pointer text-center transition group">
+                        <input type="file" id="fileInput" multiple accept="image/*" onchange="window.app && window.app.handleFileInput(event)" class="hidden">
+                        <div class="w-12 h-12 bg-legado-purple/20 text-legado-purpleLight rounded-2xl flex items-center justify-center text-xl mx-auto mb-2 border border-legado-purple/30 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
                         </div>
+                        <p class="text-xs sm:text-sm font-bold text-white mb-1">Hacé clic para subir fotos directamente desde tu PC o Celular</p>
+                        <p class="text-[11px] text-slate-400">Podés seleccionar múltiples archivos a la vez (se ordenan por nombre ej. 1.jpg, 2.jpg)</p>
                     </div>
-                    <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/foto1.jpg, https://ejemplo.com/foto2.jpg" oninput="window.app && window.app.updatePhotoPreviewFromText()" class="w-full bg-legado-darkBg text-white px-4 py-2 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm font-mono text-xs mb-3"></textarea>
+
+                    <!-- URL Backup Textarea -->
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-400 mb-1">O si preferís, pegá links de fotos (URLs separadas por coma o salto de línea):</label>
+                        <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/1.jpg, https://ejemplo.com/2.jpg" oninput="window.app && window.app.updatePhotoPreviewFromText()" class="w-full bg-legado-darkBg text-white px-4 py-2 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs font-mono"></textarea>
+                    </div>
                     
-                    <!-- Visual Photo Reorder List -->
-                    <div id="photoReorderContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1">
-                        <!-- Populated dynamically -->
-                    </div>
+                    <!-- Visual Photo List -->
+                    <div id="photoReorderContainer" class="space-y-2 max-h-52 overflow-y-auto pr-1"></div>
                 </div>
 
                 <div class="flex justify-end space-x-3 pt-4 border-t border-legado-grayBorder">
@@ -530,8 +607,7 @@
         <span id="toastMessage" class="text-sm font-medium">Operación exitosa</span>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-legado-cardBg border-t border-legado-grayBorder py-12 px-4 sm:px-6 lg:px-8 mt-auto">
+    <footer class="bg-legado-cardBg/90 backdrop-blur-md border-t border-legado-grayBorder py-12 px-4 sm:px-6 lg:px-8 mt-auto relative z-10">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <div>
@@ -557,7 +633,6 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration
         const appId = 'legado-automotores-app';
         const firebaseConfig = {
             apiKey: "AIzaSyB2DejAvOmBaxDjBZ-2sYEmQiL0Hs-eqdc",
@@ -633,7 +708,6 @@
 
             async loadVehicles() {
                 try {
-                    // Direct collection fetch to ensure cross-domain compatibility
                     const colRef = collection(db, 'vehicles');
                     const snapshot = await getDocs(colRef);
                     
@@ -643,7 +717,6 @@
                             this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
                         });
                     } else {
-                        // Subcollection fallback
                         const subColRef = collection(db, 'artifacts', appId, 'public', 'data', 'vehicles');
                         const subSnapshot = await getDocs(subColRef);
                         
@@ -653,7 +726,6 @@
                                 this.vehicles.push({ id: docSnap.id, ...docSnap.data() });
                             });
                         } else {
-                            // Check local backup
                             const localData = localStorage.getItem('legado_vehicles_cache');
                             if (localData) {
                                 this.vehicles = JSON.parse(localData);
@@ -672,7 +744,6 @@
                     }
                 }
 
-                // Cache locally as backup
                 try {
                     localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
                 } catch(e){}
@@ -729,12 +800,12 @@
                 const brandSelect = document.getElementById('brandSelect');
                 const currentBrand = brandSelect ? brandSelect.value : '';
 
-                let html = `<button onclick="window.app && window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${currentBrand === '' ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">Todas las marcas</button>`;
+                let html = `<button onclick="window.app && window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-2xl text-xs font-bold transition duration-300 ${currentBrand === '' ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/50 ring-2 ring-purple-500/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">Todas las marcas</button>`;
 
                 brands.forEach(b => {
                     const isActive = currentBrand === b;
                     html += `
-                        <button onclick="window.app && window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${isActive ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">
+                        <button onclick="window.app && window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-2xl text-xs font-bold transition duration-300 ${isActive ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/50 ring-2 ring-purple-500/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">
                             ${b}
                         </button>
                     `;
@@ -812,38 +883,45 @@
 
                 this.filteredVehicles.forEach(v => {
                     const coverPhoto = (v.photos && v.photos.length > 0) ? v.photos[0] : 'https://placehold.co/600x400/1c1d24/9ca3af?text=Sin+Imagen';
+                    const photoCount = v.photos ? v.photos.length : 0;
                     const curr = v.currency || 'USD';
                     const whatsappMsg = encodeURIComponent(`Hola! Me interesa consultar por el vehículo ${v.brand} ${v.model} (${v.year}) publicado a ${curr} ${v.price}. ¿Está disponible?`);
 
                     const kmBadge = (v.showKm !== false && v.km) ? `<span><i class="fa-solid fa-gauge text-legado-purpleLight mr-1.5"></i>${v.km}</span>` : '';
-                    const typeBadge = v.type ? `<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded-lg text-xs font-semibold">${v.type}</span>` : '';
+                    const typeBadge = v.type ? `<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2.5 py-0.5 rounded-xl text-xs font-semibold backdrop-blur-md">${v.type}</span>` : '';
 
                     let statusBadgeHtml = '';
                     if (v.status === 'reservado') {
-                        statusBadgeHtml = `<span class="bg-amber-500 text-slate-950 font-black px-2.5 py-1 rounded-xl text-[11px] shadow-lg uppercase tracking-wider z-10"><i class="fa-solid fa-clock mr-1"></i>Reservado</span>`;
+                        statusBadgeHtml = `<span class="bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-2xl text-[11px] shadow-lg uppercase tracking-wider z-10"><i class="fa-solid fa-clock mr-1"></i>Reservado</span>`;
                     } else if (v.status === 'vendido') {
-                        statusBadgeHtml = `<span class="bg-rose-600 text-white font-black px-2.5 py-1 rounded-xl text-[11px] shadow-lg uppercase tracking-wider z-10"><i class="fa-solid fa-circle-xmark mr-1"></i>Vendido</span>`;
+                        statusBadgeHtml = `<span class="bg-rose-600 text-white font-black px-3 py-1 rounded-2xl text-[11px] shadow-lg uppercase tracking-wider z-10"><i class="fa-solid fa-circle-xmark mr-1"></i>Vendido</span>`;
                     }
 
                     html += `
-                        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl overflow-hidden shadow-xl hover:border-legado-purpleLight/50 transition duration-300 flex flex-col group relative">
-                            <div class="relative h-64 overflow-hidden bg-black/40 flex items-center justify-center cursor-pointer p-2" onclick="window.app && window.app.openDetailModal('${v.id}')">
+                        <div class="bg-legado-cardBg/90 backdrop-blur-xl border border-legado-grayBorder hover:border-legado-purpleLight/60 rounded-3xl overflow-hidden shadow-2xl transition duration-500 flex flex-col group relative transform hover:-translate-y-1">
+                            <div class="relative h-64 overflow-hidden bg-black/60 flex items-center justify-center cursor-pointer p-2" onclick="window.app && window.app.openDetailModal('${v.id}')">
                                 <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/1c1d24/9ca3af?text=Error+Imagen'" class="w-full h-full object-contain object-center group-hover:scale-105 transition duration-500">
                                 <div class="absolute top-3 left-3 flex gap-2 z-10">
-                                    <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder">${v.year}</span>
+                                    <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder/80">${v.year}</span>
                                     ${typeBadge}
                                 </div>
                                 <div class="absolute top-3 right-3 flex flex-col items-end gap-1 z-10">
-                                    <span class="bg-legado-purple text-white font-black px-3 py-1 rounded-xl text-xs shadow-lg">
+                                    <span class="bg-legado-purple text-white font-black px-3.5 py-1 rounded-xl text-xs shadow-xl ring-2 ring-purple-500/20">
                                         ${curr} ${v.price}
                                     </span>
                                     ${statusBadgeHtml}
                                 </div>
+                                ${photoCount > 1 ? `
+                                    <div class="absolute bottom-3 right-3 bg-legado-darkBg/80 backdrop-blur-md text-slate-300 px-2.5 py-0.5 rounded-lg text-[10px] font-bold border border-legado-grayBorder z-10 flex items-center space-x-1">
+                                        <i class="fa-solid fa-camera text-legado-purpleLight"></i>
+                                        <span>${photoCount} fotos</span>
+                                    </div>
+                                ` : ''}
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <div class="text-xs uppercase font-bold text-legado-purpleLight tracking-wider mb-1">${v.brand}</div>
+                                <div class="text-xs uppercase font-extrabold text-legado-purpleLight tracking-widest mb-1">${v.brand}</div>
                                 <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-legado-purpleLight transition" onclick="window.app && window.app.openDetailModal('${v.id}')">${v.model}</h3>
-                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-legado-grayBorder">
+                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-legado-grayBorder/80">
                                     ${kmBadge}
                                     <span><i class="fa-solid fa-gear text-legado-purpleLight mr-1.5"></i>${v.specs || 'Consultar'}</span>
                                 </div>
@@ -852,7 +930,7 @@
                                     <button onclick="window.app && window.app.openDetailModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 border border-legado-grayBorder text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
                                         Ver Detalles
                                     </button>
-                                    <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/20 transition">
+                                    <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/30 transition transform active:scale-95">
                                         <i class="fa-brands fa-whatsapp text-sm"></i>
                                         <span>Consultar</span>
                                     </a>
@@ -910,9 +988,9 @@
 
                 let thumbnailsHtml = '';
                 photos.forEach((p, idx) => {
-                    const activeClass = idx === this.currentPhotoIndex ? 'border-legado-purpleLight ring-2 ring-purple-500/50' : 'border-legado-grayBorder opacity-60 hover:opacity-100';
+                    const activeClass = idx === this.currentPhotoIndex ? 'border-legado-purpleLight ring-2 ring-purple-500/50 scale-105' : 'border-legado-grayBorder opacity-60 hover:opacity-100';
                     thumbnailsHtml += `
-                        <div class="w-20 h-16 rounded-xl border-2 ${activeClass} bg-black/40 overflow-hidden flex items-center justify-center cursor-pointer flex-shrink-0 transition" onclick="window.app && window.app.setPhotoIndex(${idx})">
+                        <div class="w-20 h-16 rounded-2xl border-2 ${activeClass} bg-black/50 overflow-hidden flex items-center justify-center cursor-pointer flex-shrink-0 transition duration-200" onclick="window.app && window.app.setPhotoIndex(${idx})">
                             <img src="${p}" class="w-full h-full object-contain object-center">
                         </div>
                     `;
@@ -923,10 +1001,10 @@
                 document.getElementById('detailModalContent').innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <div id="photoCarouselContainer" class="relative h-72 sm:h-96 rounded-2xl overflow-hidden bg-black/60 mb-4 border border-legado-grayBorder flex items-center justify-center p-2 select-none group">
+                            <div id="photoCarouselContainer" class="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-black/70 mb-4 border border-legado-grayBorder flex items-center justify-center p-2 select-none group shadow-2xl">
                                 <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-contain object-center transition-opacity duration-200">
                                 
-                                <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-3.5 py-1.5 rounded-xl text-sm shadow-xl z-10">
+                                <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-4 py-1.5 rounded-2xl text-sm shadow-2xl ring-2 ring-purple-500/30 z-10">
                                     ${curr} ${v.price}
                                 </div>
 
@@ -934,14 +1012,14 @@
 
                                 ${showArrows ? `
                                     <button onclick="window.app && window.app.prevPhoto()" aria-label="Foto anterior" 
-                                            class="absolute left-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-grayBorder transition-all duration-200 shadow-xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
+                                            class="absolute left-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-grayBorder transition-all duration-200 shadow-2xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
                                         <i class="fa-solid fa-chevron-left text-base sm:text-lg"></i>
                                     </button>
                                 ` : ''}
 
                                 ${showArrows ? `
                                     <button onclick="window.app && window.app.nextPhoto()" aria-label="Siguiente foto" 
-                                            class="absolute right-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-grayBorder transition-all duration-200 shadow-xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
+                                            class="absolute right-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-grayBorder transition-all duration-200 shadow-2xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
                                         <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
                                     </button>
                                 ` : ''}
@@ -980,12 +1058,12 @@
                             <div class="pt-4 border-t border-legado-grayBorder flex flex-col gap-3">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" 
-                                       class="bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition">
+                                       class="bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
                                         <i class="fa-brands fa-whatsapp text-lg"></i>
                                         <span>Consultar por WhatsApp</span>
                                     </a>
                                     <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                                       class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition">
+                                       class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition transform active:scale-95">
                                         <i class="fa-brands fa-instagram text-lg"></i>
                                         <span>Instagram</span>
                                     </a>
@@ -1283,6 +1361,8 @@
                 document.getElementById('vStatus').value = 'disponible';
                 document.getElementById('vCurrency').value = 'USD';
                 document.getElementById('vShowKm').checked = true;
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) fileInput.value = '';
                 this.currentEditingPhotos = [];
 
                 if (id) {
@@ -1302,7 +1382,7 @@
                         document.getElementById('vSpecs').value = v.specs || '';
                         document.getElementById('vDesc').value = v.description || '';
                         this.currentEditingPhotos = v.photos ? [...v.photos] : [];
-                        document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
+                        document.getElementById('vPhotos').value = this.currentEditingPhotos.filter(p => !p.startsWith('data:')).join(', ');
                     }
                 } else {
                     title.textContent = 'Nuevo Vehículo';
@@ -1312,9 +1392,51 @@
                 if (modal) modal.classList.remove('hidden');
             }
 
+            // Direct File Upload Handler (Converts local files to Data URLs & sorts by filename)
+            async handleFileInput(e) {
+                const files = Array.from(e.target.files || []);
+                if (files.length === 0) return;
+
+                // Sort selected files by their original filename (numerically e.g. 1.jpg, 2.jpg)
+                const sortedFiles = [...files].sort((a, b) => {
+                    const matchA = a.name.match(/(\d+)(?=\.[a-zA-Z0-9]+$)/) || a.name.match(/(\d+)/);
+                    const matchB = b.name.match(/(\d+)(?=\.[a-zA-Z0-9]+$)/) || b.name.match(/(\d+)/);
+                    const numA = matchA ? parseInt(matchA[1], 10) : Infinity;
+                    const numB = matchB ? parseInt(matchB[1], 10) : Infinity;
+                    if (numA === numB) return a.name.localeCompare(b.name);
+                    return numA - numB;
+                });
+
+                const readDataUrl = (file) => new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (evt) => resolve({ name: file.name, dataUrl: evt.target.result });
+                    reader.readAsDataURL(file);
+                });
+
+                this.showToast('Procesando imágenes...', 'info');
+
+                try {
+                    const fileResults = await Promise.all(sortedFiles.map(readDataUrl));
+                    fileResults.forEach(item => {
+                        this.currentEditingPhotos.push(item.dataUrl);
+                    });
+
+                    this.currentEditingPhotos = this.sortPhotosListNumerically(this.currentEditingPhotos);
+                    this.renderPhotoReorderList();
+                    this.showToast(`${files.length} foto(s) cargada(s) correctamente`);
+                } catch (err) {
+                    console.error("Error reading file input:", err);
+                    this.showToast('Error al procesar archivos locales', 'error');
+                }
+            }
+
             updatePhotoPreviewFromText() {
                 const raw = document.getElementById('vPhotos').value;
-                this.currentEditingPhotos = raw.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
+                const textUrls = raw.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
+                
+                // Keep existing Data URLs (uploaded files) and merge with text links
+                const uploadedDataUrls = this.currentEditingPhotos.filter(p => p.startsWith('data:'));
+                this.currentEditingPhotos = [...uploadedDataUrls, ...textUrls];
                 this.currentEditingPhotos = this.sortPhotosListNumerically(this.currentEditingPhotos);
                 this.renderPhotoReorderList();
             }
@@ -1325,8 +1447,8 @@
                     if (typeof a !== 'string') a = String(a);
                     if (typeof b !== 'string') b = String(b);
 
-                    const matchA = a.match(/(\d+)(?=\.[a-zA-Z0-9]+(?:\?.*)?$)/) || a.match(/(\d+)(?=\/?$)/);
-                    const matchB = b.match(/(\d+)(?=\.[a-zA-Z0-9]+(?:\?.*)?$)/) || b.match(/(\d+)(?=\/?$)/);
+                    const matchA = a.match(/(\d+)(?=\.[a-zA-Z0-9]+(?:\?.*)?$)/) || a.match(/(\d+)(?=\/?$)/) || a.match(/(\d+)/);
+                    const matchB = b.match(/(\d+)(?=\.[a-zA-Z0-9]+(?:\?.*)?$)/) || b.match(/(\d+)(?=\/?$)/) || b.match(/(\d+)/);
 
                     const numA = matchA ? parseInt(matchA[1], 10) : Infinity;
                     const numB = matchB ? parseInt(matchB[1], 10) : Infinity;
@@ -1340,7 +1462,6 @@
 
             sortPhotosNumerically() {
                 this.currentEditingPhotos = this.sortPhotosListNumerically(this.currentEditingPhotos);
-                document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
                 this.renderPhotoReorderList();
                 this.showToast('Fotos ordenadas numéricamente');
             }
@@ -1350,19 +1471,22 @@
                 if (!container) return;
 
                 if (!this.currentEditingPhotos || this.currentEditingPhotos.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-slate-400 italic py-2">No hay fotos cargadas o el enlace está vacío.</p>`;
+                    container.innerHTML = `<p class="text-xs text-slate-400 italic py-2">No hay fotos cargadas o seleccionadas todavía.</p>`;
                     return;
                 }
 
                 let html = '';
                 this.currentEditingPhotos.forEach((url, idx) => {
                     const isCover = idx === 0;
+                    const isLocal = url.startsWith('data:');
+                    const labelText = isLocal ? `Foto Local #${idx + 1}` : url;
+
                     html += `
                         <div class="flex items-center justify-between bg-legado-darkBg p-2.5 rounded-xl border border-legado-grayBorder gap-3">
                             <div class="flex items-center space-x-3 overflow-hidden">
                                 <span class="text-xs font-bold text-slate-400 w-5 text-right">#${idx + 1}</span>
                                 <img src="${url}" class="w-12 h-9 object-cover rounded-lg border border-legado-grayBorder flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
-                                <span class="text-xs text-slate-300 font-mono truncate max-w-xs">${url}</span>
+                                <span class="text-xs text-slate-300 font-mono truncate max-w-xs">${labelText}</span>
                                 ${isCover ? '<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded text-[10px] font-bold">Portada</span>' : ''}
                             </div>
                             <div class="flex items-center space-x-1 flex-shrink-0">
@@ -1381,13 +1505,11 @@
                 if (newIndex < 0 || newIndex >= this.currentEditingPhotos.length) return;
                 const item = this.currentEditingPhotos.splice(index, 1)[0];
                 this.currentEditingPhotos.splice(newIndex, 0, item);
-                document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
                 this.renderPhotoReorderList();
             }
 
             removePhoto(index) {
                 this.currentEditingPhotos.splice(index, 1);
-                document.getElementById('vPhotos').value = this.currentEditingPhotos.join(', ');
                 this.renderPhotoReorderList();
             }
 
@@ -1412,11 +1534,11 @@
                     const specs = document.getElementById('vSpecs').value.trim();
                     const description = document.getElementById('vDesc').value.trim();
 
-                    const rawPhotosText = document.getElementById('vPhotos').value;
-                    let photoArray = rawPhotosText.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
+                    let photoArray = [...this.currentEditingPhotos];
                     
-                    if (photoArray.length === 0 && this.currentEditingPhotos && this.currentEditingPhotos.length > 0) {
-                        photoArray = [...this.currentEditingPhotos];
+                    if (photoArray.length === 0) {
+                        const rawPhotosText = document.getElementById('vPhotos').value;
+                        photoArray = rawPhotosText.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
                     }
 
                     let photos = this.sortPhotosListNumerically(photoArray);
@@ -1433,12 +1555,10 @@
                         this.vehicles.unshift(vehicleData);
                     }
 
-                    // Save to local cache
                     try {
                         localStorage.setItem('legado_vehicles_cache', JSON.stringify(this.vehicles));
                     } catch(e){}
 
-                    // Sync to primary Firestore collections
                     try {
                         await setDoc(doc(db, 'vehicles', id), vehicleData);
                         await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'vehicles', id), vehicleData);
@@ -1533,6 +1653,8 @@
                 toastMsg.textContent = msg;
                 if (type === 'error') {
                     toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400 text-lg';
+                } else if (type === 'info') {
+                    toastIcon.className = 'fa-solid fa-spinner animate-spin text-legado-purpleLight text-lg';
                 } else {
                     toastIcon.className = 'fa-solid fa-circle-check text-legado-purpleLight text-lg';
                 }
