@@ -4,66 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legado Automotores - Stock Exclusivo de Vehículos</title>
-    
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Custom Color Palette Configuration -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         legado: {
                             purple: '#7e438e',
                             purpleLight: '#a855f7',
                             purpleGlow: '#c084fc',
-                            purpleDark: '#4c2357',
-                            darkBg: '#090a0f',
-                            cardBg: '#13151f',
-                            cardBorder: '#232636',
-                            hoverBorder: '#3b2f52'
+                            purpleDark: '#5c2f69',
+                            darkBg: '#08090c',
+                            cardBg: '#13141a',
+                            grayBorder: '#232530',
+                            hoverBorder: '#4a3b5c'
                         }
                     },
                     boxShadow: {
-                        'glow-purple': '0 0 35px -5px rgba(168, 85, 247, 0.25)',
-                        'glow-card': '0 20px 40px -15px rgba(0, 0, 0, 0.9)'
+                        'glow-purple': '0 0 35px -5px rgba(168, 85, 247, 0.35)',
+                        'glow-card': '0 10px 30px -10px rgba(0, 0, 0, 0.9)'
                     }
                 }
             }
         }
     </script>
-
-    <!-- Custom CSS and Branding Animations -->
     <style>
         .legado-logo-text {
             font-style: italic;
             font-weight: 900;
             letter-spacing: -0.04em;
             color: #ffffff;
-            text-shadow: 2px 3px 0px #3f2247, 0 0 25px rgba(168, 85, 247, 0.5);
+            text-shadow: 2px 3px 0px #3f2247, 0 0 20px rgba(168, 85, 247, 0.4);
         }
         .legado-subtext {
             font-weight: 800;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.2em;
             color: #a855f7;
-            text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
         }
         .bg-grid-pattern {
-            background-image: radial-gradient(rgba(168, 85, 247, 0.12) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(126, 67, 142, 0.18) 1px, transparent 1px);
             background-size: 28px 28px;
         }
         .glow-ambient {
             position: absolute;
             border-radius: 9999px;
             filter: blur(120px);
-            opacity: 0.2;
+            opacity: 0.3;
             pointer-events: none;
         }
         ::-webkit-scrollbar {
@@ -71,10 +63,10 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #090a0f;
+            background: #08090c;
         }
         ::-webkit-scrollbar-thumb {
-            background: #232636;
+            background: #232530;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -84,24 +76,23 @@
 </head>
 <body class="bg-legado-darkBg text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-grid-pattern relative overflow-x-hidden">
 
-    <!-- Ambient Glowing Orbs -->
-    <div class="glow-ambient w-96 h-96 bg-purple-600 top-[-120px] left-[-120px]"></div>
-    <div class="glow-ambient w-96 h-96 bg-purple-900 top-[500px] right-[-120px]"></div>
+    <!-- Ambient Glow Effects -->
+    <div class="glow-ambient w-[500px] h-[500px] bg-purple-700 top-[-150px] left-[-150px]"></div>
+    <div class="glow-ambient w-[500px] h-[500px] bg-purple-900 top-[300px] right-[-150px]"></div>
 
-    <header class="sticky top-0 z-50 bg-legado-darkBg/90 backdrop-blur-2xl border-b border-legado-cardBorder/80 shadow-2xl">
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-legado-darkBg/90 backdrop-blur-xl border-b border-legado-grayBorder shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-2 sm:gap-4">
-            
             <!-- Brand Logo Left -->
             <div class="flex items-center cursor-pointer select-none group" onclick="window.app && window.app.resetView()">
                 <div class="flex flex-col transform group-hover:scale-105 transition duration-300">
                     <span class="text-2xl sm:text-3xl legado-logo-text leading-none">Legado</span>
-                    <span class="text-[10px] sm:text-xs legado-subtext uppercase tracking-[0.22em] mt-0.5">Automotores</span>
+                    <span class="text-[10px] sm:text-xs legado-subtext uppercase tracking-[0.2em] mt-0.5">Automotores</span>
                 </div>
             </div>
 
-            <!-- Quick Action & Social Links -->
+            <!-- Quick Contacts & Actions -->
             <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
-                
                 <!-- "Vendé tu Auto" Header Button -->
                 <button onclick="window.app && window.app.openSellCarModal()" 
                         class="bg-legado-purple/20 hover:bg-legado-purple/40 text-legado-purpleLight border border-legado-purple/40 px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition duration-300 transform active:scale-95 shadow-lg shadow-purple-950/30">
@@ -116,7 +107,7 @@
                     <span class="hidden md:inline">WhatsApp</span>
                 </a>
 
-                <!-- Instagram Header Button with Official Colors -->
+                <!-- Instagram Header Button -->
                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
                    class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-95 text-white px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-rose-950/40 transition duration-300 transform active:scale-95">
                     <i class="fa-brands fa-instagram text-lg"></i>
@@ -125,7 +116,7 @@
 
                 <!-- Admin Button -->
                 <button onclick="window.app && window.app.openAdminModal()" 
-                        class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-cardBorder hover:border-legado-purpleLight/40 px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition duration-300 transform active:scale-95 cursor-pointer">
+                        class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder hover:border-legado-purpleLight/40 px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition duration-300 transform active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-lock text-legado-purpleLight"></i>
                     <span>ADMIN</span>
                 </button>
@@ -135,66 +126,96 @@
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative z-10">
         
-        <!-- Trust Badge Showcase Banner -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-8">
-            <div class="bg-legado-cardBg/80 backdrop-blur-xl p-4 rounded-3xl border border-legado-cardBorder flex items-center space-x-3.5 shadow-xl hover:border-legado-purple/40 transition duration-300">
+        <!-- NEW ATTRACTIVE HERO SECTION BANNER -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-legado-cardBg via-legado-darkBg to-legado-cardBg border border-legado-purple/30 p-8 sm:p-12 mb-10 shadow-glow-purple">
+            <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none hidden lg:block">
+                <i class="fa-solid fa-car text-[280px] text-legado-purpleLight"></i>
+            </div>
+
+            <div class="max-w-2xl relative z-10">
+                <div class="inline-flex items-center space-x-2 bg-legado-purple/20 border border-legado-purple/40 px-3.5 py-1.5 rounded-full text-xs font-bold text-legado-purpleLight mb-4 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Stock Actualizado & Unidades Seleccionadas</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight tracking-tight mb-4">
+                    Tu próximo vehículo <br>
+                    <span class="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">al alcance de tu mano.</span>
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                    En <strong class="text-white font-bold">Legado Automotores</strong> seleccionamos cada unidad para brindarte la mayor confianza, transparencia y garantía en tu compra.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#catalogo" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-950/60 transition duration-300 transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Explorar Catálogo</span>
+                    </a>
+                    <button onclick="window.app && window.app.openSellCarModal()" class="bg-legado-darkBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 transition duration-300">
+                        <i class="fa-solid fa-hand-holding-dollar text-legado-purpleLight"></i>
+                        <span>Cotizar Mi Auto</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Badges Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-4 rounded-2xl border border-legado-grayBorder flex items-center space-x-3.5 shadow-lg">
                 <div class="w-11 h-11 rounded-2xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-xl border border-legado-purple/30 shrink-0">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <div>
-                    <h4 class="text-xs font-black text-white uppercase tracking-wider">Unidades Seleccionadas</h4>
-                    <p class="text-[11px] text-slate-400 font-medium">Garantía de documentación</p>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Unidades Verificadas</h4>
+                    <p class="text-[11px] text-slate-400">Documentación al día</p>
                 </div>
             </div>
-            <div class="bg-legado-cardBg/80 backdrop-blur-xl p-4 rounded-3xl border border-legado-cardBorder flex items-center space-x-3.5 shadow-xl hover:border-legado-purple/40 transition duration-300">
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-4 rounded-2xl border border-legado-grayBorder flex items-center space-x-3.5 shadow-lg">
                 <div class="w-11 h-11 rounded-2xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-xl border border-legado-purple/30 shrink-0">
                     <i class="fa-solid fa-right-left"></i>
                 </div>
                 <div>
-                    <h4 class="text-xs font-black text-white uppercase tracking-wider">Tomamos Permuta</h4>
-                    <p class="text-[11px] text-slate-400 font-medium">Cotización al instante</p>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Tomamos Permuta</h4>
+                    <p class="text-[11px] text-slate-400">Cotización transparente</p>
                 </div>
             </div>
-            <div class="bg-legado-cardBg/80 backdrop-blur-xl p-4 rounded-3xl border border-legado-cardBorder flex items-center space-x-3.5 shadow-xl hover:border-legado-purple/40 transition duration-300">
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-4 rounded-2xl border border-legado-grayBorder flex items-center space-x-3.5 shadow-lg">
                 <div class="w-11 h-11 rounded-2xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-xl border border-legado-purple/30 shrink-0">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                 </div>
                 <div>
-                    <h4 class="text-xs font-black text-white uppercase tracking-wider">Financiación</h4>
-                    <p class="text-[11px] text-slate-400 font-medium">Cuotas fijas en pesos</p>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Financiación</h4>
+                    <p class="text-[11px] text-slate-400">Cuotas fijas en pesos</p>
                 </div>
             </div>
-            <div class="bg-legado-cardBg/80 backdrop-blur-xl p-4 rounded-3xl border border-legado-cardBorder flex items-center space-x-3.5 shadow-xl hover:border-legado-purple/40 transition duration-300">
+            <div class="bg-legado-cardBg/80 backdrop-blur-md p-4 rounded-2xl border border-legado-grayBorder flex items-center space-x-3.5 shadow-lg">
                 <div class="w-11 h-11 rounded-2xl bg-legado-purple/20 text-legado-purpleLight flex items-center justify-center text-xl border border-legado-purple/30 shrink-0">
                     <i class="fa-solid fa-award"></i>
                 </div>
                 <div>
-                    <h4 class="text-xs font-black text-white uppercase tracking-wider">Atención VIP</h4>
-                    <p class="text-[11px] text-slate-400 font-medium">Asesoramiento directo</p>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Atención Personalizada</h4>
+                    <p class="text-[11px] text-slate-400">Asesoramiento directo</p>
                 </div>
             </div>
         </div>
 
         <!-- Search and 4 Dropdowns Filter Bar -->
-        <div class="bg-legado-cardBg/90 backdrop-blur-2xl p-5 sm:p-6 rounded-[2.5rem] border border-legado-cardBorder shadow-2xl flex flex-col gap-4 mb-6 relative z-20">
-            
+        <div id="catalogo" class="bg-legado-cardBg/90 backdrop-blur-xl p-5 sm:p-6 rounded-3xl border border-legado-grayBorder shadow-2xl flex flex-col gap-4 mb-6 relative z-20">
             <div class="relative w-full">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-legado-purpleLight"></i>
                 <input type="text" id="searchInput" oninput="window.app && window.app.filterVehicles()" placeholder="Buscar por marca, modelo o palabra clave..." 
-                       class="w-full bg-legado-darkBg/90 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:ring-2 focus:ring-purple-500/20 focus:outline-none text-sm font-medium transition">
+                       class="w-full bg-legado-darkBg/90 text-white pl-11 pr-4 py-3.5 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:ring-2 focus:ring-purple-500/20 focus:outline-none text-sm transition">
             </div>
             
             <!-- 4 Dropdowns Bar -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div class="relative">
-                    <select id="typeSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-bold appearance-none cursor-pointer">
+                    <select id="typeSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="">🚙 Tipo Vehículo (Todos)</option>
                     </select>
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
                 </div>
 
                 <div class="relative">
-                    <select id="sortSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-bold appearance-none cursor-pointer">
+                    <select id="sortSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="default">📊 Ordenar por (Defecto)</option>
                         <option value="price_desc">Mayor Valor</option>
                         <option value="price_asc">Menor Valor</option>
@@ -205,14 +226,14 @@
                 </div>
 
                 <div class="relative">
-                    <select id="brandSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-bold appearance-none cursor-pointer">
+                    <select id="brandSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="">🏷️ Marca (Todas)</option>
                     </select>
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
                 </div>
 
                 <div class="relative">
-                    <select id="yearSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-bold appearance-none cursor-pointer">
+                    <select id="yearSelect" onchange="window.app && window.app.filterVehicles()" class="w-full bg-legado-darkBg/90 text-slate-200 px-4 py-3 rounded-2xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs sm:text-sm font-semibold appearance-none cursor-pointer">
                         <option value="">📅 Año (Todos)</option>
                     </select>
                     <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xs"></i>
@@ -224,77 +245,77 @@
         <div id="brandButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-8"></div>
 
         <!-- Vehicles Counter Header -->
-        <div class="flex items-center justify-between mb-6 border-b border-legado-cardBorder/80 pb-3">
+        <div class="flex items-center justify-between mb-6 border-b border-legado-grayBorder/80 pb-3">
             <div class="flex items-center space-x-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span id="vehicleCountText" class="text-xs sm:text-sm font-extrabold text-slate-300 uppercase tracking-wider">Mostrando vehículos disponibles</span>
+                <span id="vehicleCountText" class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider">Mostrando vehículos disponibles</span>
             </div>
         </div>
 
         <!-- Loading State -->
         <div id="loadingState" class="flex flex-col items-center justify-center py-20">
             <div class="w-14 h-14 border-4 border-legado-purpleLight border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p class="text-slate-400 font-semibold text-sm">Cargando catálogo exclusivo...</p>
+            <p class="text-slate-400 font-medium text-sm">Cargando catálogo exclusivo...</p>
         </div>
 
         <!-- Empty State -->
         <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
-            <div class="w-20 h-20 bg-legado-cardBg rounded-3xl flex items-center justify-center text-slate-500 text-3xl mb-4 border border-legado-cardBorder shadow-2xl">
+            <div class="w-20 h-20 bg-legado-cardBg rounded-3xl flex items-center justify-center text-slate-500 text-3xl mb-4 border border-legado-grayBorder shadow-2xl">
                 <i class="fa-solid fa-car-burst"></i>
             </div>
-            <h3 class="text-xl font-extrabold text-white mb-2">No se encontraron vehículos</h3>
-            <p class="text-slate-400 max-w-sm text-sm font-medium">No hay publicaciones activas con esos criterios de búsqueda.</p>
+            <h3 class="text-xl font-bold text-white mb-2">No se encontraron vehículos</h3>
+            <p class="text-slate-400 max-w-sm text-sm">No hay publicaciones activas con esos criterios de búsqueda.</p>
         </div>
 
-        <!-- Vehicle Grid -->
         <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
+    <!-- Detail Modal -->
     <div id="detailModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-legado-cardBg/95 border border-legado-cardBorder rounded-[2.5rem] max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
-            <button onclick="window.app && window.app.closeDetailModal()" class="absolute top-4 right-4 z-30 bg-legado-darkBg/80 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition border border-legado-cardBorder">
+        <div class="bg-legado-cardBg/95 border border-legado-grayBorder rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="window.app && window.app.closeDetailModal()" class="absolute top-4 right-4 z-30 bg-legado-darkBg/80 hover:bg-slate-800 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition border border-legado-grayBorder">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div id="detailModalContent" class="p-6 sm:p-8"></div>
         </div>
     </div>
 
-    <!-- Trade / Permuta Modal -->
+    <!-- Trade Modal -->
     <div id="tradeModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-legado-cardBg border border-legado-cardBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
             <button onclick="window.app && window.app.closeTradeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <div class="flex items-center space-x-3.5 mb-5">
-                <div class="w-12 h-12 bg-legado-purple/20 text-legado-purpleLight rounded-2xl flex items-center justify-center text-xl border border-legado-purple/30 shrink-0">
+            <div class="flex items-center space-x-3 mb-5">
+                <div class="w-12 h-12 bg-legado-purple/20 text-legado-purpleLight rounded-2xl flex items-center justify-center text-xl border border-legado-purple/30">
                     <i class="fa-solid fa-right-left"></i>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold text-white">Consultar por Permuta / Entrega</h3>
-                    <p id="tradeVehicleTitle" class="text-xs text-legado-purpleLight font-extrabold">Para vehículo elegido</p>
+                    <p id="tradeVehicleTitle" class="text-xs text-legado-purpleLight font-semibold">Para vehículo elegido</p>
                 </div>
             </div>
             <form onsubmit="window.app && window.app.sendTradeWhatsApp(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Tu Vehículo (Marca, Modelo, Año, KM)</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Tu Vehículo (Marca, Modelo, Año, KM)</label>
                     <input type="text" id="tradeMyCar" required placeholder="Ej. VW Gol Trend 2018 - 65.000 km" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Efectivo / Diferencia que podés entregar</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Efectivo / Diferencia que podés entregar</label>
                     <input type="text" id="tradeCash" placeholder="Ej. USD 5.000 o $2.000.000 en efectivo" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Detalles / Estado de tu auto</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Detalles / Estado de tu auto</label>
                     <textarea id="tradeNotes" rows="3" placeholder="Primera mano, VTV al día, service recién hecho..." 
-                              class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
+                              class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
                 </div>
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="window.app && window.app.closeTradeModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-cardBorder py-3 rounded-2xl text-sm font-bold transition">
+                    <button type="button" onclick="window.app && window.app.closeTradeModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder py-3 rounded-xl text-sm font-semibold transition">
                         Cancelar
                     </button>
-                    <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-2xl transition shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2">
+                    <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Enviar por WhatsApp</span>
                     </button>
@@ -303,14 +324,14 @@
         </div>
     </div>
 
-    <!-- "Vendé tu Auto" Modal -->
+    <!-- Sell Car Modal -->
     <div id="sellCarModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-legado-cardBg border border-legado-cardBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="window.app && window.app.closeSellCarModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <div class="flex items-center space-x-3.5 mb-6">
-                <div class="w-12 h-12 bg-legado-purple/20 text-legado-purpleLight rounded-2xl flex items-center justify-center text-xl border border-legado-purple/30 shrink-0">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-12 h-12 bg-legado-purple/20 text-legado-purpleLight rounded-2xl flex items-center justify-center text-xl border border-legado-purple/30">
                     <i class="fa-solid fa-car-side"></i>
                 </div>
                 <div>
@@ -320,42 +341,42 @@
             </div>
             <form onsubmit="window.app && window.app.sendSellCarWhatsApp(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Tu Nombre y Apellido</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Tu Nombre y Apellido</label>
                     <input type="text" id="sellOwnerName" required placeholder="Ej. Juan Pérez" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Marca y Modelo</label>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Marca y Modelo</label>
                         <input type="text" id="sellCarBrandModel" required placeholder="Ej. Peugeot 208 Feline" 
-                               class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                               class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Año y Kilometraje</label>
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Año y Kilometraje</label>
                         <input type="text" id="sellCarYearKm" required placeholder="Ej. 2021 - 38.000 km" 
-                               class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                               class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Precio Pretendido (USD o Pesos)</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio Pretendido (USD o Pesos)</label>
                     <input type="text" id="sellCarPrice" placeholder="Ej. USD 15.500" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Links de Fotos (Opcional)</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Links de Fotos (Opcional)</label>
                     <input type="text" id="sellCarPhotos" placeholder="Ej. https://postimg.cc/..." 
-                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Comentarios / Estado general</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Comentarios / Estado general</label>
                     <textarea id="sellCarNotes" rows="3" placeholder="Único dueño, cubiertas nuevas, VTV al día..." 
-                              class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
+                              class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
                 </div>
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="window.app && window.app.closeSellCarModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-cardBorder py-3 rounded-2xl text-sm font-bold transition">
+                    <button type="button" onclick="window.app && window.app.closeSellCarModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder py-3 rounded-xl text-sm font-semibold transition">
                         Cancelar
                     </button>
-                    <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-2xl transition shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2">
+                    <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Cotizar por WhatsApp</span>
                     </button>
@@ -366,27 +387,26 @@
 
     <!-- Delete Confirm Modal -->
     <div id="deleteConfirmModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-legado-cardBg border border-legado-cardBorder rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center relative">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center relative">
             <div class="w-14 h-14 bg-rose-950/50 text-rose-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-rose-900/40">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <h3 class="text-xl font-extrabold text-white mb-2">Eliminar Vehículo</h3>
+            <h3 class="text-xl font-bold text-white mb-2">Eliminar Vehículo</h3>
             <p class="text-slate-300 text-sm mb-6">¿Estás seguro de que deseas eliminar este vehículo permanentemente?</p>
             <div class="flex space-x-3">
-                <button type="button" onclick="window.app && window.app.closeDeleteModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-cardBorder py-2.5 rounded-2xl text-sm font-bold transition">
+                <button type="button" onclick="window.app && window.app.closeDeleteModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder py-2.5 rounded-xl text-sm font-semibold transition">
                     Cancelar
                 </button>
-                <button type="button" id="confirmDeleteBtn" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white py-2.5 rounded-2xl text-sm font-black transition shadow-lg shadow-rose-950/50">
+                <button type="button" id="confirmDeleteBtn" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-rose-950/50">
                     Eliminar
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Admin Modal -->
     <div id="adminModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        
-        <!-- Admin Login Screen -->
-        <div id="adminLoginCard" class="bg-legado-cardBg border border-legado-cardBorder rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
+        <div id="adminLoginCard" class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
             <button onclick="window.app && window.app.closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -399,44 +419,43 @@
             </div>
             <form onsubmit="window.app && window.app.handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1.5">Usuario</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Usuario</label>
                     <input type="text" id="adminUser" required placeholder="Usuario" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1.5">Contraseña</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Contraseña</label>
                     <input type="password" id="adminPass" required placeholder="••••••••" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-3 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div id="loginError" class="hidden text-rose-400 text-xs font-semibold text-center"></div>
-                <button type="submit" class="w-full bg-legado-purple hover:bg-legado-purpleLight text-white font-black py-3 rounded-2xl transition shadow-lg shadow-purple-950/50">
+                <button type="submit" class="w-full bg-legado-purple hover:bg-legado-purpleLight text-white font-bold py-3 rounded-xl transition shadow-lg shadow-purple-950/50">
                     Ingresar al Panel
                 </button>
             </form>
         </div>
 
-        <!-- Admin Dashboard Table -->
-        <div id="adminDashboard" class="hidden bg-legado-cardBg border border-legado-cardBorder rounded-[2.5rem] max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
-            <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-legado-cardBorder mb-6 gap-4">
-                <div class="flex items-center space-x-3.5">
-                    <div class="bg-legado-purple/20 text-legado-purpleLight p-3.5 rounded-2xl border border-legado-purple/30 shrink-0">
+        <div id="adminDashboard" class="hidden bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-legado-grayBorder mb-6 gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-legado-purple/20 text-legado-purpleLight p-3 rounded-2xl border border-legado-purple/30">
                         <i class="fa-solid fa-gauge-high text-xl"></i>
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-white">Gestión de Stock</h2>
-                        <p class="text-slate-400 text-sm">Agregue, edite, suba fotos locales optimizadas o cambie el estado.</p>
+                        <p class="text-slate-400 text-sm">Agregue, edite, suba fotos locales o cambie el estado.</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-2.5">
-                    <button onclick="window.app && window.app.openVehicleModal()" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-900/30 transition">
+                    <button onclick="window.app && window.app.openVehicleModal()" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-2 shadow-lg shadow-purple-900/30 transition">
                         <i class="fa-solid fa-plus"></i>
                         <span>Nuevo Vehículo</span>
                     </button>
-                    <button onclick="window.app && window.app.openChangePassModal()" class="bg-legado-darkBg hover:bg-slate-800 text-slate-300 border border-legado-cardBorder px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold flex items-center space-x-2 transition">
+                    <button onclick="window.app && window.app.openChangePassModal()" class="bg-legado-darkBg hover:bg-slate-800 text-slate-300 border border-legado-grayBorder px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center space-x-2 transition">
                         <i class="fa-solid fa-key text-legado-purpleLight"></i>
                         <span>Contraseña</span>
                     </button>
-                    <button onclick="window.app && window.app.logoutAdmin()" class="bg-rose-950/40 hover:bg-rose-900 text-rose-400 border border-rose-900/40 px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center space-x-1.5">
+                    <button onclick="window.app && window.app.logoutAdmin()" class="bg-rose-950/40 hover:bg-rose-900 text-rose-400 border border-rose-900/40 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center space-x-1.5">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span>Salir</span>
                     </button>
@@ -446,7 +465,7 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="border-b border-legado-cardBorder text-slate-400 text-xs uppercase tracking-wider font-extrabold">
+                        <tr class="border-b border-legado-grayBorder text-slate-400 text-xs uppercase tracking-wider">
                             <th class="py-3 px-4">Vehículo</th>
                             <th class="py-3 px-4">Estado</th>
                             <th class="py-3 px-4">Precio</th>
@@ -455,7 +474,7 @@
                             <th class="py-3 px-4 text-right">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-cardBorder text-sm"></tbody>
+                    <tbody id="adminVehicleTableBody" class="divide-y divide-legado-grayBorder text-sm"></tbody>
                 </table>
             </div>
         </div>
@@ -463,7 +482,7 @@
 
     <!-- Change Password Modal -->
     <div id="changePassModal" class="fixed inset-0 z-[60] bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-legado-cardBg border border-legado-cardBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
             <button onclick="window.app && window.app.closeChangePassModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -478,26 +497,26 @@
             </div>
             <form onsubmit="window.app && window.app.saveNewPassword(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Contraseña Actual</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Contraseña Actual</label>
                     <input type="password" id="currPassInput" required placeholder="••••••••" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Nueva Contraseña</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Nueva Contraseña</label>
                     <input type="password" id="newPassInput" required placeholder="••••••••" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Confirmar Nueva Contraseña</label>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Confirmar Nueva Contraseña</label>
                     <input type="password" id="confirmPassInput" required placeholder="••••••••" 
-                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                           class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div id="changePassError" class="hidden text-rose-400 text-xs font-semibold text-center"></div>
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="window.app && window.app.closeChangePassModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-cardBorder py-2.5 rounded-2xl text-sm font-bold transition">
+                    <button type="button" onclick="window.app && window.app.closeChangePassModal()" class="flex-1 bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder py-2.5 rounded-xl text-sm font-semibold transition">
                         Cancelar
                     </button>
-                    <button type="submit" class="flex-1 bg-legado-purple hover:bg-legado-purpleLight text-white font-black py-2.5 rounded-2xl transition shadow-lg shadow-purple-950/50">
+                    <button type="submit" class="flex-1 bg-legado-purple hover:bg-legado-purpleLight text-white font-bold py-2.5 rounded-xl transition shadow-lg shadow-purple-950/50">
                         Guardar Cambio
                     </button>
                 </div>
@@ -505,85 +524,84 @@
         </div>
     </div>
 
-    <!-- Vehicle Form Modal (New / Edit with File Upload Area) -->
+    <!-- Vehicle Form Modal -->
     <div id="vehicleFormModal" class="fixed inset-0 z-50 bg-legado-darkBg/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-legado-cardBg border border-legado-cardBorder rounded-[2.5rem] max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+        <div class="bg-legado-cardBg border border-legado-grayBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="window.app && window.app.closeVehicleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <h3 id="vehicleModalTitle" class="text-2xl font-black text-white mb-6">Nuevo Vehículo</h3>
+            <h3 id="vehicleModalTitle" class="text-2xl font-bold text-white mb-6">Nuevo Vehículo</h3>
             <form id="vehicleForm" onsubmit="window.app && window.app.saveVehicle(event)" class="space-y-4">
                 <input type="hidden" id="vehicleId">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Marca</label>
-                        <input type="text" id="vBrand" required placeholder="Ej. Volkswagen" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Marca</label>
+                        <input type="text" id="vBrand" required placeholder="Ej. Volkswagen" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Modelo</label>
-                        <input type="text" id="vModel" required placeholder="Ej. Amarok V6" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Modelo</label>
+                        <input type="text" id="vModel" required placeholder="Ej. Amarok V6" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Estado</label>
-                        <select id="vStatus" class="w-full bg-legado-darkBg text-white px-3 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm font-bold">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Estado</label>
+                        <select id="vStatus" class="w-full bg-legado-darkBg text-white px-3 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm font-semibold">
                             <option value="disponible">🟢 Disponible</option>
                             <option value="reservado">🟡 Reservado</option>
                             <option value="vendido">🔴 Vendido</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Tipo Vehículo</label>
-                        <input type="text" id="vType" required placeholder="Ej. Pick-Up, SUV" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Tipo Vehículo</label>
+                        <input type="text" id="vType" required placeholder="Ej. Pick-Up, SUV" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Moneda</label>
-                        <select id="vCurrency" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Moneda</label>
+                        <select id="vCurrency" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                             <option value="USD">USD ($)</option>
                             <option value="ARS">Pesos ($)</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Precio</label>
-                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <input type="text" id="vPrice" required placeholder="Ej. 35.000" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Año</label>
-                        <input type="number" id="vYear" required placeholder="2023" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Año</label>
+                        <input type="number" id="vYear" required placeholder="2023" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Kilometraje</label>
-                        <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                        <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Kilometraje</label>
+                        <input type="text" id="vKm" placeholder="15.000 km" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                     </div>
                     <div class="flex items-center pt-6">
-                        <div class="flex items-center space-x-3 bg-legado-darkBg px-4 py-2.5 rounded-2xl border border-legado-cardBorder w-full">
+                        <div class="flex items-center space-x-3 bg-legado-darkBg px-4 py-2.5 rounded-xl border border-legado-grayBorder w-full">
                             <input type="checkbox" id="vShowKm" checked class="w-5 h-5 accent-purple-600 rounded cursor-pointer">
-                            <label for="vShowKm" class="text-xs font-bold text-slate-300 cursor-pointer">Mostrar KM</label>
+                            <label for="vShowKm" class="text-xs font-semibold text-slate-300 cursor-pointer">Mostrar KM</label>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Transmisión / Motor / Combustible</label>
-                    <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm">
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Transmisión / Motor / Combustible</label>
+                    <input type="text" id="vSpecs" placeholder="Ej. Automática | 3.0 V6 | Diésel" class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase font-extrabold text-slate-400 mb-1">Descripción detallada</label>
-                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
+                    <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Descripción detallada</label>
+                    <textarea id="vDesc" rows="3" placeholder="Detalles de equipamiento, estado, papeles al día..." class="w-full bg-legado-darkBg text-white px-4 py-2.5 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-sm"></textarea>
                 </div>
 
                 <div class="space-y-3 pt-2">
                     <div class="flex items-center justify-between">
-                        <label class="block text-xs uppercase font-extrabold text-slate-400">Galería de Fotos del Vehículo</label>
+                        <label class="block text-xs uppercase font-bold text-slate-400">Galería de Fotos del Vehículo</label>
                         <button type="button" onclick="window.app && window.app.sortPhotosNumerically()" class="text-xs bg-legado-purple/20 text-legado-purpleLight hover:bg-legado-purple/40 border border-legado-purple/40 px-3 py-1 rounded-xl font-bold transition flex items-center space-x-1">
                             <i class="fa-solid fa-arrow-down-1-9"></i>
                             <span>Ordenar por número</span>
                         </button>
                     </div>
 
-                    <!-- Direct File Dropzone -->
                     <div id="fileDropzone" onclick="document.getElementById('fileInput').click()" 
                          class="border-2 border-dashed border-legado-purple/40 hover:border-legado-purpleLight bg-legado-darkBg/60 hover:bg-legado-purple/10 p-5 rounded-2xl cursor-pointer text-center transition group">
                         <input type="file" id="fileInput" multiple accept="image/*" onchange="window.app && window.app.handleFileInput(event)" class="hidden">
@@ -591,34 +609,32 @@
                             <i class="fa-solid fa-cloud-arrow-up"></i>
                         </div>
                         <p class="text-xs sm:text-sm font-bold text-white mb-1">Hacé clic para subir fotos directamente desde tu PC o Celular</p>
-                        <p class="text-[11px] text-slate-400 font-medium">Las fotos se optimizan y comprimen automáticamente de forma instantánea.</p>
+                        <p class="text-[11px] text-slate-400">Podés seleccionar múltiples archivos a la vez (se ordenan por nombre ej. 1.jpg, 2.jpg)</p>
                     </div>
 
-                    <!-- URL Backup Textarea -->
                     <div>
                         <label class="block text-[11px] font-semibold text-slate-400 mb-1">O si preferís, pegá links de fotos (URLs separadas por coma o salto de línea):</label>
-                        <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/1.jpg, https://ejemplo.com/2.jpg" oninput="window.app && window.app.updatePhotoPreviewFromText()" class="w-full bg-legado-darkBg text-white px-4 py-2 rounded-2xl border border-legado-cardBorder focus:border-legado-purpleLight focus:outline-none text-xs font-mono"></textarea>
+                        <textarea id="vPhotos" rows="2" placeholder="https://ejemplo.com/1.jpg, https://ejemplo.com/2.jpg" oninput="window.app && window.app.updatePhotoPreviewFromText()" class="w-full bg-legado-darkBg text-white px-4 py-2 rounded-xl border border-legado-grayBorder focus:border-legado-purpleLight focus:outline-none text-xs font-mono"></textarea>
                     </div>
                     
-                    <!-- Visual Photo List -->
                     <div id="photoReorderContainer" class="space-y-2 max-h-52 overflow-y-auto pr-1"></div>
                 </div>
 
-                <div class="flex justify-end space-x-3 pt-4 border-t border-legado-cardBorder">
-                    <button type="button" onclick="window.app && window.app.closeVehicleModal()" class="bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-cardBorder px-5 py-2.5 rounded-2xl text-sm font-bold transition">Cancelar</button>
-                    <button type="submit" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-6 py-2.5 rounded-2xl text-sm font-black transition shadow-lg shadow-purple-950/50">Guardar Vehículo</button>
+                <div class="flex justify-end space-x-3 pt-4 border-t border-legado-grayBorder">
+                    <button type="button" onclick="window.app && window.app.closeVehicleModal()" class="bg-legado-darkBg hover:bg-slate-800 text-white border border-legado-grayBorder px-5 py-2.5 rounded-xl text-sm font-semibold transition">Cancelar</button>
+                    <button type="submit" class="bg-legado-purple hover:bg-legado-purpleLight text-white px-6 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-purple-950/50">Guardar Vehículo</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-legado-cardBg border border-legado-cardBorder text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-legado-cardBg border border-legado-grayBorder text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
         <i id="toastIcon" class="fa-solid fa-circle-check text-legado-purpleLight text-lg"></i>
         <span id="toastMessage" class="text-sm font-medium">Operación exitosa</span>
     </div>
 
-    <footer class="bg-legado-cardBg/90 backdrop-blur-md border-t border-legado-cardBorder py-12 px-4 sm:px-6 lg:px-8 mt-auto relative z-10">
+    <footer class="bg-legado-cardBg/90 backdrop-blur-md border-t border-legado-grayBorder py-12 px-4 sm:px-6 lg:px-8 mt-auto relative z-10">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
                 <div>
@@ -628,11 +644,11 @@
             </div>
             <div class="flex items-center space-x-4">
                 <a href="https://wa.me/5491131861832?text=Hola!%20Quisiera%20consultar%20por%20un%20vehículo." target="_blank" 
-                   class="w-10 h-10 rounded-2xl bg-legado-darkBg hover:bg-emerald-600 hover:text-white text-slate-300 border border-legado-cardBorder flex items-center justify-center transition">
+                   class="w-10 h-10 rounded-xl bg-legado-darkBg hover:bg-emerald-600 hover:text-white text-slate-300 border border-legado-grayBorder flex items-center justify-center transition">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                 </a>
                 <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                   class="w-10 h-10 rounded-2xl bg-legado-darkBg hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white text-slate-300 border border-legado-cardBorder flex items-center justify-center transition">
+                   class="w-10 h-10 rounded-xl bg-legado-darkBg hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white text-slate-300 border border-legado-grayBorder flex items-center justify-center transition">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
             </div>
@@ -811,12 +827,12 @@
                 const brandSelect = document.getElementById('brandSelect');
                 const currentBrand = brandSelect ? brandSelect.value : '';
 
-                let html = `<button onclick="window.app && window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-2xl text-xs font-extrabold transition duration-300 ${currentBrand === '' ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/50 ring-2 ring-purple-500/40' : 'bg-legado-cardBg text-slate-300 border border-legado-cardBorder hover:bg-slate-800'}">Todas las marcas</button>`;
+                let html = `<button onclick="window.app && window.app.selectBrandFromButton('')" class="px-4 py-2 rounded-2xl text-xs font-bold transition duration-300 ${currentBrand === '' ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/50 ring-2 ring-purple-500/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">Todas las marcas</button>`;
 
                 brands.forEach(b => {
                     const isActive = currentBrand === b;
                     html += `
-                        <button onclick="window.app && window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-2xl text-xs font-extrabold transition duration-300 ${isActive ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/50 ring-2 ring-purple-500/40' : 'bg-legado-cardBg text-slate-300 border border-legado-cardBorder hover:bg-slate-800'}">
+                        <button onclick="window.app && window.app.selectBrandFromButton('${b}')" class="px-4 py-2 rounded-2xl text-xs font-bold transition duration-300 ${isActive ? 'bg-legado-purple text-white shadow-lg shadow-purple-950/50 ring-2 ring-purple-500/40' : 'bg-legado-cardBg text-slate-300 border border-legado-grayBorder hover:bg-slate-800'}">
                             ${b}
                         </button>
                     `;
@@ -909,11 +925,11 @@
                     }
 
                     html += `
-                        <div class="bg-legado-cardBg/90 backdrop-blur-xl border border-legado-cardBorder hover:border-legado-purpleLight/60 rounded-[2rem] overflow-hidden shadow-2xl transition duration-500 flex flex-col group relative transform hover:-translate-y-1">
+                        <div class="bg-legado-cardBg/90 backdrop-blur-xl border border-legado-grayBorder hover:border-legado-purpleLight/60 rounded-3xl overflow-hidden shadow-2xl transition duration-500 flex flex-col group relative transform hover:-translate-y-1">
                             <div class="relative h-64 overflow-hidden bg-black/60 flex items-center justify-center cursor-pointer p-2" onclick="window.app && window.app.openDetailModal('${v.id}')">
                                 <img src="${coverPhoto}" alt="${v.model}" onerror="this.src='https://placehold.co/600x400/1c1d24/9ca3af?text=Error+Imagen'" class="w-full h-full object-contain object-center group-hover:scale-105 transition duration-500">
                                 <div class="absolute top-3 left-3 flex gap-2 z-10">
-                                    <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-cardBorder/80">${v.year}</span>
+                                    <span class="bg-legado-darkBg/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder/80">${v.year}</span>
                                     ${typeBadge}
                                 </div>
                                 <div class="absolute top-3 right-3 flex flex-col items-end gap-1 z-10">
@@ -923,7 +939,7 @@
                                     ${statusBadgeHtml}
                                 </div>
                                 ${photoCount > 1 ? `
-                                    <div class="absolute bottom-3 right-3 bg-legado-darkBg/80 backdrop-blur-md text-slate-300 px-2.5 py-0.5 rounded-lg text-[10px] font-bold border border-legado-cardBorder z-10 flex items-center space-x-1">
+                                    <div class="absolute bottom-3 right-3 bg-legado-darkBg/80 backdrop-blur-md text-slate-300 px-2.5 py-0.5 rounded-lg text-[10px] font-bold border border-legado-grayBorder z-10 flex items-center space-x-1">
                                         <i class="fa-solid fa-camera text-legado-purpleLight"></i>
                                         <span>${photoCount} fotos</span>
                                     </div>
@@ -932,16 +948,16 @@
                             <div class="p-6 flex flex-col flex-grow">
                                 <div class="text-xs uppercase font-extrabold text-legado-purpleLight tracking-widest mb-1">${v.brand}</div>
                                 <h3 class="text-xl font-bold text-white mb-2 cursor-pointer hover:text-legado-purpleLight transition" onclick="window.app && window.app.openDetailModal('${v.id}')">${v.model}</h3>
-                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-legado-cardBorder/80">
+                                <div class="flex items-center space-x-4 text-xs text-slate-400 mb-4 pb-4 border-b border-legado-grayBorder/80">
                                     ${kmBadge}
                                     <span><i class="fa-solid fa-gear text-legado-purpleLight mr-1.5"></i>${v.specs || 'Consultar'}</span>
                                 </div>
                                 <p class="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow whitespace-pre-line">${v.description || 'Sin descripción detallada.'}</p>
                                 <div class="grid grid-cols-2 gap-3 mt-auto">
-                                    <button onclick="window.app && window.app.openDetailModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 border border-legado-cardBorder text-white py-2.5 px-4 rounded-2xl text-xs font-bold transition">
+                                    <button onclick="window.app && window.app.openDetailModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 border border-legado-grayBorder text-white py-2.5 px-4 rounded-xl text-xs font-bold transition">
                                         Ver Detalles
                                     </button>
-                                    <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-2xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/30 transition transform active:scale-95">
+                                    <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 shadow-lg shadow-emerald-600/30 transition transform active:scale-95">
                                         <i class="fa-brands fa-whatsapp text-sm"></i>
                                         <span>Consultar</span>
                                     </a>
@@ -999,7 +1015,7 @@
 
                 let thumbnailsHtml = '';
                 photos.forEach((p, idx) => {
-                    const activeClass = idx === this.currentPhotoIndex ? 'border-legado-purpleLight ring-2 ring-purple-500/50 scale-105' : 'border-legado-cardBorder opacity-60 hover:opacity-100';
+                    const activeClass = idx === this.currentPhotoIndex ? 'border-legado-purpleLight ring-2 ring-purple-500/50 scale-105' : 'border-legado-grayBorder opacity-60 hover:opacity-100';
                     thumbnailsHtml += `
                         <div class="w-20 h-16 rounded-2xl border-2 ${activeClass} bg-black/50 overflow-hidden flex items-center justify-center cursor-pointer flex-shrink-0 transition duration-200" onclick="window.app && window.app.setPhotoIndex(${idx})">
                             <img src="${p}" class="w-full h-full object-contain object-center">
@@ -1012,25 +1028,25 @@
                 document.getElementById('detailModalContent').innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <div id="photoCarouselContainer" class="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-black/70 mb-4 border border-legado-cardBorder flex items-center justify-center p-2 select-none group shadow-2xl">
+                            <div id="photoCarouselContainer" class="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-black/70 mb-4 border border-legado-grayBorder flex items-center justify-center p-2 select-none group shadow-2xl">
                                 <img src="${activePhoto}" id="mainModalImg" class="w-full h-full object-contain object-center transition-opacity duration-200">
                                 
                                 <div class="absolute top-4 left-4 bg-legado-purple text-white font-black px-4 py-1.5 rounded-2xl text-sm shadow-2xl ring-2 ring-purple-500/30 z-10">
                                     ${curr} ${v.price}
                                 </div>
 
-                                ${showArrows ? `<div class="absolute bottom-4 right-4 bg-legado-darkBg/80 backdrop-blur-md text-slate-300 font-mono font-bold px-3 py-1 rounded-xl text-xs border border-legado-cardBorder z-10">${this.currentPhotoIndex + 1} / ${totalPhotos}</div>` : ''}
+                                ${showArrows ? `<div class="absolute bottom-4 right-4 bg-legado-darkBg/80 backdrop-blur-md text-slate-300 font-mono font-bold px-3 py-1 rounded-xl text-xs border border-legado-grayBorder z-10">${this.currentPhotoIndex + 1} / ${totalPhotos}</div>` : ''}
 
                                 ${showArrows ? `
                                     <button onclick="window.app && window.app.prevPhoto()" aria-label="Foto anterior" 
-                                            class="absolute left-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-cardBorder transition-all duration-200 shadow-2xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
+                                            class="absolute left-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-grayBorder transition-all duration-200 shadow-2xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
                                         <i class="fa-solid fa-chevron-left text-base sm:text-lg"></i>
                                     </button>
                                 ` : ''}
 
                                 ${showArrows ? `
                                     <button onclick="window.app && window.app.nextPhoto()" aria-label="Siguiente foto" 
-                                            class="absolute right-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-cardBorder transition-all duration-200 shadow-2xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
+                                            class="absolute right-3 top-1/2 -translate-y-1/2 bg-legado-darkBg/80 hover:bg-legado-purple text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-md border border-legado-grayBorder transition-all duration-200 shadow-2xl opacity-90 sm:opacity-0 sm:group-hover:opacity-100 active:scale-90 z-20">
                                         <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
                                     </button>
                                 ` : ''}
@@ -1047,17 +1063,17 @@
                                     <span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">
                                         ${v.brand}
                                     </span>
-                                    ${v.type ? `<span class="bg-legado-darkBg text-slate-300 border border-legado-cardBorder text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">${v.type}</span>` : ''}
+                                    ${v.type ? `<span class="bg-legado-darkBg text-slate-300 border border-legado-grayBorder text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">${v.type}</span>` : ''}
                                     ${statusBadgeHtml}
                                 </div>
                                 <h2 class="text-3xl font-black text-white mb-3">${v.model}</h2>
-                                <div class="grid grid-cols-2 gap-4 my-4 p-4 bg-legado-darkBg/80 rounded-2xl border border-legado-cardBorder">
+                                <div class="grid grid-cols-2 gap-4 my-4 p-4 bg-legado-darkBg/80 rounded-2xl border border-legado-grayBorder">
                                     <div>
                                         <span class="block text-xs text-slate-400 uppercase font-bold">Año</span>
                                         <span class="text-white font-bold text-base">${v.year}</span>
                                     </div>
                                     ${kmInfo}
-                                    <div class="col-span-2 pt-2 border-t border-legado-cardBorder">
+                                    <div class="col-span-2 pt-2 border-t border-legado-grayBorder">
                                         <span class="block text-xs text-slate-400 uppercase font-bold">Especificaciones</span>
                                         <span class="text-white font-medium text-sm">${v.specs || 'N/D'}</span>
                                     </div>
@@ -1066,20 +1082,20 @@
                                 <p class="text-slate-300 text-sm leading-relaxed mb-6 whitespace-pre-line">${v.description || 'Sin descripción disponible.'}</p>
                             </div>
 
-                            <div class="pt-4 border-t border-legado-cardBorder flex flex-col gap-3">
+                            <div class="pt-4 border-t border-legado-grayBorder flex flex-col gap-3">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <a href="https://wa.me/5491131861832?text=${whatsappMsg}" target="_blank" 
-                                       class="bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-4 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
+                                       class="bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
                                         <i class="fa-brands fa-whatsapp text-lg"></i>
                                         <span>Consultar por WhatsApp</span>
                                     </a>
                                     <a href="https://www.instagram.com/legadoautomotores/" target="_blank" 
-                                       class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white py-3 px-4 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition transform active:scale-95">
+                                       class="bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg transition transform active:scale-95">
                                         <i class="fa-brands fa-instagram text-lg"></i>
                                         <span>Instagram</span>
                                     </a>
                                 </div>
-                                <button onclick="window.app && window.app.openTradeModal()" class="w-full bg-legado-purple/20 hover:bg-legado-purple/40 text-legado-purpleLight border border-legado-purple/40 py-3 px-4 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 transition shadow-lg">
+                                <button onclick="window.app && window.app.openTradeModal()" class="w-full bg-legado-purple/20 hover:bg-legado-purple/40 text-legado-purpleLight border border-legado-purple/40 py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 transition shadow-lg">
                                     <i class="fa-solid fa-right-left text-base"></i>
                                     <span>Consultar por Permuta / Entrega de Vehículo</span>
                                 </button>
@@ -1143,7 +1159,6 @@
                 }
             }
 
-            // Permuta Modal Functions
             openTradeModal() {
                 if (!this.currentVehicle) return;
                 const titleEl = document.getElementById('tradeVehicleTitle');
@@ -1181,7 +1196,6 @@
                 this.closeTradeModal();
             }
 
-            // "Vendé tu Auto" Modal Functions
             openSellCarModal() {
                 const fields = ['sellOwnerName', 'sellCarBrandModel', 'sellCarYearKm', 'sellCarPrice', 'sellCarPhotos', 'sellCarNotes'];
                 fields.forEach(f => {
@@ -1213,7 +1227,6 @@
                 this.closeSellCarModal();
             }
 
-            // Admin Authentication and Session Management
             openAdminModal() {
                 const modal = document.getElementById('adminModal');
                 const loginCard = document.getElementById('adminLoginCard');
@@ -1338,7 +1351,7 @@
                     html += `
                         <tr class="hover:bg-legado-darkBg/60 transition">
                             <td class="py-3 px-4 flex items-center space-x-3">
-                                <img src="${cover}" class="w-12 h-10 object-cover rounded-lg border border-legado-cardBorder flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
+                                <img src="${cover}" class="w-12 h-10 object-cover rounded-lg border border-legado-grayBorder flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
                                 <div>
                                     <span class="font-bold text-white block">${v.brand} ${v.model}</span>
                                     <span class="text-xs text-slate-400">Tipo: ${v.type || 'N/D'}</span>
@@ -1349,7 +1362,7 @@
                             <td class="py-3 px-4 text-slate-300">${v.year} / ${v.showKm !== false ? (v.km || 'N/D') : 'Oculto'}</td>
                             <td class="py-3 px-4 text-slate-300">${v.photos ? v.photos.length : 0} fotos</td>
                             <td class="py-3 px-4 text-right space-x-2">
-                                <button onclick="window.app && window.app.openVehicleModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 text-legado-purpleLight border border-legado-cardBorder px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <button onclick="window.app && window.app.openVehicleModal('${v.id}')" class="bg-legado-darkBg hover:bg-slate-800 text-legado-purpleLight border border-legado-grayBorder px-3 py-1.5 rounded-lg text-xs font-bold transition">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
                                 <button onclick="window.app && window.app.deleteVehicle('${v.id}')" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 border border-rose-900/40 px-3 py-1.5 rounded-lg text-xs font-bold transition">
@@ -1403,49 +1416,10 @@
                 if (modal) modal.classList.remove('hidden');
             }
 
-            // Client-Side Canvas Image Compression Helper (< 100KB per photo)
-            compressImage(file) {
-                return new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const img = new Image();
-                        img.onload = () => {
-                            const canvas = document.createElement('canvas');
-                            let width = img.width;
-                            let height = img.height;
-                            const maxDimension = 1200;
-
-                            if (width > maxDimension || height > maxDimension) {
-                                if (width > height) {
-                                    height = Math.round((height * maxDimension) / width);
-                                    width = maxDimension;
-                                } else {
-                                    width = Math.round((width * maxDimension) / height);
-                                    height = maxDimension;
-                                }
-                            }
-
-                            canvas.width = width;
-                            canvas.height = height;
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0, width, height);
-
-                            // Compress canvas output to WebP/JPEG format
-                            const dataUrl = canvas.toDataURL('image/webp', 0.75);
-                            resolve({ name: file.name, dataUrl });
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                });
-            }
-
-            // Direct File Upload Handler (Compresses local files & sorts by filename)
             async handleFileInput(e) {
                 const files = Array.from(e.target.files || []);
                 if (files.length === 0) return;
 
-                // Sort selected files by their original filename (numerically e.g. 1.jpg, 2.jpg)
                 const sortedFiles = [...files].sort((a, b) => {
                     const matchA = a.name.match(/(\d+)(?=\.[a-zA-Z0-9]+$)/) || a.name.match(/(\d+)/);
                     const matchB = b.name.match(/(\d+)(?=\.[a-zA-Z0-9]+$)/) || b.name.match(/(\d+)/);
@@ -1455,19 +1429,25 @@
                     return numA - numB;
                 });
 
-                this.showToast('Optimizando y comprimiendo fotos...', 'info');
+                const readDataUrl = (file) => new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (evt) => resolve({ name: file.name, dataUrl: evt.target.result });
+                    reader.readAsDataURL(file);
+                });
+
+                this.showToast('Procesando imágenes...', 'info');
 
                 try {
-                    const fileResults = await Promise.all(sortedFiles.map(file => this.compressImage(file)));
+                    const fileResults = await Promise.all(sortedFiles.map(readDataUrl));
                     fileResults.forEach(item => {
                         this.currentEditingPhotos.push(item.dataUrl);
                     });
 
                     this.currentEditingPhotos = this.sortPhotosListNumerically(this.currentEditingPhotos);
                     this.renderPhotoReorderList();
-                    this.showToast(`${files.length} foto(s) optimizada(s) y cargada(s)`);
+                    this.showToast(`${files.length} foto(s) cargada(s) correctamente`);
                 } catch (err) {
-                    console.error("Error compressing file input:", err);
+                    console.error("Error reading file input:", err);
                     this.showToast('Error al procesar archivos locales', 'error');
                 }
             }
@@ -1476,7 +1456,6 @@
                 const raw = document.getElementById('vPhotos').value;
                 const textUrls = raw.split(/,|\n/).map(p => p.trim()).filter(p => p.length > 0);
                 
-                // Keep existing Data URLs (uploaded files) and merge with text links
                 const uploadedDataUrls = this.currentEditingPhotos.filter(p => p.startsWith('data:'));
                 this.currentEditingPhotos = [...uploadedDataUrls, ...textUrls];
                 this.currentEditingPhotos = this.sortPhotosListNumerically(this.currentEditingPhotos);
@@ -1521,19 +1500,19 @@
                 this.currentEditingPhotos.forEach((url, idx) => {
                     const isCover = idx === 0;
                     const isLocal = url.startsWith('data:');
-                    const labelText = isLocal ? `Foto Local Optimizada #${idx + 1}` : url;
+                    const labelText = isLocal ? `Foto Local #${idx + 1}` : url;
 
                     html += `
-                        <div class="flex items-center justify-between bg-legado-darkBg p-2.5 rounded-2xl border border-legado-cardBorder gap-3">
+                        <div class="flex items-center justify-between bg-legado-darkBg p-2.5 rounded-xl border border-legado-grayBorder gap-3">
                             <div class="flex items-center space-x-3 overflow-hidden">
                                 <span class="text-xs font-bold text-slate-400 w-5 text-right">#${idx + 1}</span>
-                                <img src="${url}" class="w-12 h-9 object-cover rounded-lg border border-legado-cardBorder flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
+                                <img src="${url}" class="w-12 h-9 object-cover rounded-lg border border-legado-grayBorder flex-shrink-0" onerror="this.src='https://placehold.co/100x100'">
                                 <span class="text-xs text-slate-300 font-mono truncate max-w-xs">${labelText}</span>
-                                ${isCover ? '<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded-md text-[10px] font-bold">Portada</span>' : ''}
+                                ${isCover ? '<span class="bg-legado-purple/20 text-legado-purpleLight border border-legado-purple/30 px-2 py-0.5 rounded text-[10px] font-bold">Portada</span>' : ''}
                             </div>
                             <div class="flex items-center space-x-1 flex-shrink-0">
-                                <button type="button" onclick="window.app && window.app.movePhoto(${idx}, -1)" ${idx === 0 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-cardBorder px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-up"></i></button>
-                                <button type="button" onclick="window.app && window.app.movePhoto(${idx}, 1)" ${idx === this.currentEditingPhotos.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-cardBorder px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-down"></i></button>
+                                <button type="button" onclick="window.app && window.app.movePhoto(${idx}, -1)" ${idx === 0 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-up"></i></button>
+                                <button type="button" onclick="window.app && window.app.movePhoto(${idx}, 1)" ${idx === this.currentEditingPhotos.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed bg-slate-900 text-slate-600 px-2.5 py-1.5 rounded-lg text-xs"' : 'class="bg-legado-cardBg hover:bg-slate-800 text-slate-200 border border-legado-grayBorder px-2.5 py-1.5 rounded-lg text-xs"'}><i class="fa-solid fa-arrow-down"></i></button>
                                 <button type="button" onclick="window.app && window.app.removePhoto(${idx})" class="bg-rose-950/50 hover:bg-rose-900 text-rose-400 border border-rose-900/40 px-2.5 py-1.5 rounded-lg text-xs"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
